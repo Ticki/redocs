@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `v1` mod in crate `redox`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, v1">
+
+    <title>redox::prelude::v1 - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>redox</a>::<wbr><a href='../index.html'>prelude</a></p><script>window.sidebarCurrent = {name: 'v1', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>redox</a>::<wbr><a href='../index.html'>prelude</a>::<wbr><a class='mod' href=''>v1</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-163' class='srclink' href='../../../src/redox/prelude/v1.rs.html#11-33' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>The first version of the prelude of The Rust Standard Library.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use marker::{<a class='trait' href='../../../redox/marker/trait.Copy.html' title='redox::marker::Copy'>Copy</a>, <a class='trait' href='../../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a>, <a class='trait' href='../../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a>, <a class='trait' href='../../../redox/marker/trait.Sync.html' title='redox::marker::Sync'>Sync</a>};</code></td></tr><tr><td><code>pub use ops::{<a class='trait' href='../../../redox/ops/trait.Drop.html' title='redox::ops::Drop'>Drop</a>, <a class='trait' href='../../../redox/ops/trait.Fn.html' title='redox::ops::Fn'>Fn</a>, <a class='trait' href='../../../redox/ops/trait.FnMut.html' title='redox::ops::FnMut'>FnMut</a>, <a class='trait' href='../../../redox/ops/trait.FnOnce.html' title='redox::ops::FnOnce'>FnOnce</a>};</code></td></tr><tr><td><code>pub use mem::<a class='fn' href='../../../redox/mem/fn.drop.html' title='redox::mem::drop'>drop</a>;</code></td></tr><tr><td><code>pub use boxed::<a class='struct' href='../../../redox/struct.Box.html' title='redox::Box'>Box</a>;</code></td></tr><tr><td><code>pub use borrow::<a class='trait' href='../../../redox/borrow/trait.ToOwned.html' title='redox::borrow::ToOwned'>ToOwned</a>;</code></td></tr><tr><td><code>pub use clone::<a class='trait' href='../../../redox/clone/trait.Clone.html' title='redox::clone::Clone'>Clone</a>;</code></td></tr><tr><td><code>pub use cmp::{<a class='trait' href='../../../redox/cmp/trait.PartialEq.html' title='redox::cmp::PartialEq'>PartialEq</a>, <a class='trait' href='../../../redox/cmp/trait.PartialOrd.html' title='redox::cmp::PartialOrd'>PartialOrd</a>, <a class='trait' href='../../../redox/cmp/trait.Eq.html' title='redox::cmp::Eq'>Eq</a>, <a class='trait' href='../../../redox/cmp/trait.Ord.html' title='redox::cmp::Ord'>Ord</a>};</code></td></tr><tr><td><code>pub use convert::{<a class='trait' href='../../../redox/convert/trait.AsRef.html' title='redox::convert::AsRef'>AsRef</a>, <a class='trait' href='../../../redox/convert/trait.AsMut.html' title='redox::convert::AsMut'>AsMut</a>, <a class='trait' href='../../../redox/convert/trait.Into.html' title='redox::convert::Into'>Into</a>, <a class='trait' href='../../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>};</code></td></tr><tr><td><code>pub use default::<a class='trait' href='../../../redox/default/trait.Default.html' title='redox::default::Default'>Default</a>;</code></td></tr><tr><td><code>pub use iter::{<a class='trait' href='../../../redox/iter/trait.Iterator.html' title='redox::iter::Iterator'>Iterator</a>, <a class='trait' href='../../../redox/iter/trait.Extend.html' title='redox::iter::Extend'>Extend</a>, <a class='trait' href='../../../redox/iter/trait.IntoIterator.html' title='redox::iter::IntoIterator'>IntoIterator</a>};</code></td></tr><tr><td><code>pub use iter::{<a class='trait' href='../../../redox/iter/trait.DoubleEndedIterator.html' title='redox::iter::DoubleEndedIterator'>DoubleEndedIterator</a>, <a class='trait' href='../../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a>};</code></td></tr><tr><td><code>pub use option::Option::{<a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>self</a>, <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Some</a>, <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>None</a>};</code></td></tr><tr><td><code>pub use result::Result::{<a class='enum' href='../../../redox/result/enum.Result.html' title='redox::result::Result'>self</a>, <a class='enum' href='../../../redox/result/enum.Result.html' title='redox::result::Result'>Ok</a>, <a class='enum' href='../../../redox/result/enum.Result.html' title='redox::result::Result'>Err</a>};</code></td></tr><tr><td><code>pub use slice::<a class='trait' href='../../../redox/slice/trait.SliceConcatExt.html' title='redox::slice::SliceConcatExt'>SliceConcatExt</a>;</code></td></tr><tr><td><code>pub use string::{<a class='struct' href='../../../redox/string/struct.String.html' title='redox::string::String'>String</a>, <a class='trait' href='../../../redox/string/trait.ToString.html' title='redox::string::ToString'>ToString</a>};</code></td></tr><tr><td><code>pub use vec::<a class='struct' href='../../../redox/struct.Vec.html' title='redox::Vec'>Vec</a>;</code></td></tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "redox";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>

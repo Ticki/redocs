@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Send` trait in crate `redox`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Send">
+
+    <title>redox::marker::Send - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>redox</a>::<wbr><a href='index.html'>marker</a></p><script>window.sidebarCurrent = {name: 'Send', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>redox</a>::<wbr><a href='index.html'>marker</a>::<wbr><a class='trait' href=''>Send</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-12298' class='srclink' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html?gotosrc=12298' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub unsafe trait Send { }</pre><div class='docblock'><p>Types able to be transferred across thread boundaries.</p>
+</div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/ptr/struct.Unique.html' title='redox::ptr::Unique'>Unique</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;T&gt; !<a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for *const T</code></li>
+<li><code>impl&lt;T&gt; !<a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for *mut T</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for &amp;'a T <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Sync.html' title='redox::marker::Sync'>Sync</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for &amp;'a mut T <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core/sync/atomic/struct.AtomicPtr.html' title='core::sync::atomic::AtomicPtr'>AtomicPtr</a>&lt;T&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/cell/struct.Cell.html' title='redox::cell::Cell'>Cell</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a></span></code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/cell/struct.RefCell.html' title='redox::cell::RefCell'>RefCell</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/slice/struct.Iter.html' title='redox::slice::Iter'>Iter</a>&lt;'a, T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Sync.html' title='redox::marker::Sync'>Sync</a></span></code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/slice/struct.IterMut.html' title='redox::slice::IterMut'>IterMut</a>&lt;'a, T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a></span></code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> + <a class='trait' href='../../redox/marker/trait.Sync.html' title='redox::marker::Sync'>Sync</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Weak.html' title='alloc::arc::Weak'>Weak</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> + <a class='trait' href='../../redox/marker/trait.Sync.html' title='redox::marker::Sync'>Sync</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.ArcInner.html' title='alloc::arc::ArcInner'>ArcInner</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> + <a class='trait' href='../../redox/marker/trait.Sync.html' title='redox::marker::Sync'>Sync</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;T&gt; !<a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/rc/struct.Rc.html' title='redox::rc::Rc'>Rc</a>&lt;T&gt; <span class='where'>where T: ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;T&gt; !<a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/rc/struct.Weak.html' title='redox::rc::Weak'>Weak</a>&lt;T&gt; <span class='where'>where T: ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;K, V&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/btree/node/struct.MoveTraversalImpl.html' title='core_collections::btree::node::MoveTraversalImpl'>MoveTraversalImpl</a>&lt;K, V&gt; <span class='where'>where K: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a>, V: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a></span></code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/linked_list/struct.Rawlink.html' title='core_collections::linked_list::Rawlink'>Rawlink</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a></span></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/string/struct.Drain.html' title='redox::string::Drain'>Drain</a>&lt;'a&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/vec/struct.IntoIter.html' title='redox::vec::IntoIter'>IntoIter</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a></span></code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a> for <a class='struct' href='../../redox/vec/struct.Drain.html' title='redox::vec::Drain'>Drain</a>&lt;'a, T&gt; <span class='where'>where T: <a class='trait' href='../../redox/marker/trait.Send.html' title='redox::marker::Send'>Send</a></span></code></li>
+</ul><script type="text/javascript" async
+                              src="../../implementors/core/marker/trait.Send.js">
+                      </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "redox";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>

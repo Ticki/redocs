@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ExactSizeIterator` trait in crate `redox`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ExactSizeIterator">
+
+    <title>redox::iter::ExactSizeIterator - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>redox</a>::<wbr><a href='index.html'>iter</a></p><script>window.sidebarCurrent = {name: 'ExactSizeIterator', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>redox</a>::<wbr><a href='index.html'>iter</a>::<wbr><a class='trait' href=''>ExactSizeIterator</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-28000' class='srclink' href='https://doc.rust-lang.org/nightly/core/iter/trait.ExactSizeIterator.html?gotosrc=28000' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait ExactSizeIterator: <a class='trait' href='../../redox/iter/trait.Iterator.html' title='redox::iter::Iterator'>Iterator</a> {
+    fn <a href='#method.len' class='fnname'>len</a>(&amp;self) -&gt; usize { ... }
+}</pre><div class='docblock'><p>An iterator that knows its exact length</p>
+
+<p>This trait is a helper for iterators like the vector iterator, so that
+it can support double-ended enumeration.</p>
+
+<p><code>Iterator::size_hint</code> <em>must</em> return the exact size of the iterator.
+Note that the size must fit in <code>usize</code>.</p>
+</div>
+            <h2 id='provided-methods'>Provided Methods</h2>
+            <div class='methods'>
+        <h3 id='method.len' class='method stab '><code>fn <a href='#method.len' class='fnname'>len</a>(&amp;self) -&gt; usize</code></h3><div class='docblock'><p>Returns the exact length of the iterator.</p>
+</div></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><code>impl&lt;'a, I&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for &amp;'a mut I <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;I&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Enumerate.html' title='redox::iter::Enumerate'>Enumerate</a>&lt;I&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a></span></code></li>
+<li><code>impl&lt;I, F&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Inspect.html' title='redox::iter::Inspect'>Inspect</a>&lt;I, F&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a>, F: <a class='trait' href='../../redox/ops/trait.FnMut.html' title='redox::ops::FnMut'>FnMut</a>(&amp;I::<a class='trait' href='../../redox/iter/trait.Iterator.html' title='redox::iter::Iterator'>Item</a>) -&gt; ()</span></code></li>
+<li><code>impl&lt;I&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Rev.html' title='redox::iter::Rev'>Rev</a>&lt;I&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> + <a class='trait' href='../../redox/iter/trait.DoubleEndedIterator.html' title='redox::iter::DoubleEndedIterator'>DoubleEndedIterator</a></span></code></li>
+<li><code>impl&lt;B, I, F&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Map.html' title='redox::iter::Map'>Map</a>&lt;I, F&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a>, F: <a class='trait' href='../../redox/ops/trait.FnMut.html' title='redox::ops::FnMut'>FnMut</a>(I::<a class='trait' href='../../redox/iter/trait.Iterator.html' title='redox::iter::Iterator'>Item</a>) -&gt; B</span></code></li>
+<li><code>impl&lt;A, B&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Zip.html' title='redox::iter::Zip'>Zip</a>&lt;A, B&gt; <span class='where'>where B: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a>, A: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a></span></code></li>
+<li><code>impl&lt;'a, I, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Cloned.html' title='redox::iter::Cloned'>Cloned</a>&lt;I&gt; <span class='where'>where T: 'a + <a class='trait' href='../../redox/clone/trait.Clone.html' title='redox::clone::Clone'>Clone</a>, I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a>&lt;Item=&amp;'a T&gt;</span></code></li>
+<li><code>impl&lt;I&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Peekable.html' title='redox::iter::Peekable'>Peekable</a>&lt;I&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a></span></code></li>
+<li><code>impl&lt;I&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Skip.html' title='redox::iter::Skip'>Skip</a>&lt;I&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a></span></code></li>
+<li><code>impl&lt;I&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Take.html' title='redox::iter::Take'>Take</a>&lt;I&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a></span></code></li>
+<li><code>impl&lt;I&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Fuse.html' title='redox::iter::Fuse'>Fuse</a>&lt;I&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a></span></code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ops/struct.Range.html' title='redox::ops::Range'>Range</a>&lt;usize&gt;</code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ops/struct.Range.html' title='redox::ops::Range'>Range</a>&lt;u8&gt;</code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ops/struct.Range.html' title='redox::ops::Range'>Range</a>&lt;u16&gt;</code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ops/struct.Range.html' title='redox::ops::Range'>Range</a>&lt;u32&gt;</code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ops/struct.Range.html' title='redox::ops::Range'>Range</a>&lt;isize&gt;</code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ops/struct.Range.html' title='redox::ops::Range'>Range</a>&lt;i8&gt;</code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ops/struct.Range.html' title='redox::ops::Range'>Range</a>&lt;i16&gt;</code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ops/struct.Range.html' title='redox::ops::Range'>Range</a>&lt;i32&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Empty.html' title='redox::iter::Empty'>Empty</a>&lt;T&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/iter/struct.Once.html' title='redox::iter::Once'>Once</a>&lt;T&gt;</code></li>
+<li><code>impl&lt;A&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core/option/struct.Item.html' title='core::option::Item'>Item</a>&lt;A&gt;</code></li>
+<li><code>impl&lt;'a, A&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/option/struct.Iter.html' title='redox::option::Iter'>Iter</a>&lt;'a, A&gt;</code></li>
+<li><code>impl&lt;'a, A&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/option/struct.IterMut.html' title='redox::option::IterMut'>IterMut</a>&lt;'a, A&gt;</code></li>
+<li><code>impl&lt;A&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/option/struct.IntoIter.html' title='redox::option::IntoIter'>IntoIter</a>&lt;A&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/result/struct.Iter.html' title='redox::result::Iter'>Iter</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/result/struct.IterMut.html' title='redox::result::IterMut'>IterMut</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/result/struct.IntoIter.html' title='redox::result::IntoIter'>IntoIter</a>&lt;T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/slice/struct.Iter.html' title='redox::slice::Iter'>Iter</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/slice/struct.IterMut.html' title='redox::slice::IterMut'>IterMut</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/slice/struct.Windows.html' title='redox::slice::Windows'>Windows</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/slice/struct.Chunks.html' title='redox::slice::Chunks'>Chunks</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/slice/struct.ChunksMut.html' title='redox::slice::ChunksMut'>ChunksMut</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/str/struct.Bytes.html' title='redox::str::Bytes'>Bytes</a>&lt;'a&gt;</code></li>
+<li><code>impl&lt;I&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/struct.Box.html' title='redox::Box'>Box</a>&lt;I&gt; <span class='where'>where I: <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> + ?<a class='trait' href='../../redox/marker/trait.Sized.html' title='redox::marker::Sized'>Sized</a></span></code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/binary_heap/struct.Iter.html' title='core_collections::binary_heap::Iter'>Iter</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/binary_heap/struct.IntoIter.html' title='core_collections::binary_heap::IntoIter'>IntoIter</a>&lt;T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/binary_heap/struct.Drain.html' title='core_collections::binary_heap::Drain'>Drain</a>&lt;'a, T&gt; <span class='where'>where T: 'a</span></code></li>
+<li><code>impl&lt;'a, K, V&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/btree/map/struct.Iter.html' title='core_collections::btree::map::Iter'>Iter</a>&lt;'a, K, V&gt;</code></li>
+<li><code>impl&lt;'a, K, V&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/btree/map/struct.IterMut.html' title='core_collections::btree::map::IterMut'>IterMut</a>&lt;'a, K, V&gt;</code></li>
+<li><code>impl&lt;K, V&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/btree/map/struct.IntoIter.html' title='core_collections::btree::map::IntoIter'>IntoIter</a>&lt;K, V&gt;</code></li>
+<li><code>impl&lt;'a, K, V&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/btree/map/struct.Keys.html' title='core_collections::btree::map::Keys'>Keys</a>&lt;'a, K, V&gt;</code></li>
+<li><code>impl&lt;'a, K, V&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/btree/map/struct.Values.html' title='core_collections::btree::map::Values'>Values</a>&lt;'a, K, V&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/btree/set/struct.Iter.html' title='core_collections::btree::set::Iter'>Iter</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/btree/set/struct.IntoIter.html' title='core_collections::btree::set::IntoIter'>IntoIter</a>&lt;T&gt;</code></li>
+<li><code>impl&lt;'a, A&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/linked_list/struct.Iter.html' title='core_collections::linked_list::Iter'>Iter</a>&lt;'a, A&gt;</code></li>
+<li><code>impl&lt;'a, A&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/linked_list/struct.IterMut.html' title='core_collections::linked_list::IterMut'>IterMut</a>&lt;'a, A&gt;</code></li>
+<li><code>impl&lt;A&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/linked_list/struct.IntoIter.html' title='core_collections::linked_list::IntoIter'>IntoIter</a>&lt;A&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/vec/struct.IntoIter.html' title='redox::vec::IntoIter'>IntoIter</a>&lt;T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/vec/struct.Drain.html' title='redox::vec::Drain'>Drain</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/vec_deque/struct.Iter.html' title='core_collections::vec_deque::Iter'>Iter</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/vec_deque/struct.IterMut.html' title='core_collections::vec_deque::IterMut'>IterMut</a>&lt;'a, T&gt;</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/vec_deque/struct.IntoIter.html' title='core_collections::vec_deque::IntoIter'>IntoIter</a>&lt;T&gt;</code></li>
+<li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/vec_deque/struct.Drain.html' title='core_collections::vec_deque::Drain'>Drain</a>&lt;'a, T&gt; <span class='where'>where T: 'a</span></code></li>
+<li><code>impl <a class='trait' href='../../redox/iter/trait.ExactSizeIterator.html' title='redox::iter::ExactSizeIterator'>ExactSizeIterator</a> for <a class='struct' href='../../redox/ascii/struct.EscapeDefault.html' title='redox::ascii::EscapeDefault'>EscapeDefault</a></code></li>
+</ul><script type="text/javascript" async
+                              src="../../implementors/core/iter/trait.ExactSizeIterator.js">
+                      </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "redox";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>
