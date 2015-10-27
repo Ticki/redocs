@@ -45,11 +45,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1257' class='srclink' href='../src/redox/console.rs.html#50-55' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1420' class='srclink' href='../src/redox/console.rs.html#51-56' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>print</span> {
     ($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> ({
-        <span class='ident'>console_window</span>().<span class='ident'>print</span>(<span class='kw-2'>&amp;</span><span class='macro'>format</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>)<span class='op'>*</span>), [<span class='number'>224</span>, <span class='number'>224</span>, <span class='number'>224</span>, <span class='number'>255</span>]);
+        <span class='ident'>console_window</span>().<span class='ident'>print</span>(<span class='kw-2'>&amp;</span><span class='macro'>format</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>)<span class='op'>*</span>), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Color</span>::<span class='ident'>rgba</span>(<span class='number'>224</span>, <span class='number'>224</span>, <span class='number'>224</span>, <span class='number'>255</span>));
         <span class='ident'>console_window</span>().<span class='ident'>sync</span>();
     });
 }</pre>

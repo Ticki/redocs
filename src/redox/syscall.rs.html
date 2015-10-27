@@ -148,12 +148,29 @@
 <span id="106">106</span>
 <span id="107">107</span>
 <span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
 </pre><pre class='rust '>
-<span class='kw'>use</span> <span class='ident'>time</span>::<span class='ident'>Duration</span>;
-
 <span class='kw'>use</span> <span class='ident'>syscall</span>::<span class='ident'>common</span>::<span class='op'>*</span>;
 
-<span class='attribute'>#[<span class='ident'>path</span><span class='op'>=</span><span class='string'>&quot;../../src/syscall/src/common.rs&quot;</span>]</span>
+<span class='attribute'>#[<span class='ident'>path</span><span class='op'>=</span><span class='string'>&quot;../../kernel/syscall/common.rs&quot;</span>]</span>
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>common</span>;
 
 <span class='attribute'>#[<span class='ident'>cold</span>]</span>
@@ -186,6 +203,26 @@
     <span class='ident'>syscall</span>(<span class='ident'>SYS_DEBUG</span>, <span class='ident'>byte</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>, <span class='number'>0</span>);
 }
 
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_brk</span>(<span class='ident'>addr</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_BRK</span>, <span class='ident'>addr</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+}
+
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_chdir</span>(<span class='ident'>path</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_CHDIR</span>, <span class='ident'>path</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+}
+
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_close</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_CLOSE</span>, <span class='ident'>fd</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+}
+
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_dup</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_DUP</span>, <span class='ident'>fd</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+}
+
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_execve</span>(<span class='ident'>path</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_EXECVE</span>, <span class='ident'>path</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+}
+
 <span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_exit</span>(<span class='ident'>status</span>: <span class='ident'>isize</span>) {
     <span class='ident'>syscall</span>(<span class='ident'>SYS_EXIT</span>, <span class='ident'>status</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>, <span class='number'>0</span>);
 }
@@ -194,48 +231,49 @@
     <span class='ident'>syscall</span>(<span class='ident'>SYS_FORK</span>, <span class='number'>0</span>, <span class='number'>0</span>, <span class='number'>0</span>)
 }
 
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_read</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>, <span class='ident'>buf</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>count</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_READ</span>, <span class='ident'>fd</span>, <span class='ident'>buf</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>count</span>)
-}
-
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_write</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>, <span class='ident'>buf</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>, <span class='ident'>count</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_WRITE</span>, <span class='ident'>fd</span>, <span class='ident'>buf</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>count</span>)
-}
-
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_open</span>(<span class='ident'>path</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>, <span class='ident'>flags</span>: <span class='ident'>usize</span>, <span class='ident'>mode</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_OPEN</span>, <span class='ident'>path</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>flags</span>, <span class='ident'>mode</span>)
-}
-
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_dup</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_DUP</span>, <span class='ident'>fd</span>, <span class='number'>0</span>, <span class='number'>0</span>)
-}
-
 <span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_fpath</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>, <span class='ident'>buf</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>len</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
     <span class='ident'>syscall</span>(<span class='ident'>SYS_FPATH</span>, <span class='ident'>fd</span>, <span class='ident'>buf</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>len</span>)
 }
 
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_close</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_CLOSE</span>, <span class='ident'>fd</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+<span class='comment'>//TODO: FSTAT</span>
+
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_fsync</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_FSYNC</span>, <span class='ident'>fd</span>, <span class='number'>0</span>, <span class='number'>0</span>)
 }
 
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_execve</span>(<span class='ident'>path</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_EXECVE</span>, <span class='ident'>path</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+<span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>packed</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>TV</span> {
+    <span class='kw'>pub</span> <span class='ident'>tv_sec</span>: <span class='ident'>i64</span>,
+    <span class='kw'>pub</span> <span class='ident'>tv_usec</span>: <span class='ident'>i32</span>,
+}
+
+<span class='comment'>//TODO: gettimeofday</span>
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_gettimeofday</span>(<span class='ident'>tv</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TV</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span>{
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_GETTIMEOFDAY</span>, <span class='ident'>tv</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+}
+
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_link</span>(<span class='ident'>old</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>, <span class='ident'>new</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_LINK</span>, <span class='ident'>old</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>new</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>)
 }
 
 <span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_lseek</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>, <span class='ident'>offset</span>: <span class='ident'>isize</span>, <span class='ident'>whence</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
     <span class='ident'>syscall</span>(<span class='ident'>SYS_LSEEK</span>, <span class='ident'>fd</span>, <span class='ident'>offset</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>whence</span>)
 }
 
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_fsync</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_FSYNC</span>, <span class='ident'>fd</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_open</span>(<span class='ident'>path</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>, <span class='ident'>flags</span>: <span class='ident'>usize</span>, <span class='ident'>mode</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_OPEN</span>, <span class='ident'>path</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>flags</span>, <span class='ident'>mode</span>)
 }
 
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_time</span>(<span class='ident'>time_ptr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>Duration</span>, <span class='ident'>realtime</span>: <span class='ident'>bool</span>) {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_TIME</span>, <span class='ident'>time_ptr</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>realtime</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>);
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_read</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>, <span class='ident'>buf</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>u8</span>, <span class='ident'>count</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_READ</span>, <span class='ident'>fd</span>, <span class='ident'>buf</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>count</span>)
 }
 
-<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_brk</span>(<span class='ident'>addr</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
-    <span class='ident'>syscall</span>(<span class='ident'>SYS_BRK</span>, <span class='ident'>addr</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_unlink</span>(<span class='ident'>path</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_UNLINK</span>, <span class='ident'>path</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='number'>0</span>, <span class='number'>0</span>)
+}
+
+<span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_write</span>(<span class='ident'>fd</span>: <span class='ident'>usize</span>, <span class='ident'>buf</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>u8</span>, <span class='ident'>count</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span> {
+    <span class='ident'>syscall</span>(<span class='ident'>SYS_WRITE</span>, <span class='ident'>fd</span>, <span class='ident'>buf</span> <span class='kw'>as</span> <span class='ident'>usize</span>, <span class='ident'>count</span>)
 }
 
 <span class='kw'>pub</span> <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>sys_yield</span>() {

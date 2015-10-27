@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-27617' class='srclink' href='https://doc.rust-lang.org/nightly/core/iter/index.html?gotosrc=27617' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-27648' class='srclink' href='https://doc.rust-lang.org/nightly/core/iter/index.html?gotosrc=27648' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Composable external iteration</p>
 
 <p>If you&#39;ve found yourself with a collection of some kind, and needed to
@@ -224,7 +224,7 @@ that point, we <code>break</code> out of the loop, and we&#39;re done iterating.
 <p>There&#39;s one more subtle bit here: the standard library contains an
 interesting implementation of <a href="trait.IntoIterator.html"><code>IntoIterator</code></a>:</p>
 <pre class='rust rust-example-rendered'>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>I</span><span class='op'>&gt;</span> <span class='ident'>IntoIterator</span> <span class='kw'>for</span> <span class='ident'>I</span> <span class='kw'>where</span> <span class='ident'>I</span>: <span class='ident'>Iterator</span></pre>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>I</span>: <span class='ident'>Iterator</span><span class='op'>&gt;</span> <span class='ident'>IntoIterator</span> <span class='kw'>for</span> <span class='ident'>I</span></pre>
 
 <p>In other words, all <a href="trait.Iterator.html"><code>Iterator</code></a>s implement <a href="trait.IntoIterator.html"><code>IntoIterator</code></a>, by just
 returning themselves. This means two things:</p>
@@ -305,7 +305,7 @@ iterator into a finite one:</p>
                         <td><a class='struct' href='struct.Chain.html'
                                title='redox::iter::Chain'>Chain</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that strings two iterators together</p>
+                             <p>An iterator that strings two iterators together.</p>
 
                         </td>
                     </tr>
@@ -314,7 +314,7 @@ iterator into a finite one:</p>
                         <td><a class='struct' href='struct.Cloned.html'
                                title='redox::iter::Cloned'>Cloned</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that clones the elements of an underlying iterator</p>
+                             <p>An iterator that clones the elements of an underlying iterator.</p>
 
                         </td>
                     </tr>
@@ -323,7 +323,7 @@ iterator into a finite one:</p>
                         <td><a class='struct' href='struct.Cycle.html'
                                title='redox::iter::Cycle'>Cycle</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that repeats endlessly</p>
+                             <p>An iterator that repeats endlessly.</p>
 
                         </td>
                     </tr>
@@ -341,7 +341,7 @@ iterator into a finite one:</p>
                         <td><a class='struct' href='struct.Enumerate.html'
                                title='redox::iter::Enumerate'>Enumerate</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that yields the current count and the element during iteration</p>
+                             <p>An iterator that yields the current count and the element during iteration.</p>
 
                         </td>
                     </tr>
@@ -350,7 +350,7 @@ iterator into a finite one:</p>
                         <td><a class='struct' href='struct.Filter.html'
                                title='redox::iter::Filter'>Filter</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that filters the elements of <code>iter</code> with <code>predicate</code></p>
+                             <p>An iterator that filters the elements of <code>iter</code> with <code>predicate</code>.</p>
 
                         </td>
                     </tr>
@@ -359,7 +359,7 @@ iterator into a finite one:</p>
                         <td><a class='struct' href='struct.FilterMap.html'
                                title='redox::iter::FilterMap'>FilterMap</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that uses <code>f</code> to both filter and map elements from <code>iter</code></p>
+                             <p>An iterator that uses <code>f</code> to both filter and map elements from <code>iter</code>.</p>
 
                         </td>
                     </tr>
@@ -368,8 +368,8 @@ iterator into a finite one:</p>
                         <td><a class='struct' href='struct.FlatMap.html'
                                title='redox::iter::FlatMap'>FlatMap</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that maps each element to an iterator,
-and yields the elements of the produced iterators</p>
+                             <p>An iterator that maps each element to an iterator, and yields the elements
+of the produced iterators.</p>
 
                         </td>
                     </tr>
@@ -388,8 +388,8 @@ yields <code>None</code> once.</p>
                         <td><a class='struct' href='struct.Inspect.html'
                                title='redox::iter::Inspect'>Inspect</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that calls a function with a reference to each
-element before yielding it.</p>
+                             <p>An iterator that calls a function with a reference to each element before
+yielding it.</p>
 
                         </td>
                     </tr>
@@ -398,7 +398,7 @@ element before yielding it.</p>
                         <td><a class='struct' href='struct.Map.html'
                                title='redox::iter::Map'>Map</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that maps the values of <code>iter</code> with <code>f</code></p>
+                             <p>An iterator that maps the values of <code>iter</code> with <code>f</code>.</p>
 
                         </td>
                     </tr>
@@ -416,7 +416,8 @@ element before yielding it.</p>
                         <td><a class='struct' href='struct.Peekable.html'
                                title='redox::iter::Peekable'>Peekable</a></td>
                         <td class='docblock short'>
-                             <p>An iterator with a <code>peek()</code> that returns an optional reference to the next element.</p>
+                             <p>An iterator with a <code>peek()</code> that returns an optional reference to the next
+element.</p>
 
                         </td>
                     </tr>
@@ -425,7 +426,7 @@ element before yielding it.</p>
                         <td><a class='struct' href='struct.Repeat.html'
                                title='redox::iter::Repeat'>Repeat</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that repeats an element endlessly</p>
+                             <p>An iterator that repeats an element endlessly.</p>
 
                         </td>
                     </tr>
@@ -434,7 +435,7 @@ element before yielding it.</p>
                         <td><a class='struct' href='struct.Rev.html'
                                title='redox::iter::Rev'>Rev</a></td>
                         <td class='docblock short'>
-                             <p>An double-ended iterator with the direction inverted</p>
+                             <p>An double-ended iterator with the direction inverted.</p>
 
                         </td>
                     </tr>
@@ -443,7 +444,7 @@ element before yielding it.</p>
                         <td><a class='struct' href='struct.Scan.html'
                                title='redox::iter::Scan'>Scan</a></td>
                         <td class='docblock short'>
-                             <p>An iterator to maintain state while iterating another iterator</p>
+                             <p>An iterator to maintain state while iterating another iterator.</p>
 
                         </td>
                     </tr>
@@ -461,7 +462,7 @@ element before yielding it.</p>
                         <td><a class='struct' href='struct.SkipWhile.html'
                                title='redox::iter::SkipWhile'>SkipWhile</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that rejects elements while <code>predicate</code> is true</p>
+                             <p>An iterator that rejects elements while <code>predicate</code> is true.</p>
 
                         </td>
                     </tr>
@@ -479,7 +480,7 @@ element before yielding it.</p>
                         <td><a class='struct' href='struct.TakeWhile.html'
                                title='redox::iter::TakeWhile'>TakeWhile</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that only accepts elements while <code>predicate</code> is true</p>
+                             <p>An iterator that only accepts elements while <code>predicate</code> is true.</p>
 
                         </td>
                     </tr>
@@ -488,7 +489,7 @@ element before yielding it.</p>
                         <td><a class='struct' href='struct.Zip.html'
                                title='redox::iter::Zip'>Zip</a></td>
                         <td class='docblock short'>
-                             <p>An iterator that iterates two other iterators simultaneously</p>
+                             <p>An iterator that iterates two other iterators simultaneously.</p>
 
                         </td>
                     </tr>

@@ -45,11 +45,12 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-875' class='srclink' href='../../src/redox/console.rs.html#99-114' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-902' class='srclink' href='../../src/redox/console.rs.html#100-117' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct ConsoleWindow {
     pub window: <a class='struct' href='../../redox/struct.Box.html' title='redox::Box'>Box</a>&lt;<a class='struct' href='../../redox/orbital/struct.Window.html' title='redox::orbital::Window'>Window</a>&gt;,
     pub output: <a class='struct' href='../../redox/struct.Vec.html' title='redox::Vec'>Vec</a>&lt;<a class='struct' href='../../redox/console/struct.ConsoleChar.html' title='redox::console::ConsoleChar'>ConsoleChar</a>&gt;,
-    pub command: <a class='struct' href='../../redox/string/struct.String.html' title='redox::string::String'>String</a>,
+    pub history: <a class='struct' href='../../redox/struct.Vec.html' title='redox::Vec'>Vec</a>&lt;<a class='struct' href='../../redox/string/struct.String.html' title='redox::string::String'>String</a>&gt;,
+    pub history_i: usize,
     pub offset: usize,
     pub scroll_x: isize,
     pub scroll_y: isize,
@@ -61,7 +62,9 @@
 </div></td></tr><tr class='stab '>
                                   <td id='structfield.output'><code>output</code></td><td><div class='docblock'><p>The char buffer</p>
 </div></td></tr><tr class='stab '>
-                                  <td id='structfield.command'><code>command</code></td><td><div class='docblock'><p>The current input command</p>
+                                  <td id='structfield.history'><code>history</code></td><td><div class='docblock'><p>Previous commands</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.history_i'><code>history_i</code></td><td><div class='docblock'><p>History index</p>
 </div></td></tr><tr class='stab '>
                                   <td id='structfield.offset'><code>offset</code></td><td><div class='docblock'><p>Offset</p>
 </div></td></tr><tr class='stab '>
@@ -76,7 +79,7 @@
 <div class='docblock'><p>Set the window title</p>
 </div><h4 id='method.poll' class='method'><code>fn <a href='#method.poll' class='fnname'>poll</a>(&amp;mut self) -&gt; <a class='enum' href='../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../redox/orbital/event/struct.Event.html' title='redox::orbital::event::Event'>Event</a>&gt;</code></h4>
 <div class='docblock'><p>Poll the window</p>
-</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>(&amp;mut self, string: &amp;str, color: [u8; 4])</code></h4>
+</div><h4 id='method.print' class='method'><code>fn <a href='#method.print' class='fnname'>print</a>(&amp;mut self, string: &amp;str, color: <a class='struct' href='../../redox/struct.Color.html' title='redox::Color'>Color</a>)</code></h4>
 <div class='docblock'><p>Print to the window</p>
 </div><h4 id='method.read' class='method'><code>fn <a href='#method.read' class='fnname'>read</a>(&amp;mut self) -&gt; <a class='enum' href='../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../redox/string/struct.String.html' title='redox::string::String'>String</a>&gt;</code></h4>
 <div class='docblock'><p>Read input</p>

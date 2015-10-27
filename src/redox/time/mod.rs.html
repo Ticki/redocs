@@ -141,25 +141,17 @@
 <span id="99"> 99</span>
 <span id="100">100</span>
 <span id="101">101</span>
-<span id="102">102</span>
-<span id="103">103</span>
-<span id="104">104</span>
-<span id="105">105</span>
-<span id="106">106</span>
-<span id="107">107</span>
-<span id="108">108</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! A module for time</span>
 
-<span class='kw'>use</span> <span class='ident'>core</span>::<span class='ident'>cmp</span>::<span class='op'>*</span>;
-<span class='kw'>use</span> <span class='ident'>core</span>::<span class='ident'>ops</span>::<span class='op'>*</span>;
+<span class='kw'>use</span> <span class='ident'>core</span>::<span class='ident'>cmp</span>::{<span class='ident'>Ordering</span>, <span class='ident'>PartialEq</span>};
+<span class='kw'>use</span> <span class='ident'>core</span>::<span class='ident'>ops</span>::{<span class='ident'>Add</span>, <span class='ident'>Sub</span>};
 
-<span class='kw'>use</span> <span class='ident'>syscall</span>::<span class='ident'>sys_time</span>;
-<span class='kw'>use</span> <span class='ident'>syscall</span>::<span class='ident'>sys_yield</span>;
+<span class='kw'>use</span> <span class='ident'>syscall</span>::{<span class='ident'>TV</span>, <span class='ident'>sys_gettimeofday</span>, <span class='ident'>sys_yield</span>};
 
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>NANOS_PER_MICRO</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1000</span>;
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>NANOS_PER_MILLI</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1000000</span>;
-<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>NANOS_PER_SEC</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1000000000</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>NANOS_PER_MICRO</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1_000</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>NANOS_PER_MILLI</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1_000_000</span>;
+<span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>NANOS_PER_SEC</span>:   <span class='ident'>i32</span> <span class='op'>=</span> <span class='number'>1_000_000_000</span>;
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Duration</span> {
@@ -186,29 +178,23 @@
         }
     }
 
-    <span class='doccomment'>/// Get the current duration</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>monotonic</span>() <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>ret</span> <span class='op'>=</span> <span class='ident'>Duration</span>::<span class='ident'>new</span>(<span class='number'>0</span>, <span class='number'>0</span>);
-        <span class='kw'>unsafe</span> {
-            <span class='ident'>sys_time</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>ret</span>, <span class='boolval'>false</span>);
-        }
-        <span class='ident'>ret</span>
-    }
-
     <span class='doccomment'>/// Get the realtime</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>realtime</span>() <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>ret</span> <span class='op'>=</span> <span class='ident'>Duration</span>::<span class='ident'>new</span>(<span class='number'>0</span>, <span class='number'>0</span>);
-        <span class='kw'>unsafe</span> {
-            <span class='ident'>sys_time</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>ret</span>, <span class='boolval'>true</span>);
-        }
-        <span class='ident'>ret</span>
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>tv</span> <span class='op'>=</span> <span class='ident'>TV</span> {
+            <span class='ident'>tv_sec</span>: <span class='number'>0</span>,
+            <span class='ident'>tv_usec</span>: <span class='number'>0</span>,
+        };
+
+        <span class='kw'>unsafe</span> { <span class='ident'>sys_gettimeofday</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>tv</span>) };
+
+        <span class='ident'>Duration</span>::<span class='ident'>new</span>(<span class='ident'>tv</span>.<span class='ident'>tv_sec</span>, <span class='ident'>tv</span>.<span class='ident'>tv_usec</span> <span class='op'>*</span> <span class='number'>1000</span>)
     }
 
     <span class='doccomment'>/// Sleep the duration</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sleep</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) {
-        <span class='kw'>let</span> <span class='ident'>start_time</span> <span class='op'>=</span> <span class='ident'>Duration</span>::<span class='ident'>monotonic</span>();
+        <span class='kw'>let</span> <span class='ident'>start_time</span> <span class='op'>=</span> <span class='ident'>Duration</span>::<span class='ident'>realtime</span>();
         <span class='kw'>loop</span> {
-            <span class='kw'>let</span> <span class='ident'>elapsed</span> <span class='op'>=</span> <span class='ident'>Duration</span>::<span class='ident'>monotonic</span>() <span class='op'>-</span> <span class='ident'>start_time</span>;
+            <span class='kw'>let</span> <span class='ident'>elapsed</span> <span class='op'>=</span> <span class='ident'>Duration</span>::<span class='ident'>realtime</span>() <span class='op'>-</span> <span class='ident'>start_time</span>;
             <span class='kw'>if</span> <span class='ident'>elapsed</span> <span class='op'>&gt;</span> <span class='op'>*</span><span class='self'>self</span> {
                 <span class='kw'>break</span>;
             } <span class='kw'>else</span> {

@@ -211,13 +211,11 @@
 <span id="169">169</span>
 <span id="170">170</span>
 <span id="171">171</span>
-<span id="172">172</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! IO</span>
 
 <span class='kw'>use</span> <span class='ident'>core</span>::<span class='ident'>usize</span>;
-<span class='kw'>use</span> <span class='ident'>fmt</span>;
-<span class='kw'>use</span> <span class='ident'>str</span>;
+<span class='kw'>use</span> {<span class='ident'>fmt</span>, <span class='ident'>str</span>};
 <span class='kw'>use</span> <span class='ident'>string</span>::<span class='ident'>String</span>;
 <span class='kw'>use</span> <span class='ident'>vec</span>::{<span class='ident'>IntoIter</span>, <span class='ident'>Vec</span>};
 <span class='kw'>use</span> <span class='ident'>syscall</span>::{<span class='ident'>sys_read</span>, <span class='ident'>sys_write</span>};

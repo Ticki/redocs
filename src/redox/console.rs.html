@@ -341,15 +341,27 @@
 <span id="299">299</span>
 <span id="300">300</span>
 <span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
 </pre><pre class='rust '>
-<span class='kw'>use</span> <span class='ident'>alloc</span>::<span class='ident'>boxed</span>::<span class='op'>*</span>;
+<span class='kw'>use</span> <span class='ident'>alloc</span>::<span class='ident'>boxed</span>::<span class='ident'>Box</span>;
 
-<span class='kw'>use</span> <span class='ident'>string</span>::<span class='op'>*</span>;
+<span class='kw'>use</span> <span class='ident'>string</span>::{<span class='ident'>String</span>, <span class='ident'>ToString</span>};
 <span class='kw'>use</span> <span class='ident'>vec</span>::<span class='ident'>Vec</span>;
 
 <span class='kw'>use</span> <span class='ident'>event</span>::<span class='op'>*</span>;
 
 <span class='kw'>use</span> <span class='ident'>orbital</span>::<span class='op'>*</span>;
+<span class='kw'>use</span> <span class='ident'>graphics</span>::<span class='ident'>color</span>::<span class='ident'>Color</span>;
 
 <span class='kw'>use</span> <span class='ident'>rand_old</span>::<span class='op'>*</span>;
 
@@ -360,10 +372,10 @@
     <span class='kw'>unsafe</span> {
         <span class='kw'>if</span> <span class='ident'>window</span> <span class='kw'>as</span> <span class='ident'>usize</span> <span class='op'>==</span> <span class='number'>0</span> {
             <span class='ident'>window</span> <span class='op'>=</span> <span class='ident'>Box</span>::<span class='ident'>into_raw</span>(<span class='ident'>ConsoleWindow</span>::<span class='ident'>new</span>((<span class='ident'>rand</span>() <span class='op'>%</span> <span class='number'>400</span> <span class='op'>+</span> <span class='number'>50</span>) <span class='kw'>as</span> <span class='ident'>isize</span>,
-                                          (<span class='ident'>rand</span>() <span class='op'>%</span> <span class='number'>300</span> <span class='op'>+</span> <span class='number'>50</span>) <span class='kw'>as</span> <span class='ident'>isize</span>,
-                                          <span class='number'>640</span>,
-                                          <span class='number'>480</span>,
-                                          <span class='string'>&quot;Console&quot;</span>));
+                                   (<span class='ident'>rand</span>() <span class='op'>%</span> <span class='number'>300</span> <span class='op'>+</span> <span class='number'>50</span>) <span class='kw'>as</span> <span class='ident'>isize</span>,
+                                   <span class='number'>640</span>,
+                                   <span class='number'>480</span>,
+                                   <span class='string'>&quot;Console&quot;</span>));
             (<span class='op'>*</span><span class='ident'>window</span>).<span class='ident'>sync</span>();
         }
         <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='ident'>window</span>
@@ -393,7 +405,7 @@
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>print</span> {
     ($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> ({
-        <span class='ident'>console_window</span>().<span class='ident'>print</span>(<span class='kw-2'>&amp;</span><span class='macro'>format</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>)<span class='op'>*</span>), [<span class='number'>224</span>, <span class='number'>224</span>, <span class='number'>224</span>, <span class='number'>255</span>]);
+        <span class='ident'>console_window</span>().<span class='ident'>print</span>(<span class='kw-2'>&amp;</span><span class='macro'>format</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>)<span class='op'>*</span>), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Color</span>::<span class='ident'>rgba</span>(<span class='number'>224</span>, <span class='number'>224</span>, <span class='number'>224</span>, <span class='number'>255</span>));
         <span class='ident'>console_window</span>().<span class='ident'>sync</span>();
     });
 }
@@ -436,7 +448,7 @@
     <span class='doccomment'>/// The char</span>
     <span class='ident'>character</span>: <span class='ident'>char</span>,
     <span class='doccomment'>/// The color</span>
-    <span class='ident'>color</span>: [<span class='ident'>u8</span>; <span class='number'>4</span>],
+    <span class='ident'>color</span>: <span class='ident'>Color</span>,
 }
 
 <span class='doccomment'>/// A console window</span>
@@ -445,8 +457,10 @@
     <span class='kw'>pub</span> <span class='ident'>window</span>: <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Window</span><span class='op'>&gt;</span>,
     <span class='doccomment'>/// The char buffer</span>
     <span class='kw'>pub</span> <span class='ident'>output</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>ConsoleChar</span><span class='op'>&gt;</span>,
-    <span class='doccomment'>/// The current input command</span>
-    <span class='kw'>pub</span> <span class='ident'>command</span>: <span class='ident'>String</span>,
+    <span class='doccomment'>/// Previous commands</span>
+    <span class='kw'>pub</span> <span class='ident'>history</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>String</span><span class='op'>&gt;</span>,
+    <span class='doccomment'>/// History index</span>
+    <span class='kw'>pub</span> <span class='ident'>history_i</span>: <span class='ident'>usize</span>,
     <span class='doccomment'>/// Offset</span>
     <span class='kw'>pub</span> <span class='ident'>offset</span>: <span class='ident'>usize</span>,
     <span class='doccomment'>/// Scroll distance x</span>
@@ -463,7 +477,8 @@
         <span class='kw'>box</span> <span class='ident'>ConsoleWindow</span> {
             <span class='ident'>window</span>: <span class='ident'>Window</span>::<span class='ident'>new</span>(<span class='ident'>x</span>, <span class='ident'>y</span>, <span class='ident'>w</span>, <span class='ident'>h</span>, <span class='ident'>title</span>).<span class='ident'>unwrap</span>(),
             <span class='ident'>output</span>: <span class='ident'>Vec</span>::<span class='ident'>new</span>(),
-            <span class='ident'>command</span>: <span class='ident'>String</span>::<span class='ident'>new</span>(),
+            <span class='ident'>history</span>: <span class='macro'>vec</span><span class='macro'>!</span>[<span class='string'>&quot;&quot;</span>.<span class='ident'>to_string</span>()],
+            <span class='ident'>history_i</span>: <span class='number'>0</span>,
             <span class='ident'>offset</span>: <span class='number'>0</span>,
             <span class='ident'>scroll_x</span>: <span class='number'>0</span>,
             <span class='ident'>scroll_y</span>: <span class='number'>0</span>,
@@ -487,7 +502,7 @@
     }
 
     <span class='doccomment'>/// Print to the window</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>string</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>color</span>: [<span class='ident'>u8</span>; <span class='number'>4</span>]) {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>print</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>string</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>color</span>: <span class='ident'>Color</span>) {
         <span class='kw'>for</span> <span class='ident'>c</span> <span class='kw'>in</span> <span class='ident'>string</span>.<span class='ident'>chars</span>() {
             <span class='self'>self</span>.<span class='ident'>output</span>.<span class='ident'>push</span>(<span class='ident'>ConsoleChar</span> {
                 <span class='ident'>character</span>: <span class='ident'>c</span>,
@@ -499,57 +514,64 @@
     <span class='doccomment'>/// Read input</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>read</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>String</span><span class='op'>&gt;</span> {
         <span class='kw'>while</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>event</span>) <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>poll</span>() {
-            <span class='kw'>match</span> <span class='ident'>event</span>.<span class='ident'>to_option</span>() {
-                <span class='ident'>EventOption</span>::<span class='ident'>Key</span>(<span class='ident'>key_event</span>) <span class='op'>=&gt;</span> {
-                    <span class='kw'>if</span> <span class='ident'>key_event</span>.<span class='ident'>pressed</span> {
-                        <span class='kw'>match</span> <span class='ident'>key_event</span>.<span class='ident'>scancode</span> {
-                            <span class='ident'>K_BKSP</span> <span class='op'>=&gt;</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>&gt;</span> <span class='number'>0</span> {
-                                <span class='self'>self</span>.<span class='ident'>command</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>command</span>[<span class='number'>0</span> .. <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>-</span> <span class='number'>1</span>].<span class='ident'>to_string</span>() <span class='op'>+</span>
-                                               <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>command</span>[<span class='self'>self</span>.<span class='ident'>offset</span> .. <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>len</span>()];
-                                <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>-=</span> <span class='number'>1</span>;
-                            },
-                            <span class='ident'>K_DEL</span> <span class='op'>=&gt;</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>len</span>() {
-                                <span class='self'>self</span>.<span class='ident'>command</span> <span class='op'>=</span>
-                                    <span class='self'>self</span>.<span class='ident'>command</span>[<span class='number'>0</span> .. <span class='self'>self</span>.<span class='ident'>offset</span>].<span class='ident'>to_string</span>() <span class='op'>+</span>
-                                    <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>command</span>[<span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>+</span> <span class='number'>1</span> .. <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>len</span>() <span class='op'>-</span> <span class='number'>1</span>];
-                            },
-                            <span class='ident'>K_HOME</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>=</span> <span class='number'>0</span>,
-                            <span class='ident'>K_UP</span> <span class='op'>=&gt;</span> {
-                                <span class='comment'>//self.command = self.last_command.clone();</span>
-                                <span class='comment'>//self.offset = self.command.len();</span>
+            <span class='kw'>if</span> <span class='kw'>let</span> <span class='ident'>EventOption</span>::<span class='ident'>Key</span>(<span class='ident'>key_event</span>) <span class='op'>=</span> <span class='ident'>event</span>.<span class='ident'>to_option</span>() {
+                <span class='kw'>if</span> <span class='ident'>key_event</span>.<span class='ident'>pressed</span> {
+                    <span class='kw'>match</span> <span class='ident'>key_event</span>.<span class='ident'>scancode</span> {
+                        <span class='ident'>K_BKSP</span> <span class='op'>=&gt;</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>&gt;</span> <span class='number'>0</span> {
+                            <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>] <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>][<span class='number'>0</span> .. <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>-</span> <span class='number'>1</span>].<span class='ident'>to_string</span>() <span class='op'>+</span>
+                                           <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>][<span class='self'>self</span>.<span class='ident'>offset</span> ..];
+                            <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>-=</span> <span class='number'>1</span>;
+                        },
+                        <span class='ident'>K_DEL</span> <span class='op'>=&gt;</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>].<span class='ident'>len</span>() {
+                            <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>] <span class='op'>=</span>
+                                <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>][<span class='number'>0</span> .. <span class='self'>self</span>.<span class='ident'>offset</span>].<span class='ident'>to_string</span>() <span class='op'>+</span>
+                                <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>][<span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>+</span> <span class='number'>1</span> .. <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>].<span class='ident'>len</span>() <span class='op'>-</span> <span class='number'>1</span>];
+                        },
+                        <span class='ident'>K_HOME</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>=</span> <span class='number'>0</span>,
+                        <span class='ident'>K_UP</span> <span class='op'>=&gt;</span> {
+                            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>history_i</span> <span class='op'>+</span> <span class='number'>1</span> <span class='op'>&lt;</span> <span class='self'>self</span>.<span class='ident'>history</span>.<span class='ident'>len</span>() {
+                                <span class='self'>self</span>.<span class='ident'>history_i</span> <span class='op'>+=</span> <span class='number'>1</span>;
                             }
-                            <span class='ident'>K_LEFT</span> <span class='op'>=&gt;</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>&gt;</span> <span class='number'>0</span> {
-                                <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>-=</span> <span class='number'>1</span>;
-                            },
-                            <span class='ident'>K_RIGHT</span> <span class='op'>=&gt;</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>len</span>() {
-                                <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>+=</span> <span class='number'>1</span>;
-                            },
-                            <span class='ident'>K_END</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>len</span>(),
-                            <span class='ident'>K_DOWN</span> <span class='op'>=&gt;</span> {
-                                <span class='comment'>//self.command.clear()</span>
-                                <span class='comment'>//self.offset = self.command.len();</span>
-                            }
-                            _ <span class='op'>=&gt;</span> <span class='kw'>match</span> <span class='ident'>key_event</span>.<span class='ident'>character</span> {
-                                <span class='string'>&#39;\x00&#39;</span> <span class='op'>=&gt;</span> (),
-                                <span class='string'>&#39;\n&#39;</span> <span class='op'>=&gt;</span> {
-                                    <span class='kw'>let</span> <span class='ident'>command</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>clone</span>();
-                                    <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>clear</span>();
-                                    <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>=</span> <span class='number'>0</span>;
-                                    <span class='kw'>return</span> <span class='prelude-val'>Some</span>(<span class='ident'>command</span>);
-                                }
-                                <span class='string'>&#39;\x1B&#39;</span> <span class='op'>=&gt;</span> <span class='kw'>break</span>,
-                                _ <span class='op'>=&gt;</span> {
-                                    <span class='self'>self</span>.<span class='ident'>command</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>command</span>[<span class='number'>0</span> .. <span class='self'>self</span>.<span class='ident'>offset</span>].<span class='ident'>to_string</span>() <span class='op'>+</span>
-                                                   <span class='kw-2'>&amp;</span><span class='ident'>key_event</span>.<span class='ident'>character</span>.<span class='ident'>to_string</span>() <span class='op'>+</span>
-                                                   <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>command</span>[<span class='self'>self</span>.<span class='ident'>offset</span> .. <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>len</span>()];
-                                    <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>+=</span> <span class='number'>1</span>;
-                                }
-                            },
+                            <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>].<span class='ident'>len</span>();
                         }
+                        <span class='ident'>K_LEFT</span> <span class='op'>=&gt;</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>&gt;</span> <span class='number'>0</span> {
+                            <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>-=</span> <span class='number'>1</span>;
+                        },
+                        <span class='ident'>K_RIGHT</span> <span class='op'>=&gt;</span> <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>&lt;</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>].<span class='ident'>len</span>() {
+                            <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>+=</span> <span class='number'>1</span>;
+                        },
+                        <span class='ident'>K_END</span> <span class='op'>=&gt;</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>].<span class='ident'>len</span>(),
+                        <span class='ident'>K_DOWN</span> <span class='op'>=&gt;</span> {
+                            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>history_i</span> <span class='op'>&gt;</span> <span class='number'>0</span> {
+                                <span class='self'>self</span>.<span class='ident'>history_i</span> <span class='op'>-=</span> <span class='number'>1</span>;
+                            }
+                            <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>].<span class='ident'>len</span>();
+                        }
+                        _ <span class='op'>=&gt;</span> <span class='kw'>match</span> <span class='ident'>key_event</span>.<span class='ident'>character</span> {
+                            <span class='string'>&#39;\x00&#39;</span> <span class='op'>=&gt;</span> (),
+                            <span class='string'>&#39;\n&#39;</span> <span class='op'>=&gt;</span> {
+                                <span class='kw'>let</span> <span class='ident'>command</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>].<span class='ident'>clone</span>();
+                                <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>=</span> <span class='number'>0</span>;
+                                <span class='self'>self</span>.<span class='ident'>history_i</span> <span class='op'>=</span> <span class='number'>0</span>;
+                                <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='number'>0</span>].<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='number'>0</span> {
+                                    <span class='self'>self</span>.<span class='ident'>history</span>.<span class='ident'>insert</span>(<span class='number'>0</span>, <span class='string'>&quot;&quot;</span>.<span class='ident'>to_string</span>());
+                                }
+                                <span class='kw'>while</span> <span class='self'>self</span>.<span class='ident'>history</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='number'>1000</span> {
+                                    <span class='self'>self</span>.<span class='ident'>history</span>.<span class='ident'>pop</span>();
+                                }
+                                <span class='kw'>return</span> <span class='prelude-val'>Some</span>(<span class='ident'>command</span>);
+                            }
+                            <span class='string'>&#39;\x1B&#39;</span> <span class='op'>=&gt;</span> <span class='kw'>break</span>,
+                            _ <span class='op'>=&gt;</span> {
+                                <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>] <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>][<span class='number'>0</span> .. <span class='self'>self</span>.<span class='ident'>offset</span>].<span class='ident'>to_string</span>() <span class='op'>+</span>
+                                               <span class='kw-2'>&amp;</span><span class='ident'>key_event</span>.<span class='ident'>character</span>.<span class='ident'>to_string</span>() <span class='op'>+</span>
+                                               <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>][<span class='self'>self</span>.<span class='ident'>offset</span> ..];
+                                <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>+=</span> <span class='number'>1</span>;
+                            }
+                        },
                     }
-                    <span class='self'>self</span>.<span class='ident'>sync</span>();
                 }
-                _ <span class='op'>=&gt;</span> (),
+                <span class='self'>self</span>.<span class='ident'>sync</span>();
             }
         }
 
@@ -567,7 +589,7 @@
         <span class='kw'>let</span> <span class='ident'>rows</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>height</span>() <span class='kw'>as</span> <span class='ident'>isize</span> <span class='op'>/</span> <span class='number'>16</span>;
 
         {
-            <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>set</span>([<span class='number'>0</span>, <span class='number'>0</span>, <span class='number'>0</span>, <span class='number'>255</span>]);
+            <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>set</span>(<span class='ident'>Color</span>::<span class='ident'>BLACK</span>);
 
             <span class='kw'>for</span> <span class='ident'>c</span> <span class='kw'>in</span> <span class='self'>self</span>.<span class='ident'>output</span>.<span class='ident'>iter</span>() {
                 <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>wrap</span> <span class='op'>&amp;&amp;</span> <span class='ident'>col</span> <span class='op'>&gt;=</span> <span class='ident'>cols</span> {
@@ -594,19 +616,19 @@
             }
 
             <span class='kw'>if</span> <span class='ident'>col</span> <span class='op'>&gt;=</span> <span class='number'>0</span> <span class='op'>&amp;&amp;</span> <span class='ident'>col</span> <span class='op'>&lt;</span> <span class='ident'>cols</span> <span class='op'>&amp;&amp;</span> <span class='ident'>row</span> <span class='op'>&gt;=</span> <span class='number'>0</span> <span class='op'>&amp;&amp;</span> <span class='ident'>row</span> <span class='op'>&lt;</span> <span class='ident'>rows</span> {
-                <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>char</span>(<span class='number'>8</span> <span class='op'>*</span> <span class='ident'>col</span>, <span class='number'>16</span> <span class='op'>*</span> <span class='ident'>row</span>, <span class='string'>&#39;#&#39;</span>, [<span class='number'>255</span>, <span class='number'>255</span>, <span class='number'>255</span>, <span class='number'>255</span>]);
+                <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>char</span>(<span class='number'>8</span> <span class='op'>*</span> <span class='ident'>col</span>, <span class='number'>16</span> <span class='op'>*</span> <span class='ident'>row</span>, <span class='string'>&#39;#&#39;</span>, <span class='ident'>Color</span>::<span class='ident'>WHITE</span>);
                 <span class='ident'>col</span> <span class='op'>+=</span> <span class='number'>2</span>;
             }
 
             <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>i</span> <span class='op'>=</span> <span class='number'>0</span>;
-            <span class='kw'>for</span> <span class='ident'>c</span> <span class='kw'>in</span> <span class='self'>self</span>.<span class='ident'>command</span>.<span class='ident'>chars</span>() {
+            <span class='kw'>for</span> <span class='ident'>c</span> <span class='kw'>in</span> <span class='self'>self</span>.<span class='ident'>history</span>[<span class='self'>self</span>.<span class='ident'>history_i</span>].<span class='ident'>chars</span>() {
                 <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>wrap</span> <span class='op'>&amp;&amp;</span> <span class='ident'>col</span> <span class='op'>&gt;=</span> <span class='ident'>cols</span> {
                     <span class='ident'>col</span> <span class='op'>=</span> <span class='op'>-</span><span class='ident'>scroll_x</span>;
                     <span class='ident'>row</span> <span class='op'>+=</span> <span class='number'>1</span>;
                 }
 
                 <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>==</span> <span class='ident'>i</span> <span class='op'>&amp;&amp;</span> <span class='ident'>col</span> <span class='op'>&gt;=</span> <span class='number'>0</span> <span class='op'>&amp;&amp;</span> <span class='ident'>col</span> <span class='op'>&lt;</span> <span class='ident'>cols</span> <span class='op'>&amp;&amp;</span> <span class='ident'>row</span> <span class='op'>&gt;=</span> <span class='number'>0</span> <span class='op'>&amp;&amp;</span> <span class='ident'>row</span> <span class='op'>&lt;</span> <span class='ident'>rows</span> {
-                    <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>char</span>(<span class='number'>8</span> <span class='op'>*</span> <span class='ident'>col</span>, <span class='number'>16</span> <span class='op'>*</span> <span class='ident'>row</span>, <span class='string'>&#39;_&#39;</span>, [<span class='number'>255</span>, <span class='number'>255</span>, <span class='number'>255</span>, <span class='number'>255</span>]);
+                    <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>char</span>(<span class='number'>8</span> <span class='op'>*</span> <span class='ident'>col</span>, <span class='number'>16</span> <span class='op'>*</span> <span class='ident'>row</span>, <span class='string'>&#39;_&#39;</span>, <span class='ident'>Color</span>::<span class='ident'>WHITE</span>);
                 }
 
                 <span class='kw'>if</span> <span class='ident'>c</span> <span class='op'>==</span> <span class='string'>&#39;\n&#39;</span> {
@@ -616,7 +638,7 @@
                     <span class='ident'>col</span> <span class='op'>+=</span> <span class='number'>8</span> <span class='op'>-</span> <span class='ident'>col</span> <span class='op'>%</span> <span class='number'>8</span>;
                 } <span class='kw'>else</span> {
                     <span class='kw'>if</span> <span class='ident'>col</span> <span class='op'>&gt;=</span> <span class='number'>0</span> <span class='op'>&amp;&amp;</span> <span class='ident'>col</span> <span class='op'>&lt;</span> <span class='ident'>cols</span> <span class='op'>&amp;&amp;</span> <span class='ident'>row</span> <span class='op'>&gt;=</span> <span class='number'>0</span> <span class='op'>&amp;&amp;</span> <span class='ident'>row</span> <span class='op'>&lt;</span> <span class='ident'>rows</span> {
-                        <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>char</span>(<span class='number'>8</span> <span class='op'>*</span> <span class='ident'>col</span>, <span class='number'>16</span> <span class='op'>*</span> <span class='ident'>row</span>, <span class='ident'>c</span>, [<span class='number'>255</span>, <span class='number'>255</span>, <span class='number'>255</span>, <span class='number'>255</span>]);
+                        <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>char</span>(<span class='number'>8</span> <span class='op'>*</span> <span class='ident'>col</span>, <span class='number'>16</span> <span class='op'>*</span> <span class='ident'>row</span>, <span class='ident'>c</span>, <span class='ident'>Color</span>::<span class='ident'>WHITE</span>);
                     }
                     <span class='ident'>col</span> <span class='op'>+=</span> <span class='number'>1</span>;
                 }
@@ -630,7 +652,7 @@
             }
 
             <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>offset</span> <span class='op'>==</span> <span class='ident'>i</span> <span class='op'>&amp;&amp;</span> <span class='ident'>col</span> <span class='op'>&gt;=</span> <span class='number'>0</span> <span class='op'>&amp;&amp;</span> <span class='ident'>col</span> <span class='op'>&lt;</span> <span class='ident'>cols</span> <span class='op'>&amp;&amp;</span> <span class='ident'>row</span> <span class='op'>&gt;=</span> <span class='number'>0</span> <span class='op'>&amp;&amp;</span> <span class='ident'>row</span> <span class='op'>&lt;</span> <span class='ident'>rows</span> {
-                <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>char</span>(<span class='number'>8</span> <span class='op'>*</span> <span class='ident'>col</span>, <span class='number'>16</span> <span class='op'>*</span> <span class='ident'>row</span>, <span class='string'>&#39;_&#39;</span>, [<span class='number'>255</span>, <span class='number'>255</span>, <span class='number'>255</span>, <span class='number'>255</span>]);
+                <span class='self'>self</span>.<span class='ident'>window</span>.<span class='ident'>char</span>(<span class='number'>8</span> <span class='op'>*</span> <span class='ident'>col</span>, <span class='number'>16</span> <span class='op'>*</span> <span class='ident'>row</span>, <span class='string'>&#39;_&#39;</span>, <span class='ident'>Color</span>::<span class='ident'>WHITE</span>);
             }
         }
 

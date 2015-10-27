@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1107' class='srclink' href='../../src/redox/orbital/mod.rs.html#18-35' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1166' class='srclink' href='../../src/redox/orbital/mod.rs.html#18-35' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Window {
     // some fields omitted
 }</pre><div class='docblock'><p>A window</p>
@@ -63,15 +63,15 @@
 <div class='docblock'><p>Get title</p>
 </div><h4 id='method.set_title' class='method'><code>fn <a href='#method.set_title' class='fnname'>set_title</a>(&amp;mut self, title: &amp;str)</code></h4>
 <div class='docblock'><p>Set title</p>
-</div><h4 id='method.pixel' class='method'><code>fn <a href='#method.pixel' class='fnname'>pixel</a>(&amp;mut self, x: isize, y: isize, color: [u8; 4])</code></h4>
+</div><h4 id='method.pixel' class='method'><code>fn <a href='#method.pixel' class='fnname'>pixel</a>(&amp;mut self, x: isize, y: isize, color: <a class='struct' href='../../redox/struct.Color.html' title='redox::Color'>Color</a>)</code></h4>
 <div class='docblock'><p>Draw a pixel</p>
-</div><h4 id='method.char' class='method'><code>fn <a href='#method.char' class='fnname'>char</a>(&amp;mut self, x: isize, y: isize, c: char, color: [u8; 4])</code></h4>
+</div><h4 id='method.char' class='method'><code>fn <a href='#method.char' class='fnname'>char</a>(&amp;mut self, x: isize, y: isize, c: char, color: <a class='struct' href='../../redox/struct.Color.html' title='redox::Color'>Color</a>)</code></h4>
 <div class='docblock'><p>Draw a character, using the loaded font</p>
-</div><h4 id='method.set' class='method'><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;mut self, color: [u8; 4])</code></h4>
+</div><h4 id='method.set' class='method'><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;mut self, color: <a class='struct' href='../../redox/struct.Color.html' title='redox::Color'>Color</a>)</code></h4>
 <div class='docblock'><p>Set entire window to a color</p>
-</div><h4 id='method.rect' class='method'><code>fn <a href='#method.rect' class='fnname'>rect</a>(&amp;mut self, start_x: isize, start_y: isize, w: usize, h: usize, color: [u8; 4])</code></h4>
+</div><h4 id='method.rect' class='method'><code>fn <a href='#method.rect' class='fnname'>rect</a>(&amp;mut self, start_x: isize, start_y: isize, w: usize, h: usize, color: <a class='struct' href='../../redox/struct.Color.html' title='redox::Color'>Color</a>)</code></h4>
 <div class='docblock'><p>Draw rectangle</p>
-</div><h4 id='method.image' class='method'><code>fn <a href='#method.image' class='fnname'>image</a>(&amp;mut self, start_x: isize, start_y: isize, w: usize, h: usize, data: &amp;[[u8; 4]])</code></h4>
+</div><h4 id='method.image' class='method'><code>fn <a href='#method.image' class='fnname'>image</a>(&amp;mut self, start_x: isize, start_y: isize, w: usize, h: usize, data: &amp;[<a class='struct' href='../../redox/struct.Color.html' title='redox::Color'>Color</a>])</code></h4>
 <div class='docblock'><p>Display an image</p>
 </div><h4 id='method.poll' class='method'><code>fn <a href='#method.poll' class='fnname'>poll</a>(&amp;mut self) -&gt; <a class='enum' href='../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../redox/orbital/event/struct.Event.html' title='redox::orbital::event::Event'>Event</a>&gt;</code></h4>
 <div class='docblock'><p>Poll for an event</p>

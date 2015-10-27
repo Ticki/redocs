@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/redox/lib.rs.html#1-217' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/redox/lib.rs.html#1-224' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'>
 <h1 id='the-redox-library' class='section-header'><a href='#the-redox-library'>The Redox Library</a></h1>
 <p>The Redox Library contains a collection of commonly used low-level software
@@ -53,8 +53,16 @@ constructs to be used on top of the base operating system, including graphics
 support and windowing, a basic filesystem, audio support, a simple console
 with shell style functions, an event system, and environment argument support.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
-<table><tr><td><code>pub use <a class='mod' href='../redox/env/index.html' title='redox::env'>env</a>::*;</code></td></tr><tr><td><code>pub use fs::<a class='mod' href='../redox/fs/file/index.html' title='redox::fs::file'>file</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/io/index.html' title='redox::io'>io</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/string/index.html' title='redox::string'>string</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/console/index.html' title='redox::console'>console</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/orbital/index.html' title='redox::orbital'>orbital</a>::*;</code></td></tr><tr><td><code>pub use orbital::<a class='mod' href='../redox/orbital/event/index.html' title='redox::orbital::event'>event</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/to_num/index.html' title='redox::to_num'>to_num</a>::*;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table><tr><td><code>pub use <a class='mod' href='../redox/env/index.html' title='redox::env'>env</a>::*;</code></td></tr><tr><td><code>pub use fs::<a class='mod' href='../redox/fs/file/index.html' title='redox::fs::file'>file</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/io/index.html' title='redox::io'>io</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/string/index.html' title='redox::string'>string</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/console/index.html' title='redox::console'>console</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/orbital/index.html' title='redox::orbital'>orbital</a>::*;</code></td></tr><tr><td><code>pub use orbital::<a class='mod' href='../redox/orbital/event/index.html' title='redox::orbital::event'>event</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/url/index.html' title='redox::url'>url</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/to_num/index.html' title='redox::to_num'>to_num</a>::*;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='alloc_system/index.html'
+                               title='redox::alloc_system'>alloc_system</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
                     <tr class=' module-item'>
                         <td><a class='mod' href='any/index.html'
                                title='redox::any'>any</a></td>
@@ -345,6 +353,14 @@ of any <code>&#39;static</code> type through runtime reflection.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='mod' href='panic/index.html'
+                               title='redox::panic'>panic</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='mod' href='ptr/index.html'
                                title='redox::ptr'>ptr</a></td>
                         <td class='docblock short'>
@@ -399,6 +415,15 @@ of any <code>&#39;static</code> type through runtime reflection.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='mod' href='syscall/index.html'
+                               title='redox::syscall'>syscall</a></td>
+                        <td class='docblock short'>
+                             <p>A module for system calls</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='mod' href='to_num/index.html'
                                title='redox::to_num'>to_num</a></td>
                         <td class='docblock short'>
@@ -440,6 +465,14 @@ of any <code>&#39;static</code> type through runtime reflection.</p>
                         <td class='docblock short'>
                              <p>The 8-bit unsigned integer type.</p>
 
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='url/index.html'
+                               title='redox::url'>url</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 
@@ -503,15 +536,6 @@ pronounced &#39;vector.&#39;</p>
                                title='redox::simd'>simd</a></td>
                         <td class='docblock short'>
                             [<em class='stab unstable deprecated'>Deprecated</em>] <p>SIMD vectors.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='mod' href='syscall/index.html'
-                               title='redox::syscall'>syscall</a></td>
-                        <td class='docblock short'>
-                             <p>A module for system calls</p>
 
                         </td>
                     </tr>
@@ -679,6 +703,15 @@ message <code>&quot;not yet implemented&quot;</code> when executed.</p>
                                title='redox::Box'>Box</a></td>
                         <td class='docblock short'>
                              <p>A pointer type for heap allocation.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Color.html'
+                               title='redox::Color'>Color</a></td>
+                        <td class='docblock short'>
+                             <p>A color</p>
 
                         </td>
                     </tr>

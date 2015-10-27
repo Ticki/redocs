@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["bmp",""]]});
+initSidebarItems({"mod":[["bmp",""],["color",""]]});

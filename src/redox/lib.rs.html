@@ -258,6 +258,13 @@
 <span id="216">216</span>
 <span id="217">217</span>
 <span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! # The Redox Library</span>
 <span class='doccomment'>//!</span>
@@ -268,8 +275,10 @@
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>crate_type</span><span class='op'>=</span><span class='string'>&quot;rlib&quot;</span>]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>alloc</span>)]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>allocator</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>allow_internal_unstable</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>asm</span>)]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>associated_consts</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>box_syntax</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>collections</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>core</span>)]</span>
@@ -353,7 +362,6 @@
     <span class='comment'>// TODO mod rtdeps;</span>
 
     <span class='comment'>/* The Prelude. */</span>
-
     <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>prelude</span>;
 
 
@@ -445,16 +453,19 @@
     <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>not</span>(<span class='ident'>std</span>))]</span>
     <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>console</span>::<span class='op'>*</span>;
     <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>graphics</span>::<span class='ident'>bmp</span>::<span class='op'>*</span>;
+    <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>graphics</span>::<span class='ident'>color</span>::<span class='op'>*</span>;
     <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>orbital</span>::<span class='op'>*</span>;
     <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>orbital</span>::<span class='ident'>event</span>::<span class='op'>*</span>;
+    <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>url</span>::<span class='op'>*</span>;
     <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>to_num</span>::<span class='op'>*</span>;
 
-    <span class='doccomment'>/// A module for starting</span>
-    <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>std</span>)]</span>
-    <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>start</span>;
+    <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>alloc_system</span>;
 
     <span class='doccomment'>/// A module for necessary C and assembly constructs</span>
+    <span class='attribute'>#[<span class='ident'>path</span><span class='op'>=</span><span class='string'>&quot;../../kernel/externs.rs&quot;</span>]</span>
     <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>externs</span>;
+
+    <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>panic</span>;
 
     <span class='doccomment'>/// A module for system calls</span>
     <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>syscall</span>;
@@ -471,9 +482,12 @@
     <span class='doccomment'>/// Graphics support</span>
     <span class='kw'>mod</span> <span class='ident'>graphics</span> {
         <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>bmp</span>;
+        <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>color</span>;
     }
     <span class='doccomment'>/// A module for window support</span>
     <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>orbital</span>;
+
+    <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>url</span>;
 
     <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>to_num</span>;
 <span class='comment'>/* } Additional Stuff */</span>

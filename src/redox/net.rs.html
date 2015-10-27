@@ -252,8 +252,8 @@
 </pre><pre class='rust '>
 <span class='doccomment'>//! A module dealing with network connections</span>
 
-<span class='kw'>use</span> <span class='ident'>string</span>::<span class='op'>*</span>;
-<span class='kw'>use</span> <span class='ident'>to_num</span>::<span class='op'>*</span>;
+<span class='kw'>use</span> <span class='ident'>string</span>::{<span class='ident'>String</span>, <span class='ident'>ToString</span>};
+<span class='kw'>use</span> <span class='ident'>to_num</span>::<span class='ident'>ToNum</span>;
 <span class='kw'>use</span> <span class='ident'>vec</span>::<span class='ident'>Vec</span>;
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>FromBytes</span> {

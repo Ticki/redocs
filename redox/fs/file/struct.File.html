@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-339' class='srclink' href='../../../src/redox/fs/file.rs.html#10-13' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-340' class='srclink' href='../../../src/redox/fs/file.rs.html#10-13' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct File {
     // some fields omitted
 }</pre><div class='docblock'><p>A Unix-style file</p>
@@ -54,7 +54,7 @@
 <div class='docblock'><p>Open a new file using a path</p>
 </div><h4 id='method.dup' class='method'><code>fn <a href='#method.dup' class='fnname'>dup</a>(&amp;self) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../../redox/fs/file/struct.File.html' title='redox::fs::file::File'>File</a>&gt;</code></h4>
 <div class='docblock'><p>Duplicate the file</p>
-</div><h4 id='method.path' class='method'><code>fn <a href='#method.path' class='fnname'>path</a>(&amp;self, buf: &amp;mut [u8]) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;usize&gt;</code></h4>
+</div><h4 id='method.path' class='method'><code>fn <a href='#method.path' class='fnname'>path</a>(&amp;self) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../../redox/string/struct.String.html' title='redox::string::String'>String</a>&gt;</code></h4>
 <div class='docblock'><p>Get the canonical path of the file</p>
 </div><h4 id='method.sync' class='method'><code>fn <a href='#method.sync' class='fnname'>sync</a>(&amp;mut self) -&gt; bool</code></h4>
 <div class='docblock'><p>Flush the io</p>
