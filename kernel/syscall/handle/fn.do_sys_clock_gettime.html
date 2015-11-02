@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `SYS_GETTIMEOFDAY` constant in crate `kernel`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, SYS_GETTIMEOFDAY">
+    <meta name="description" content="API documentation for the Rust `do_sys_clock_gettime` fn in crate `kernel`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, do_sys_clock_gettime">
 
-    <title>kernel::syscall::common::SYS_GETTIMEOFDAY - Rust</title>
+    <title>kernel::syscall::handle::do_sys_clock_gettime - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../../main.css">
 
@@ -26,7 +26,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>syscall</a>::<wbr><a href='index.html'>common</a></p><script>window.sidebarCurrent = {name: 'SYS_GETTIMEOFDAY', ty: 'constant', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>syscall</a>::<wbr><a href='index.html'>handle</a></p><script>window.sidebarCurrent = {name: 'do_sys_clock_gettime', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -40,13 +40,13 @@
         </form>
     </nav>
 
-    <section id='main' class="content constant">
-<h1 class='fqn'><span class='in-band'><a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>syscall</a>::<wbr><a href='index.html'>common</a>::<wbr><a class='constant' href=''>SYS_GETTIMEOFDAY</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content fn">
+<h1 class='fqn'><span class='in-band'>Function <a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>syscall</a>::<wbr><a href='index.html'>handle</a>::<wbr><a class='fn' href=''>do_sys_clock_gettime</a></span><span class='out-of-band'><span id='render-detail'>
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-3640' class='srclink' href='../../../src/kernel/syscall/common.rs.html#15' title='goto source code'>[src]</a></span></h1>
-<pre class='rust const'>pub const SYS_GETTIMEOFDAY: usize<code> = </code><code>78</code></pre></section>
+        </span><a id='src-3734' class='srclink' href='../../../src/kernel/syscall/handle.rs.html#197-221' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub unsafe fn do_sys_clock_gettime(clock: usize, tp: *mut <a class='struct' href='../../../kernel/syscall/common/struct.TimeSpec.html' title='kernel::syscall::common::TimeSpec'>TimeSpec</a>) -&gt; usize</pre></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
