@@ -45,11 +45,17 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-4196' class='srclink' href='../src/kernel/kernel.rs.html#146' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-4196' class='srclink' href='../src/kernel/kernel.rs.html#150' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait GetSlice {
     fn <a href='#tymethod.get_slice' class='fnname'>get_slice</a>(&amp;self, a: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt;, b: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt;) -&gt; &amp;Self;
-}</pre><div class='docblock'><p>Bounded slice abstraction
-<code>foo[a..b] =&gt; foo.get_slice(Some(a), Some(b)) foo[a..] =&gt; foo.get_slice(Some(a), None) foo[..b] =&gt; foo.get_slice(None, Some(b))</code></p>
+}</pre><div class='docblock'><p>Bounded slice abstraction</p>
+
+<h1 id='code-migration' class='section-header'><a href='#code-migration'>Code Migration</a></h1>
+<p><code>foo[a..b]</code> =&gt; <code>foo.get_slice(Some(a), Some(b))</code></p>
+
+<p><code>foo[a..]</code> =&gt; <code>foo.get_slice(Some(a), None)</code></p>
+
+<p><code>foo[..b]</code> =&gt; <code>foo.get_slice(None, Some(b))</code></p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
