@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `common` mod in crate `kernel`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, common">
+
+    <title>kernel::common - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>kernel</a></p><script>window.sidebarCurrent = {name: 'common', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>kernel</a>::<wbr><a class='mod' href=''>common</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-247' class='srclink' href='../../src/kernel/common/mod.rs.html#1-35' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Common std-like functionality</p>
+</div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='context/index.html'
+                               title='kernel::common::context'>context</a></td>
+                        <td class='docblock short'>
+                             <p>Context</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='debug/index.html'
+                               title='kernel::common::debug'>debug</a></td>
+                        <td class='docblock short'>
+                             <p>Debug</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='elf/index.html'
+                               title='kernel::common::elf'>elf</a></td>
+                        <td class='docblock short'>
+                             <p>ELF File Support
+ELF executables</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='event/index.html'
+                               title='kernel::common::event'>event</a></td>
+                        <td class='docblock short'>
+                             <p>Event input</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='memory/index.html'
+                               title='kernel::common::memory'>memory</a></td>
+                        <td class='docblock short'>
+                             <p>Kernel memory allocation</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='paging/index.html'
+                               title='kernel::common::paging'>paging</a></td>
+                        <td class='docblock short'>
+                             <p>Paging (x86)</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='parse_ip/index.html'
+                               title='kernel::common::parse_ip'>parse_ip</a></td>
+                        <td class='docblock short'>
+                             <p>A module for parsing IP related string</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='parse_path/index.html'
+                               title='kernel::common::parse_path'>parse_path</a></td>
+                        <td class='docblock short'>
+                             <p>A module for parsing paths</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='queue/index.html'
+                               title='kernel::common::queue'>queue</a></td>
+                        <td class='docblock short'>
+                             <p>A module for queues</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='random/index.html'
+                               title='kernel::common::random'>random</a></td>
+                        <td class='docblock short'>
+                             <p>A module for pseudorandom generator</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='scheduler/index.html'
+                               title='kernel::common::scheduler'>scheduler</a></td>
+                        <td class='docblock short'>
+                             <p>A module for scheduling</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='slice/index.html'
+                               title='kernel::common::slice'>slice</a></td>
+                        <td class='docblock short'>
+                             <p>A module for safely getting slices</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='time/index.html'
+                               title='kernel::common::time'>time</a></td>
+                        <td class='docblock short'>
+                             <p>A module for time</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='to_num/index.html'
+                               title='kernel::common::to_num'>to_num</a></td>
+                        <td class='docblock short'>
+                             <p>String to number
+Types convertable to integers</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "kernel";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `kernel` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, kernel">
+
+    <title>kernel - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'></p><script>window.sidebarCurrent = {name: 'kernel', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>kernel</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-0' class='srclink' href='../src/kernel/kernel.rs.html#1-772' title='goto source code'>[src]</a></span></h1>
+<h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use <a class='mod' href='../kernel/externs/index.html' title='kernel::externs'>externs</a>::*;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='alloc_system/index.html'
+                               title='kernel::alloc_system'>alloc_system</a></td>
+                        <td class='docblock short'>
+                             <p>Allocation</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='audio/index.html'
+                               title='kernel::audio'>audio</a></td>
+                        <td class='docblock short'>
+                             <p>Audio</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='common/index.html'
+                               title='kernel::common'>common</a></td>
+                        <td class='docblock short'>
+                             <p>Common std-like functionality</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='drivers/index.html'
+                               title='kernel::drivers'>drivers</a></td>
+                        <td class='docblock short'>
+                             <p>Various drivers</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='externs/index.html'
+                               title='kernel::externs'>externs</a></td>
+                        <td class='docblock short'>
+                             <p>Externs</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='graphics/index.html'
+                               title='kernel::graphics'>graphics</a></td>
+                        <td class='docblock short'>
+                             <p>Various graphical methods</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='network/index.html'
+                               title='kernel::network'>network</a></td>
+                        <td class='docblock short'>
+                             <p>Network</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='panic/index.html'
+                               title='kernel::panic'>panic</a></td>
+                        <td class='docblock short'>
+                             <p>Panic</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='programs/index.html'
+                               title='kernel::programs'>programs</a></td>
+                        <td class='docblock short'>
+                             <p>Programs</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='schemes/index.html'
+                               title='kernel::schemes'>schemes</a></td>
+                        <td class='docblock short'>
+                             <p>Schemes</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='syscall/index.html'
+                               title='kernel::syscall'>syscall</a></td>
+                        <td class='docblock short'>
+                             <p>System calls</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='usb/index.html'
+                               title='kernel::usb'>usb</a></td>
+                        <td class='docblock short'>
+                             <p>USB input/output</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.debug!.html'
+                               title='kernel::debug!'>debug!</a></td>
+                        <td class='docblock short'>
+                             <p>Debug to console</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.debugln!.html'
+                               title='kernel::debugln!'>debugln!</a></td>
+                        <td class='docblock short'>
+                             <p>Debug new line to console</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.debug_init.html'
+                               title='kernel::debug_init'>debug_init</a></td>
+                        <td class='docblock short'>
+                             <p>Initialize debug</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.kernel.html'
+                               title='kernel::kernel'>kernel</a></td>
+                        <td class='docblock short'>
+                             <p>Take regs for kernel calls and exceptions</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "kernel";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

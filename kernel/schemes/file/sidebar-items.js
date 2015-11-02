@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["FileResource","A file resource"],["FileScheme","A file scheme (pci + fs)"],["FileSystem","A file system"],["Header","The header of the fs"],["Node","A file node"],["NodeData","Data for a node"]]});

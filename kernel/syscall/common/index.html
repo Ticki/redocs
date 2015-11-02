@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `common` mod in crate `kernel`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, common">
+
+    <title>kernel::syscall::common - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>syscall</a></p><script>window.sidebarCurrent = {name: 'common', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>syscall</a>::<wbr><a class='mod' href=''>common</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-3626' class='srclink' href='../../../src/kernel/syscall/common.rs.html#1-44' title='goto source code'>[src]</a></span></h1>
+<h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_APPEND.html'
+                               title='kernel::syscall::common::O_APPEND'>O_APPEND</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_ASYNC.html'
+                               title='kernel::syscall::common::O_ASYNC'>O_ASYNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_CREAT.html'
+                               title='kernel::syscall::common::O_CREAT'>O_CREAT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_EXCL.html'
+                               title='kernel::syscall::common::O_EXCL'>O_EXCL</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_EXLOCK.html'
+                               title='kernel::syscall::common::O_EXLOCK'>O_EXLOCK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_FSYNC.html'
+                               title='kernel::syscall::common::O_FSYNC'>O_FSYNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_NONBLOCK.html'
+                               title='kernel::syscall::common::O_NONBLOCK'>O_NONBLOCK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_RDONLY.html'
+                               title='kernel::syscall::common::O_RDONLY'>O_RDONLY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_RDWR.html'
+                               title='kernel::syscall::common::O_RDWR'>O_RDWR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_SHLOCK.html'
+                               title='kernel::syscall::common::O_SHLOCK'>O_SHLOCK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_TRUNC.html'
+                               title='kernel::syscall::common::O_TRUNC'>O_TRUNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_WRONLY.html'
+                               title='kernel::syscall::common::O_WRONLY'>O_WRONLY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SEEK_CUR.html'
+                               title='kernel::syscall::common::SEEK_CUR'>SEEK_CUR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SEEK_END.html'
+                               title='kernel::syscall::common::SEEK_END'>SEEK_END</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SEEK_SET.html'
+                               title='kernel::syscall::common::SEEK_SET'>SEEK_SET</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_ALLOC.html'
+                               title='kernel::syscall::common::SYS_ALLOC'>SYS_ALLOC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_BRK.html'
+                               title='kernel::syscall::common::SYS_BRK'>SYS_BRK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_CHDIR.html'
+                               title='kernel::syscall::common::SYS_CHDIR'>SYS_CHDIR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_CLOSE.html'
+                               title='kernel::syscall::common::SYS_CLOSE'>SYS_CLOSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_DEBUG.html'
+                               title='kernel::syscall::common::SYS_DEBUG'>SYS_DEBUG</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_DUP.html'
+                               title='kernel::syscall::common::SYS_DUP'>SYS_DUP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_EXECVE.html'
+                               title='kernel::syscall::common::SYS_EXECVE'>SYS_EXECVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_EXIT.html'
+                               title='kernel::syscall::common::SYS_EXIT'>SYS_EXIT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FORK.html'
+                               title='kernel::syscall::common::SYS_FORK'>SYS_FORK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FPATH.html'
+                               title='kernel::syscall::common::SYS_FPATH'>SYS_FPATH</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FSTAT.html'
+                               title='kernel::syscall::common::SYS_FSTAT'>SYS_FSTAT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FSYNC.html'
+                               title='kernel::syscall::common::SYS_FSYNC'>SYS_FSYNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FTRUNCATE.html'
+                               title='kernel::syscall::common::SYS_FTRUNCATE'>SYS_FTRUNCATE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_GETTIMEOFDAY.html'
+                               title='kernel::syscall::common::SYS_GETTIMEOFDAY'>SYS_GETTIMEOFDAY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_LINK.html'
+                               title='kernel::syscall::common::SYS_LINK'>SYS_LINK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_LSEEK.html'
+                               title='kernel::syscall::common::SYS_LSEEK'>SYS_LSEEK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_NANOSLEEP.html'
+                               title='kernel::syscall::common::SYS_NANOSLEEP'>SYS_NANOSLEEP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_OPEN.html'
+                               title='kernel::syscall::common::SYS_OPEN'>SYS_OPEN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_READ.html'
+                               title='kernel::syscall::common::SYS_READ'>SYS_READ</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_REALLOC.html'
+                               title='kernel::syscall::common::SYS_REALLOC'>SYS_REALLOC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_REALLOC_INPLACE.html'
+                               title='kernel::syscall::common::SYS_REALLOC_INPLACE'>SYS_REALLOC_INPLACE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_UNALLOC.html'
+                               title='kernel::syscall::common::SYS_UNALLOC'>SYS_UNALLOC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_UNLINK.html'
+                               title='kernel::syscall::common::SYS_UNLINK'>SYS_UNLINK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_WRITE.html'
+                               title='kernel::syscall::common::SYS_WRITE'>SYS_WRITE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_YIELD.html'
+                               title='kernel::syscall::common::SYS_YIELD'>SYS_YIELD</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "kernel";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Resource` trait in crate `kernel`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Resource">
+
+    <title>kernel::schemes::Resource - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>kernel</a>::<wbr><a href='index.html'>schemes</a></p><script>window.sidebarCurrent = {name: 'Resource', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>kernel</a>::<wbr><a href='index.html'>schemes</a>::<wbr><a class='trait' href=''>Resource</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-3539' class='srclink' href='../../src/kernel/schemes/mod.rs.html#62-106' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait Resource {
+    fn <a href='#tymethod.url' class='fnname'>url</a>(&amp;self) -&gt; <a class='struct' href='../../kernel/schemes/struct.URL.html' title='kernel::schemes::URL'>URL</a>;
+
+    fn <a href='#method.dup' class='fnname'>dup</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a>&gt;&gt; { ... }
+    fn <a href='#method.read' class='fnname'>read</a>(&amp;mut self, buf: &amp;mut [u8]) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt; { ... }
+    fn <a href='#method.write' class='fnname'>write</a>(&amp;mut self, buf: &amp;[u8]) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt; { ... }
+    fn <a href='#method.seek' class='fnname'>seek</a>(&amp;mut self, pos: <a class='enum' href='../../kernel/schemes/enum.ResourceSeek.html' title='kernel::schemes::ResourceSeek'>ResourceSeek</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt; { ... }
+    fn <a href='#method.sync' class='fnname'>sync</a>(&amp;mut self) -&gt; bool { ... }
+    fn <a href='#method.truncate' class='fnname'>truncate</a>(&amp;mut self, len: usize) -&gt; bool { ... }
+    fn <a href='#method.read_to_end' class='fnname'>read_to_end</a>(&amp;mut self, vec: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;u8&gt;) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt; { ... }
+}</pre><div class='docblock'><p>A system resource</p>
+</div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.url' class='method stab '><code>fn <a href='#tymethod.url' class='fnname'>url</a>(&amp;self) -&gt; <a class='struct' href='../../kernel/schemes/struct.URL.html' title='kernel::schemes::URL'>URL</a></code></h3><div class='docblock'><p>Return the url of this resource</p>
+</div></div>
+            <h2 id='provided-methods'>Provided Methods</h2>
+            <div class='methods'>
+        <h3 id='method.dup' class='method stab '><code>fn <a href='#method.dup' class='fnname'>dup</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a>&gt;&gt;</code></h3><div class='docblock'><p>Duplicate the resource</p>
+</div><h3 id='method.read' class='method stab '><code>fn <a href='#method.read' class='fnname'>read</a>(&amp;mut self, buf: &amp;mut [u8]) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt;</code></h3><div class='docblock'><p>Read data to buffer</p>
+</div><h3 id='method.write' class='method stab '><code>fn <a href='#method.write' class='fnname'>write</a>(&amp;mut self, buf: &amp;[u8]) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt;</code></h3><div class='docblock'><p>Write to resource</p>
+</div><h3 id='method.seek' class='method stab '><code>fn <a href='#method.seek' class='fnname'>seek</a>(&amp;mut self, pos: <a class='enum' href='../../kernel/schemes/enum.ResourceSeek.html' title='kernel::schemes::ResourceSeek'>ResourceSeek</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt;</code></h3><div class='docblock'><p>Seek</p>
+</div><h3 id='method.sync' class='method stab '><code>fn <a href='#method.sync' class='fnname'>sync</a>(&amp;mut self) -&gt; bool</code></h3><div class='docblock'><p>Sync the resource</p>
+</div><h3 id='method.truncate' class='method stab '><code>fn <a href='#method.truncate' class='fnname'>truncate</a>(&amp;mut self, len: usize) -&gt; bool</code></h3><h3 id='method.read_to_end' class='method stab '><code>fn <a href='#method.read_to_end' class='fnname'>read_to_end</a>(&amp;mut self, vec: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;u8&gt;) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;usize&gt;</code></h3></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/network/scheme/struct.NetworkResource.html' title='kernel::network::scheme::NetworkResource'>NetworkResource</a></code></li>
+<li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/programs/scheme/struct.SchemeResource.html' title='kernel::programs::scheme::SchemeResource'>SchemeResource</a></code></li>
+<li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/schemes/debug/struct.DebugResource.html' title='kernel::schemes::debug::DebugResource'>DebugResource</a></code></li>
+<li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/schemes/display/struct.DisplayResource.html' title='kernel::schemes::display::DisplayResource'>DisplayResource</a></code></li>
+<li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/schemes/ethernet/struct.EthernetResource.html' title='kernel::schemes::ethernet::EthernetResource'>EthernetResource</a></code></li>
+<li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/schemes/file/struct.FileResource.html' title='kernel::schemes::file::FileResource'>FileResource</a></code></li>
+<li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/schemes/ip/struct.IPResource.html' title='kernel::schemes::ip::IPResource'>IPResource</a></code></li>
+<li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/schemes/window/struct.WindowResource.html' title='kernel::schemes::window::WindowResource'>WindowResource</a></code></li>
+<li><code>impl <a class='trait' href='../../kernel/schemes/trait.Resource.html' title='kernel::schemes::Resource'>Resource</a> for <a class='struct' href='../../kernel/schemes/struct.VecResource.html' title='kernel::schemes::VecResource'>VecResource</a></code></li>
+</ul><script type="text/javascript" async
+                              src="../../implementors/kernel/schemes/trait.Resource.js">
+                      </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "kernel";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Memory` struct in crate `kernel`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Memory">
+
+    <title>kernel::common::memory::Memory - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>common</a>::<wbr><a href='index.html'>memory</a></p><script>window.sidebarCurrent = {name: 'Memory', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>common</a>::<wbr><a href='index.html'>memory</a>::<wbr><a class='struct' href=''>Memory</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-660' class='srclink' href='../../../src/kernel/common/memory.rs.html#16-18' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Memory&lt;T&gt; {
+    pub ptr: *mut T,
+}</pre><div class='docblock'><p>A wrapper around raw pointers</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.ptr'><code>ptr</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;T&gt; <a class='struct' href='../../../kernel/common/memory/struct.Memory.html' title='kernel::common::memory::Memory'>Memory</a>&lt;T&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(count: usize) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;Self&gt;</code></h4>
+<div class='docblock'><p>Create an empty</p>
+</div><h4 id='method.new_align' class='method'><code>fn <a href='#method.new_align' class='fnname'>new_align</a>(count: usize, align: usize) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;Self&gt;</code></h4>
+<h4 id='method.renew' class='method'><code>fn <a href='#method.renew' class='fnname'>renew</a>(&amp;mut self, count: usize) -&gt; bool</code></h4>
+<div class='docblock'><p>Renew the memory</p>
+</div><h4 id='method.size' class='method'><code>fn <a href='#method.size' class='fnname'>size</a>(&amp;self) -&gt; usize</code></h4>
+<div class='docblock'><p>Get the size in bytes</p>
+</div><h4 id='method.length' class='method'><code>fn <a href='#method.length' class='fnname'>length</a>(&amp;self) -&gt; usize</code></h4>
+<div class='docblock'><p>Get the length in T elements</p>
+</div><h4 id='method.address' class='method'><code>unsafe fn <a href='#method.address' class='fnname'>address</a>(&amp;self) -&gt; usize</code></h4>
+<div class='docblock'><p>Get the address</p>
+</div><h4 id='method.read' class='method'><code>unsafe fn <a href='#method.read' class='fnname'>read</a>(&amp;self, i: usize) -&gt; T</code></h4>
+<div class='docblock'><p>Read the memory</p>
+</div><h4 id='method.load' class='method'><code>unsafe fn <a href='#method.load' class='fnname'>load</a>(&amp;self, i: usize) -&gt; T</code></h4>
+<div class='docblock'><p>Load the memory</p>
+</div><h4 id='method.write' class='method'><code>unsafe fn <a href='#method.write' class='fnname'>write</a>(&amp;mut self, i: usize, value: T)</code></h4>
+<div class='docblock'><p>Overwrite the memory</p>
+</div><h4 id='method.store' class='method'><code>unsafe fn <a href='#method.store' class='fnname'>store</a>(&amp;mut self, i: usize, value: T)</code></h4>
+<div class='docblock'><p>Store the memory</p>
+</div><h4 id='method.into_raw' class='method'><code>unsafe fn <a href='#method.into_raw' class='fnname'>into_raw</a>(&amp;mut self) -&gt; *mut T</code></h4>
+<div class='docblock'><p>Convert into a raw pointer</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;T&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../../../kernel/common/memory/struct.Memory.html' title='kernel::common::memory::Memory'>Memory</a>&lt;T&gt;</code></h3><div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div><h3 class='impl'><code>impl&lt;T&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html' title='core::ops::Index'>Index</a>&lt;usize&gt; for <a class='struct' href='../../../kernel/common/memory/struct.Memory.html' title='kernel::common::memory::Memory'>Memory</a>&lt;T&gt;</code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = T</code></h4>
+<h4 id='method.index' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Index.html#method.index' class='fnname'>index</a>&lt;'a&gt;(&amp;'a self, _index: usize) -&gt; &amp;'a T</code></h4>
+</div><h3 class='impl'><code>impl&lt;T&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.IndexMut.html' title='core::ops::IndexMut'>IndexMut</a>&lt;usize&gt; for <a class='struct' href='../../../kernel/common/memory/struct.Memory.html' title='kernel::common::memory::Memory'>Memory</a>&lt;T&gt;</code></h3><div class='impl-items'><h4 id='method.index_mut' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.IndexMut.html#method.index_mut' class='fnname'>index_mut</a>&lt;'a&gt;(&amp;'a mut self, _index: usize) -&gt; &amp;'a mut T</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "kernel";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>

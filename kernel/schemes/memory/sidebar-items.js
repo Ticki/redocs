@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["MemoryScheme","A memory scheme"]]});

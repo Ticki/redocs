@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `File` struct in crate `redox`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, File">
+
+    <title>redox::fs::file::File - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>redox</a>::<wbr><a href='../index.html'>fs</a>::<wbr><a href='index.html'>file</a></p><script>window.sidebarCurrent = {name: 'File', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>redox</a>::<wbr><a href='../index.html'>fs</a>::<wbr><a href='index.html'>file</a>::<wbr><a class='struct' href=''>File</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-340' class='srclink' href='../../../src/redox/fs/file.rs.html#10-13' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct File {
+    // some fields omitted
+}</pre><div class='docblock'><p>A Unix-style file</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../../redox/fs/file/struct.File.html' title='redox::fs::file::File'>File</a></code></h3><div class='impl-items'><h4 id='method.exec' class='method'><code>fn <a href='#method.exec' class='fnname'>exec</a>(path: &amp;str) -&gt; bool</code></h4>
+<h4 id='method.open' class='method'><code>fn <a href='#method.open' class='fnname'>open</a>(path: &amp;str) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../../redox/fs/file/struct.File.html' title='redox::fs::file::File'>File</a>&gt;</code></h4>
+<div class='docblock'><p>Open a new file using a path</p>
+</div><h4 id='method.dup' class='method'><code>fn <a href='#method.dup' class='fnname'>dup</a>(&amp;self) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../../redox/fs/file/struct.File.html' title='redox::fs::file::File'>File</a>&gt;</code></h4>
+<div class='docblock'><p>Duplicate the file</p>
+</div><h4 id='method.path' class='method'><code>fn <a href='#method.path' class='fnname'>path</a>(&amp;self) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../../redox/string/struct.String.html' title='redox::string::String'>String</a>&gt;</code></h4>
+<div class='docblock'><p>Get the canonical path of the file</p>
+</div><h4 id='method.sync' class='method'><code>fn <a href='#method.sync' class='fnname'>sync</a>(&amp;mut self) -&gt; bool</code></h4>
+<div class='docblock'><p>Flush the io</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../../redox/io/trait.Read.html' title='redox::io::Read'>Read</a> for <a class='struct' href='../../../redox/fs/file/struct.File.html' title='redox::fs::file::File'>File</a></code></h3><div class='impl-items'><h4 id='method.read' class='method'><code>fn <a href='../../../redox/io/trait.Read.html#method.read' class='fnname'>read</a>(&amp;mut self, buf: &amp;mut [u8]) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;usize&gt;</code></h4>
+<h4 id='method.read_to_end' class='method'><code>fn <a href='../../../redox/io/trait.Read.html#method.read_to_end' class='fnname'>read_to_end</a>(&amp;mut self, vec: &amp;mut <a class='struct' href='../../../redox/struct.Vec.html' title='redox::Vec'>Vec</a>&lt;u8&gt;) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;usize&gt;</code></h4>
+<h4 id='method.read_to_string' class='method'><code>fn <a href='../../../redox/io/trait.Read.html#method.read_to_string' class='fnname'>read_to_string</a>(&amp;mut self, string: &amp;mut <a class='struct' href='../../../redox/string/struct.String.html' title='redox::string::String'>String</a>) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;usize&gt;</code></h4>
+<h4 id='method.bytes' class='method'><code>fn <a href='../../../redox/io/trait.Read.html#method.bytes' class='fnname'>bytes</a>(&amp;mut self) -&gt; <a class='struct' href='../../../redox/vec/struct.IntoIter.html' title='redox::vec::IntoIter'>IntoIter</a>&lt;u8&gt;</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../redox/io/trait.Write.html' title='redox::io::Write'>Write</a> for <a class='struct' href='../../../redox/fs/file/struct.File.html' title='redox::fs::file::File'>File</a></code></h3><div class='impl-items'><h4 id='method.write' class='method'><code>fn <a href='../../../redox/io/trait.Write.html#method.write' class='fnname'>write</a>(&amp;mut self, buf: &amp;[u8]) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;usize&gt;</code></h4>
+<h4 id='method.write_fmt' class='method'><code>fn <a href='../../../redox/io/trait.Write.html#method.write_fmt' class='fnname'>write_fmt</a>(&amp;mut self, args: <a class='struct' href='../../../redox/fmt/struct.Arguments.html' title='redox::fmt::Arguments'>Arguments</a>) -&gt; <a class='enum' href='../../../redox/result/enum.Result.html' title='redox::result::Result'>Result</a>&lt;(), <a class='struct' href='../../../redox/io/struct.Error.html' title='redox::io::Error'>Error</a>&gt;</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../redox/io/trait.Seek.html' title='redox::io::Seek'>Seek</a> for <a class='struct' href='../../../redox/fs/file/struct.File.html' title='redox::fs::file::File'>File</a></code></h3><div class='impl-items'><h4 id='method.seek' class='method'><code>fn <a href='../../../redox/io/trait.Seek.html#method.seek' class='fnname'>seek</a>(&amp;mut self, pos: <a class='enum' href='../../../redox/io/enum.SeekFrom.html' title='redox::io::SeekFrom'>SeekFrom</a>) -&gt; <a class='enum' href='../../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;usize&gt;</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../redox/ops/trait.Drop.html' title='redox::ops::Drop'>Drop</a> for <a class='struct' href='../../../redox/fs/file/struct.File.html' title='redox::fs::file::File'>File</a></code></h3><div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='../../../redox/ops/trait.Drop.html#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "redox";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>

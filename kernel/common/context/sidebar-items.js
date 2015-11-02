@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["CONTEXT_STACK_SIZE",""]],"fn":[["context_box","Reads a Boxed function and executes it"],["context_exit","Exit context"],["context_fork","Fork context"],["context_switch","Switch context"]],"static":[["context_enabled",""],["context_i",""],["contexts_ptr",""]],"struct":[["Context",""],["ContextFile",""],["ContextMemory",""]]});
