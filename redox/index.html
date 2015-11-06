@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/redox/lib.rs.html#1-224' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/redox/lib.rs.html#1-229' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'>
 <h1 id='the-redox-library' class='section-header'><a href='#the-redox-library'>The Redox Library</a></h1>
 <p>The Redox Library contains a collection of commonly used low-level software
@@ -53,7 +53,7 @@ constructs to be used on top of the base operating system, including graphics
 support and windowing, a basic filesystem, audio support, a simple console
 with shell style functions, an event system, and environment argument support.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
-<table><tr><td><code>pub use <a class='mod' href='../redox/env/index.html' title='redox::env'>env</a>::*;</code></td></tr><tr><td><code>pub use fs::<a class='mod' href='../redox/fs/file/index.html' title='redox::fs::file'>file</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/io/index.html' title='redox::io'>io</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/string/index.html' title='redox::string'>string</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/console/index.html' title='redox::console'>console</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/orbital/index.html' title='redox::orbital'>orbital</a>::*;</code></td></tr><tr><td><code>pub use orbital::<a class='mod' href='../redox/orbital/event/index.html' title='redox::orbital::event'>event</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/url/index.html' title='redox::url'>url</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/to_num/index.html' title='redox::to_num'>to_num</a>::*;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table><tr><td><code>pub use <a class='mod' href='../redox/env/index.html' title='redox::env'>env</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/fs/index.html' title='redox::fs'>fs</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/io/index.html' title='redox::io'>io</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/string/index.html' title='redox::string'>string</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/console/index.html' title='redox::console'>console</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/orbital/index.html' title='redox::orbital'>orbital</a>::*;</code></td></tr><tr><td><code>pub use orbital::<a class='mod' href='../redox/orbital/event/index.html' title='redox::orbital::event'>event</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/url/index.html' title='redox::url'>url</a>::*;</code></td></tr><tr><td><code>pub use <a class='mod' href='../redox/to_num/index.html' title='redox::to_num'>to_num</a>::*;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='mod' href='alloc_system/index.html'
@@ -137,6 +137,15 @@ of any <code>&#39;static</code> type through runtime reflection.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='mod' href='collections/index.html'
+                               title='redox::collections'>collections</a></td>
+                        <td class='docblock short'>
+                             <p>Collection types.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='mod' href='console/index.html'
                                title='redox::console'>console</a></td>
                         <td class='docblock short'>
@@ -151,6 +160,14 @@ of any <code>&#39;static</code> type through runtime reflection.</p>
                         <td class='docblock short'>
                              <p>Traits for conversions between types.</p>
 
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='debug/index.html'
+                               title='redox::debug'>debug</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 
@@ -212,8 +229,7 @@ of any <code>&#39;static</code> type through runtime reflection.</p>
                         <td><a class='mod' href='fs/index.html'
                                title='redox::fs'>fs</a></td>
                         <td class='docblock short'>
-                             <p>File system module</p>
-
+                             
                         </td>
                     </tr>
                 
@@ -223,6 +239,14 @@ of any <code>&#39;static</code> type through runtime reflection.</p>
                         <td class='docblock short'>
                              <p>Generic hashing support.</p>
 
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='hashmap/index.html'
+                               title='redox::hashmap'>hashmap</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 
@@ -424,6 +448,15 @@ of any <code>&#39;static</code> type through runtime reflection.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='mod' href='time/index.html'
+                               title='redox::time'>time</a></td>
+                        <td class='docblock short'>
+                             <p>A module for time</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='mod' href='to_num/index.html'
                                title='redox::to_num'>to_num</a></td>
                         <td class='docblock short'>
@@ -541,11 +574,10 @@ pronounced &#39;vector.&#39;</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='mod' href='time/index.html'
-                               title='redox::time'>time</a></td>
+                        <td><a class='mod' href='thread/index.html'
+                               title='redox::thread'>thread</a></td>
                         <td class='docblock short'>
-                             <p>A module for time</p>
-
+                             
                         </td>
                     </tr>
                 </table><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>
@@ -569,6 +601,15 @@ pronounced &#39;vector.&#39;</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='macro' href='macro.debug!.html'
+                               title='redox::debug!'>debug!</a></td>
+                        <td class='docblock short'>
+                             <p>Debug to console</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='macro' href='macro.debug_assert!.html'
                                title='redox::debug_assert!'>debug_assert!</a></td>
                         <td class='docblock short'>
@@ -583,6 +624,15 @@ pronounced &#39;vector.&#39;</p>
                         <td class='docblock short'>
                              <p>Asserts that two expressions are equal to each other, testing equality in
 both directions.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='macro' href='macro.debugln!.html'
+                               title='redox::debugln!'>debugln!</a></td>
+                        <td class='docblock short'>
+                             <p>Debug new line to console</p>
 
                         </td>
                     </tr>
@@ -690,8 +740,8 @@ message <code>&quot;not yet implemented&quot;</code> when executed.</p>
                 </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
-                        <td><a class='struct' href='struct.BMPFile.html'
-                               title='redox::BMPFile'>BMPFile</a></td>
+                        <td><a class='struct' href='struct.BmpFile.html'
+                               title='redox::BmpFile'>BmpFile</a></td>
                         <td class='docblock short'>
                              <p>A bitmap</p>
 
@@ -726,8 +776,8 @@ message <code>&quot;not yet implemented&quot;</code> when executed.</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='struct' href='struct.WAV.html'
-                               title='redox::WAV'>WAV</a></td>
+                        <td><a class='struct' href='struct.WavFile.html'
+                               title='redox::WavFile'>WavFile</a></td>
                         <td class='docblock short'>
                              <p>A WAV file</p>
 

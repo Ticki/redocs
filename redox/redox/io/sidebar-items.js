@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["SeekFrom","Seek Location"]],"fn":[["_print",""],["stderr","Create a standard error"],["stdin","Create a standard input"],["stdout","Create a standard output"]],"struct":[["Error",""],["Stderr","Standard Error"],["Stdin","Standard Input"],["Stdout","Standard Output"]],"trait":[["Read","Types you can read"],["Seek",""],["Write","Types you can write"]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["file","File struct and supporting functions"]]});
+initSidebarItems({"fn":[["read_dir",""]],"struct":[["DirEntry",""],["File","A Unix-style file"],["ReadDir",""]]});

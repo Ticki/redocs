@@ -1,1 +1,0 @@
-initSidebarItems({"static":[["BROADCAST_IP_ADDR",""],["BROADCAST_MAC_ADDR",""],["IP_ADDR",""],["MAC_ADDR",""]],"struct":[["Checksum",""],["IPv4Addr",""],["IPv6Addr",""],["MACAddr",""],["n16",""],["n32",""]],"trait":[["FromBytes",""],["ToBytes",""]]});

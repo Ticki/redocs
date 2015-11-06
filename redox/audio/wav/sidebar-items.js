@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["WAV","A WAV file"]]});
+initSidebarItems({"struct":[["WavFile","A WAV file"]]});

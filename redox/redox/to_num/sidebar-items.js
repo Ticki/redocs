@@ -1,1 +1,0 @@
-initSidebarItems({"trait":[["ToNum","Parse the string to a integer using a given radix"]]});

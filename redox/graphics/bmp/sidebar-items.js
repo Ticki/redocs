@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["BMPFile","A bitmap"]]});
+initSidebarItems({"struct":[["BmpFile","A bitmap"]]});

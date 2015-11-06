@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["event",""]],"struct":[["EventIter","Event iterator"],["Window","A window"]]});

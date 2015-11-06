@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-21846' class='srclink' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html?gotosrc=21846' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-21847' class='srclink' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html?gotosrc=21847' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait From&lt;T&gt; {
     fn <a href='#tymethod.from' class='fnname'>from</a>(T) -&gt; Self;
 }</pre><div class='docblock'><p>Construct <code>Self</code> via a conversion.</p>
@@ -85,6 +85,8 @@
 <li><code>impl <a class='trait' href='../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>&lt;u16&gt; for i64</code></li>
 <li><code>impl <a class='trait' href='../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>&lt;u32&gt; for i64</code></li>
 <li><code>impl&lt;T&gt; <a class='trait' href='../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>&lt;T&gt; for T</code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>&lt;<a class='struct' href='../../redox/struct.Vec.html' title='redox::Vec'>Vec</a>&lt;T&gt;&gt; for <a class='struct' href='../../redox/collections/binary_heap/struct.BinaryHeap.html' title='redox::collections::binary_heap::BinaryHeap'>BinaryHeap</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../../redox/cmp/trait.Ord.html' title='redox::cmp::Ord'>Ord</a></span></code></li>
+<li><code>impl&lt;T&gt; <a class='trait' href='../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>&lt;<a class='struct' href='../../redox/collections/binary_heap/struct.BinaryHeap.html' title='redox::collections::binary_heap::BinaryHeap'>BinaryHeap</a>&lt;T&gt;&gt; for <a class='struct' href='../../redox/struct.Vec.html' title='redox::Vec'>Vec</a>&lt;T&gt;</code></li>
 <li><code>impl&lt;'a, T&gt; <a class='trait' href='../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>&lt;&amp;'a mut <a class='enum' href='../../redox/option/enum.Option.html' title='redox::option::Option'>Option</a>&lt;<a class='struct' href='../../redox/struct.Box.html' title='redox::Box'>Box</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/linked_list/struct.Node.html' title='core_collections::linked_list::Node'>Node</a>&lt;T&gt;&gt;&gt;&gt; for <a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/linked_list/struct.Rawlink.html' title='core_collections::linked_list::Rawlink'>Rawlink</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/core_collections/linked_list/struct.Node.html' title='core_collections::linked_list::Node'>Node</a>&lt;T&gt;&gt;</code></li>
 <li><code>impl&lt;'a&gt; <a class='trait' href='../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>&lt;&amp;'a str&gt; for <a class='struct' href='../../redox/string/struct.String.html' title='redox::string::String'>String</a></code></li>
 <li><code>impl&lt;'a&gt; <a class='trait' href='../../redox/convert/trait.From.html' title='redox::convert::From'>From</a>&lt;&amp;'a str&gt; for <a class='enum' href='../../redox/borrow/enum.Cow.html' title='redox::borrow::Cow'>Cow</a>&lt;'a, str&gt;</code></li>

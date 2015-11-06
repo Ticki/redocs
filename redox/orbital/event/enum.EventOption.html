@@ -45,16 +45,18 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1070' class='srclink' href='../../../src/redox/orbital/event.rs.html#5-14' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1354' class='srclink' href='../../../src/redox/orbital/event.rs.html#5-16' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum EventOption {
     Mouse(<a class='struct' href='../../../redox/orbital/event/struct.MouseEvent.html' title='redox::orbital::event::MouseEvent'>MouseEvent</a>),
     Key(<a class='struct' href='../../../redox/orbital/event/struct.KeyEvent.html' title='redox::orbital::event::KeyEvent'>KeyEvent</a>),
+    Quit(<a class='struct' href='../../../redox/orbital/event/struct.QuitEvent.html' title='redox::orbital::event::QuitEvent'>QuitEvent</a>),
     Unknown(<a class='struct' href='../../../redox/orbital/event/struct.Event.html' title='redox::orbital::event::Event'>Event</a>),
     None,
 }</pre><div class='docblock'><p>An optional event</p>
 </div><h2 class='variants'>Variants</h2>
 <table><tr><td id='variant.Mouse'><code>Mouse</code></td><td><div class='docblock'><p>A mouse event</p>
 </div></td></tr><tr><td id='variant.Key'><code>Key</code></td><td><div class='docblock'><p>A key event</p>
+</div></td></tr><tr><td id='variant.Quit'><code>Quit</code></td><td><div class='docblock'><p>A quit request event</p>
 </div></td></tr><tr><td id='variant.Unknown'><code>Unknown</code></td><td><div class='docblock'><p>An unknown event</p>
 </div></td></tr><tr><td id='variant.None'><code>None</code></td><td><div class='docblock'><p>No event</p>
 </div></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='../../../redox/clone/trait.Clone.html' title='redox::clone::Clone'>Clone</a> for <a class='enum' href='../../../redox/orbital/event/enum.EventOption.html' title='redox::orbital::event::EventOption'>EventOption</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='../../../redox/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../../redox/orbital/event/enum.EventOption.html' title='redox::orbital::event::EventOption'>EventOption</a></code></h4>

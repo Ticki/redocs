@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["URL","An URL, see wiki"]]});
