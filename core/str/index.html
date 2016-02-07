@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `str` mod in crate `core`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, str">
+
+    <title>core::str - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../core/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../index.html'>core</a></p><script>window.sidebarCurrent = {name: 'str', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>core</a>::<wbr><a class='mod' href=''>str</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-31427' class='srclink' href='../../src/core/str/mod.rs.html#11-1946' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>String manipulation</p>
+
+<p>For more details, see std::str</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use self::<a class='mod'
+                                            href='./pattern/index.html'>pattern</a>::<a class='trait' href='../../core/str/pattern/trait.Pattern.html' title='core::str::pattern::Pattern'>Pattern</a>;</code></td></tr><tr><td><code>use self::pattern::{<a class='trait' href='../../core/str/pattern/trait.Searcher.html' title='core::str::pattern::Searcher'>Searcher</a>, <a class='trait' href='../../core/str/pattern/trait.ReverseSearcher.html' title='core::str::pattern::ReverseSearcher'>ReverseSearcher</a>, <a class='trait' href='../../core/str/pattern/trait.DoubleEndedSearcher.html' title='core::str::pattern::DoubleEndedSearcher'>DoubleEndedSearcher</a>};</code></td></tr><tr><td><code>use char::{<a class='mod' href='../../core/char/index.html' title='core::char'>self</a>, <a class='trait' href='../../core/char/trait.CharExt.html' title='core::char::CharExt'>CharExt</a>};</code></td></tr><tr><td><code>use clone::<a class='trait' href='../../core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a>;</code></td></tr><tr><td><code>use cmp::<a class='trait' href='../../core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a>;</code></td></tr><tr><td><code>use convert::<a class='trait' href='../../core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>;</code></td></tr><tr><td><code>use default::<a class='trait' href='../../core/default/trait.Default.html' title='core::default::Default'>Default</a>;</code></td></tr><tr><td><code>use <a class='mod' href='../../core/fmt/index.html' title='core::fmt'>fmt</a>;</code></td></tr><tr><td><code>use iter::<a class='trait' href='../../core/iter/trait.ExactSizeIterator.html' title='core::iter::ExactSizeIterator'>ExactSizeIterator</a>;</code></td></tr><tr><td><code>use iter::{<a class='struct' href='../../core/iter/struct.Map.html' title='core::iter::Map'>Map</a>, <a class='struct' href='../../core/iter/struct.Cloned.html' title='core::iter::Cloned'>Cloned</a>, <a class='trait' href='../../core/iter/trait.Iterator.html' title='core::iter::Iterator'>Iterator</a>, <a class='trait' href='../../core/iter/trait.DoubleEndedIterator.html' title='core::iter::DoubleEndedIterator'>DoubleEndedIterator</a>};</code></td></tr><tr><td><code>use marker::<a class='trait' href='../../core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>;</code></td></tr><tr><td><code>use <a class='mod' href='../../core/mem/index.html' title='core::mem'>mem</a>;</code></td></tr><tr><td><code>use ops::{<a class='trait' href='../../core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>, <a class='trait' href='../../core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>, <a class='trait' href='../../core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>};</code></td></tr><tr><td><code>use option::Option::{<a class='enum' href='../../core/option/enum.Option.html' title='core::option::Option'>self</a>, <a class='enum' href='../../core/option/enum.Option.html' title='core::option::Option'>None</a>, <a class='enum' href='../../core/option/enum.Option.html' title='core::option::Option'>Some</a>};</code></td></tr><tr><td><code>use raw::{<a class='trait' href='../../core/raw/trait.Repr.html' title='core::raw::Repr'>Repr</a>, <a class='struct' href='../../core/raw/struct.Slice.html' title='core::raw::Slice'>Slice</a>};</code></td></tr><tr><td><code>use result::Result::{<a class='enum' href='../../core/result/enum.Result.html' title='core::result::Result'>self</a>, <a class='enum' href='../../core/result/enum.Result.html' title='core::result::Result'>Ok</a>, <a class='enum' href='../../core/result/enum.Result.html' title='core::result::Result'>Err</a>};</code></td></tr><tr><td><code>use slice::{<a class='mod' href='../../core/slice/index.html' title='core::slice'>self</a>, <a class='trait' href='../../core/slice/trait.SliceExt.html' title='core::slice::SliceExt'>SliceExt</a>};</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='pattern/index.html'
+                               title='core::str::pattern'>pattern</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>The string Pattern API.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='traits/index.html'
+                               title='core::str::traits'>traits</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Bytes.html'
+                               title='core::str::Bytes'>Bytes</a></td>
+                        <td class='docblock short'>
+                             <p>External iterator for a string&#39;s bytes.
+Use with the <code>std::iter</code> module.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.CharIndices.html'
+                               title='core::str::CharIndices'>CharIndices</a></td>
+                        <td class='docblock short'>
+                             <p>Iterator for a string&#39;s characters and their byte offsets.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Chars.html'
+                               title='core::str::Chars'>Chars</a></td>
+                        <td class='docblock short'>
+                             <p>Iterator for the char (representing <em>Unicode Scalar Values</em>) of a string</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Lines.html'
+                               title='core::str::Lines'>Lines</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>lines()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' deprecated module-item'>
+                        <td><a class='struct' href='struct.LinesAny.html'
+                               title='core::str::LinesAny'>LinesAny</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab  deprecated'>Deprecated</em>] <p>Created with the method [<code>lines_any()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.LinesAnyMap.html'
+                               title='core::str::LinesAnyMap'>LinesAnyMap</a></td>
+                        <td class='docblock short'>
+                             <p>A nameable, cloneable fn type</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.MatchIndices.html'
+                               title='core::str::MatchIndices'>MatchIndices</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>match_indices()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.MatchIndicesInternal.html'
+                               title='core::str::MatchIndicesInternal'>MatchIndicesInternal</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Matches.html'
+                               title='core::str::Matches'>Matches</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>matches()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.MatchesInternal.html'
+                               title='core::str::MatchesInternal'>MatchesInternal</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.ParseBoolError.html'
+                               title='core::str::ParseBoolError'>ParseBoolError</a></td>
+                        <td class='docblock short'>
+                             <p>An error returned when parsing a <code>bool</code> from a string fails.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RMatchIndices.html'
+                               title='core::str::RMatchIndices'>RMatchIndices</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>rmatch_indices()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RMatches.html'
+                               title='core::str::RMatches'>RMatches</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>rmatches()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RSplit.html'
+                               title='core::str::RSplit'>RSplit</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>rsplit()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RSplitN.html'
+                               title='core::str::RSplitN'>RSplitN</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>rsplitn()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RSplitTerminator.html'
+                               title='core::str::RSplitTerminator'>RSplitTerminator</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>rsplit_terminator()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Split.html'
+                               title='core::str::Split'>Split</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>split()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='struct' href='struct.CharRange.html'
+                               title='core::str::CharRange'>CharRange</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Struct that contains a <code>char</code> and the index of the first byte of
+the next <code>char</code> in a string.  This can be used as a data structure
+for iterating over the UTF-8 bytes of a string.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.SplitInternal.html'
+                               title='core::str::SplitInternal'>SplitInternal</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.SplitN.html'
+                               title='core::str::SplitN'>SplitN</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>splitn()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.SplitNInternal.html'
+                               title='core::str::SplitNInternal'>SplitNInternal</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.SplitTerminator.html'
+                               title='core::str::SplitTerminator'>SplitTerminator</a></td>
+                        <td class='docblock short'>
+                             <p>Created with the method [<code>split_terminator()</code>].</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Utf8Error.html'
+                               title='core::str::Utf8Error'>Utf8Error</a></td>
+                        <td class='docblock short'>
+                             <p>Errors which can occur when attempting to interpret a sequence of <code>u8</code>
+as a string.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CONT_MASK.html'
+                               title='core::str::CONT_MASK'>CONT_MASK</a></td>
+                        <td class='docblock short'>
+                             <p>Mask of the value bits of a continuation byte</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.NONASCII_MASK.html'
+                               title='core::str::NONASCII_MASK'>NONASCII_MASK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.TAG_CONT_U8.html'
+                               title='core::str::TAG_CONT_U8'>TAG_CONT_U8</a></td>
+                        <td class='docblock short'>
+                             <p>Value of the tag bits (tag mask is !CONT_MASK) of a continuation byte</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='static' href='static.UTF8_CHAR_WIDTH.html'
+                               title='core::str::UTF8_CHAR_WIDTH'>UTF8_CHAR_WIDTH</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.FromStr.html'
+                               title='core::str::FromStr'>FromStr</a></td>
+                        <td class='docblock short'>
+                             <p>A trait to abstract the idea of creating a new instance of a type from a
+string.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='trait' href='trait.StrExt.html'
+                               title='core::str::StrExt'>StrExt</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Methods for string slices</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.char_range_at_raw.html'
+                               title='core::str::char_range_at_raw'>char_range_at_raw</a></td>
+                        <td class='docblock short'>
+                             <p>Pluck a code point out of a UTF-8-like byte slice and return the
+index of the next code point.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.cmp_slice.html'
+                               title='core::str::cmp_slice'>cmp_slice</a></td>
+                        <td class='docblock short'>
+                             <p>Bytewise slice comparison.
+NOTE: This uses the system&#39;s memcmp, which is currently dramatically
+faster than comparing each byte in a loop.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.contains_nonascii.html'
+                               title='core::str::contains_nonascii'>contains_nonascii</a></td>
+                        <td class='docblock short'>
+                             <p>Return <code>true</code> if any byte in the word <code>x</code> is nonascii (&gt;= 128).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.eq_slice.html'
+                               title='core::str::eq_slice'>eq_slice</a></td>
+                        <td class='docblock short'>
+                             <p>Bytewise slice equality
+NOTE: This function is (ab)used in rustc::middle::trans::_match
+to compare &amp;[u8] byte slices that are not necessarily valid UTF-8.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.from_raw_parts_mut.html'
+                               title='core::str::from_raw_parts_mut'>from_raw_parts_mut</a></td>
+                        <td class='docblock short'>
+                             <p>Forms a str from a pointer and a length.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.from_utf8.html'
+                               title='core::str::from_utf8'>from_utf8</a></td>
+                        <td class='docblock short'>
+                             <p>Converts a slice of bytes to a string slice.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.from_utf8_unchecked.html'
+                               title='core::str::from_utf8_unchecked'>from_utf8_unchecked</a></td>
+                        <td class='docblock short'>
+                             <p>Converts a slice of bytes to a string slice without checking
+that the string contains valid UTF-8.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.next_code_point.html'
+                               title='core::str::next_code_point'>next_code_point</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Reads the next code point out of a byte iterator (assuming a
+UTF-8-like encoding).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.next_code_point_reverse.html'
+                               title='core::str::next_code_point_reverse'>next_code_point_reverse</a></td>
+                        <td class='docblock short'>
+                             <p>Reads the last code point out of a byte iterator (assuming a
+UTF-8-like encoding).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.run_utf8_validation.html'
+                               title='core::str::run_utf8_validation'>run_utf8_validation</a></td>
+                        <td class='docblock short'>
+                             <p>Walk through <code>iter</code> checking that it&#39;s a valid UTF-8 sequence,
+returning <code>true</code> in that case, or, if it is invalid, <code>false</code> with
+<code>iter</code> reset such that it is pointing at the first byte in the
+invalid sequence.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.slice_error_fail.html'
+                               title='core::str::slice_error_fail'>slice_error_fail</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.unwrap_or_0.html'
+                               title='core::str::unwrap_or_0'>unwrap_or_0</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.utf8_acc_cont_byte.html'
+                               title='core::str::utf8_acc_cont_byte'>utf8_acc_cont_byte</a></td>
+                        <td class='docblock short'>
+                             <p>Return the value of <code>ch</code> updated with continuation byte <code>byte</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.utf8_first_byte.html'
+                               title='core::str::utf8_first_byte'>utf8_first_byte</a></td>
+                        <td class='docblock short'>
+                             <p>Return the initial codepoint accumulator for the first byte.
+The first byte is special, only want bottom 5 bits for width 2, 4 bits
+for width 3, and 3 bits for width 4.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.utf8_is_cont_byte.html'
+                               title='core::str::utf8_is_cont_byte'>utf8_is_cont_byte</a></td>
+                        <td class='docblock short'>
+                             <p>Checks whether the byte is a UTF-8 continuation byte (i.e. starts with the
+bits <code>10</code>).</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "core";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script src="../../playpen.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

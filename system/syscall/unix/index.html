@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `unix` mod in crate `system`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, unix">
+
+    <title>system::syscall::unix - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>system</a>::<wbr><a href='../index.html'>syscall</a></p><script>window.sidebarCurrent = {name: 'unix', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>system</a>::<wbr><a href='../index.html'>syscall</a>::<wbr><a class='mod' href=''>unix</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-316' class='srclink' href='../../../src/system/syscall/unix.rs.html#1-170' title='goto source code'>[src]</a></span></h1>
+<h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use core::prelude::<a class='mod' href='../../../core/prelude/v1/index.html' title='core::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use super::{<a class='fn' href='../../../system/syscall/arch/fn.syscall0.html' title='system::syscall::arch::syscall0'>syscall0</a>, <a class='fn' href='../../../system/syscall/arch/fn.syscall1.html' title='system::syscall::arch::syscall1'>syscall1</a>, <a class='fn' href='../../../system/syscall/arch/fn.syscall2.html' title='system::syscall::arch::syscall2'>syscall2</a>, <a class='fn' href='../../../system/syscall/arch/fn.syscall3.html' title='system::syscall::arch::syscall3'>syscall3</a>};</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.TimeSpec.html'
+                               title='system::syscall::unix::TimeSpec'>TimeSpec</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CLOCK_MONOTONIC.html'
+                               title='system::syscall::unix::CLOCK_MONOTONIC'>CLOCK_MONOTONIC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CLOCK_REALTIME.html'
+                               title='system::syscall::unix::CLOCK_REALTIME'>CLOCK_REALTIME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CLONE_FILES.html'
+                               title='system::syscall::unix::CLONE_FILES'>CLONE_FILES</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CLONE_FS.html'
+                               title='system::syscall::unix::CLONE_FS'>CLONE_FS</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CLONE_VFORK.html'
+                               title='system::syscall::unix::CLONE_VFORK'>CLONE_VFORK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.CLONE_VM.html'
+                               title='system::syscall::unix::CLONE_VM'>CLONE_VM</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_APPEND.html'
+                               title='system::syscall::unix::O_APPEND'>O_APPEND</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_ASYNC.html'
+                               title='system::syscall::unix::O_ASYNC'>O_ASYNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_CREAT.html'
+                               title='system::syscall::unix::O_CREAT'>O_CREAT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_EXCL.html'
+                               title='system::syscall::unix::O_EXCL'>O_EXCL</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_EXLOCK.html'
+                               title='system::syscall::unix::O_EXLOCK'>O_EXLOCK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_FSYNC.html'
+                               title='system::syscall::unix::O_FSYNC'>O_FSYNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_NONBLOCK.html'
+                               title='system::syscall::unix::O_NONBLOCK'>O_NONBLOCK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_RDONLY.html'
+                               title='system::syscall::unix::O_RDONLY'>O_RDONLY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_RDWR.html'
+                               title='system::syscall::unix::O_RDWR'>O_RDWR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_SHLOCK.html'
+                               title='system::syscall::unix::O_SHLOCK'>O_SHLOCK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_TRUNC.html'
+                               title='system::syscall::unix::O_TRUNC'>O_TRUNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.O_WRONLY.html'
+                               title='system::syscall::unix::O_WRONLY'>O_WRONLY</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SEEK_CUR.html'
+                               title='system::syscall::unix::SEEK_CUR'>SEEK_CUR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SEEK_END.html'
+                               title='system::syscall::unix::SEEK_END'>SEEK_END</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SEEK_SET.html'
+                               title='system::syscall::unix::SEEK_SET'>SEEK_SET</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_BRK.html'
+                               title='system::syscall::unix::SYS_BRK'>SYS_BRK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_CHDIR.html'
+                               title='system::syscall::unix::SYS_CHDIR'>SYS_CHDIR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_CLOCK_GETTIME.html'
+                               title='system::syscall::unix::SYS_CLOCK_GETTIME'>SYS_CLOCK_GETTIME</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_CLONE.html'
+                               title='system::syscall::unix::SYS_CLONE'>SYS_CLONE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_CLOSE.html'
+                               title='system::syscall::unix::SYS_CLOSE'>SYS_CLOSE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_DUP.html'
+                               title='system::syscall::unix::SYS_DUP'>SYS_DUP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_EXECVE.html'
+                               title='system::syscall::unix::SYS_EXECVE'>SYS_EXECVE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_EXIT.html'
+                               title='system::syscall::unix::SYS_EXIT'>SYS_EXIT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FPATH.html'
+                               title='system::syscall::unix::SYS_FPATH'>SYS_FPATH</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FSTAT.html'
+                               title='system::syscall::unix::SYS_FSTAT'>SYS_FSTAT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FSYNC.html'
+                               title='system::syscall::unix::SYS_FSYNC'>SYS_FSYNC</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_FTRUNCATE.html'
+                               title='system::syscall::unix::SYS_FTRUNCATE'>SYS_FTRUNCATE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_GETPID.html'
+                               title='system::syscall::unix::SYS_GETPID'>SYS_GETPID</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_LINK.html'
+                               title='system::syscall::unix::SYS_LINK'>SYS_LINK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_LSEEK.html'
+                               title='system::syscall::unix::SYS_LSEEK'>SYS_LSEEK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_MKDIR.html'
+                               title='system::syscall::unix::SYS_MKDIR'>SYS_MKDIR</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_NANOSLEEP.html'
+                               title='system::syscall::unix::SYS_NANOSLEEP'>SYS_NANOSLEEP</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_OPEN.html'
+                               title='system::syscall::unix::SYS_OPEN'>SYS_OPEN</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_PIPE2.html'
+                               title='system::syscall::unix::SYS_PIPE2'>SYS_PIPE2</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_READ.html'
+                               title='system::syscall::unix::SYS_READ'>SYS_READ</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_UNLINK.html'
+                               title='system::syscall::unix::SYS_UNLINK'>SYS_UNLINK</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_WAITPID.html'
+                               title='system::syscall::unix::SYS_WAITPID'>SYS_WAITPID</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_WRITE.html'
+                               title='system::syscall::unix::SYS_WRITE'>SYS_WRITE</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.SYS_YIELD.html'
+                               title='system::syscall::unix::SYS_YIELD'>SYS_YIELD</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_brk.html'
+                               title='system::syscall::unix::sys_brk'>sys_brk</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_chdir.html'
+                               title='system::syscall::unix::sys_chdir'>sys_chdir</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_clock_gettime.html'
+                               title='system::syscall::unix::sys_clock_gettime'>sys_clock_gettime</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_clone.html'
+                               title='system::syscall::unix::sys_clone'>sys_clone</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_close.html'
+                               title='system::syscall::unix::sys_close'>sys_close</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_dup.html'
+                               title='system::syscall::unix::sys_dup'>sys_dup</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_execve.html'
+                               title='system::syscall::unix::sys_execve'>sys_execve</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_exit.html'
+                               title='system::syscall::unix::sys_exit'>sys_exit</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_fpath.html'
+                               title='system::syscall::unix::sys_fpath'>sys_fpath</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_fsync.html'
+                               title='system::syscall::unix::sys_fsync'>sys_fsync</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_ftruncate.html'
+                               title='system::syscall::unix::sys_ftruncate'>sys_ftruncate</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_getpid.html'
+                               title='system::syscall::unix::sys_getpid'>sys_getpid</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_link.html'
+                               title='system::syscall::unix::sys_link'>sys_link</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_lseek.html'
+                               title='system::syscall::unix::sys_lseek'>sys_lseek</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_mkdir.html'
+                               title='system::syscall::unix::sys_mkdir'>sys_mkdir</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_nanosleep.html'
+                               title='system::syscall::unix::sys_nanosleep'>sys_nanosleep</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_open.html'
+                               title='system::syscall::unix::sys_open'>sys_open</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_pipe2.html'
+                               title='system::syscall::unix::sys_pipe2'>sys_pipe2</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_read.html'
+                               title='system::syscall::unix::sys_read'>sys_read</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_unlink.html'
+                               title='system::syscall::unix::sys_unlink'>sys_unlink</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_waitpid.html'
+                               title='system::syscall::unix::sys_waitpid'>sys_waitpid</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_write.html'
+                               title='system::syscall::unix::sys_write'>sys_write</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.sys_yield.html'
+                               title='system::syscall::unix::sys_yield'>sys_yield</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "system";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

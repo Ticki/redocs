@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `RawFloat` trait in crate `core`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, RawFloat">
+
+    <title>core::num::dec2flt::rawfp::RawFloat - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../../../core/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../../../index.html'>core</a>::<wbr><a href='../../index.html'>num</a>::<wbr><a href='../index.html'>dec2flt</a>::<wbr><a href='index.html'>rawfp</a></p><script>window.sidebarCurrent = {name: 'RawFloat', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../../../index.html'>core</a>::<wbr><a href='../../index.html'>num</a>::<wbr><a href='../index.html'>dec2flt</a>::<wbr><a href='index.html'>rawfp</a>::<wbr><a class='trait' href=''>RawFloat</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2370' class='srclink' href='../../../../src/core/num/dec2flt/rawfp.rs.html#61-146' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait RawFloat: <a class='trait' href='../../../../core/num/trait.Float.html' title='core::num::Float'>Float</a> + <a class='trait' href='../../../../core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> + <a class='trait' href='../../../../core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> + <a class='trait' href='../../../../core/fmt/trait.LowerExp.html' title='core::fmt::LowerExp'>LowerExp</a> + <a class='trait' href='../../../../core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;Output=Self&gt; + <a class='trait' href='../../../../core/ops/trait.Div.html' title='core::ops::Div'>Div</a>&lt;Output=Self&gt; + <a class='trait' href='../../../../core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a>&lt;Output=Self&gt; {
+    fn <a href='#tymethod.transmute' class='fnname'>transmute</a>(self) -&gt; u64;
+    fn <a href='#tymethod.from_bits' class='fnname'>from_bits</a>(bits: u64) -&gt; Self;
+    fn <a href='#tymethod.unpack' class='fnname'>unpack</a>(self) -&gt; <a class='struct' href='../../../../core/num/dec2flt/rawfp/struct.Unpacked.html' title='core::num::dec2flt::rawfp::Unpacked'>Unpacked</a>;
+    fn <a href='#tymethod.from_int' class='fnname'>from_int</a>(x: u64) -&gt; Self;
+    fn <a href='#tymethod.short_fast_pow10' class='fnname'>short_fast_pow10</a>(e: usize) -&gt; Self;
+    fn <a href='#tymethod.ceil_log5_of_max_sig' class='fnname'>ceil_log5_of_max_sig</a>() -&gt; i16;
+    fn <a href='#tymethod.max_normal_digits' class='fnname'>max_normal_digits</a>() -&gt; usize;
+    fn <a href='#tymethod.inf_cutoff' class='fnname'>inf_cutoff</a>() -&gt; i64;
+    fn <a href='#tymethod.zero_cutoff' class='fnname'>zero_cutoff</a>() -&gt; i64;
+    fn <a href='#tymethod.exp_bits' class='fnname'>exp_bits</a>() -&gt; u8;
+    fn <a href='#tymethod.sig_bits' class='fnname'>sig_bits</a>() -&gt; u8;
+
+    fn <a href='#method.explicit_sig_bits' class='fnname'>explicit_sig_bits</a>() -&gt; u8 { ... }
+    fn <a href='#method.max_exp' class='fnname'>max_exp</a>() -&gt; i16 { ... }
+    fn <a href='#method.min_exp' class='fnname'>min_exp</a>() -&gt; i16 { ... }
+    fn <a href='#method.max_exp_int' class='fnname'>max_exp_int</a>() -&gt; i16 { ... }
+    fn <a href='#method.max_encoded_exp' class='fnname'>max_encoded_exp</a>() -&gt; i16 { ... }
+    fn <a href='#method.min_exp_int' class='fnname'>min_exp_int</a>() -&gt; i16 { ... }
+    fn <a href='#method.max_sig' class='fnname'>max_sig</a>() -&gt; u64 { ... }
+    fn <a href='#method.min_sig' class='fnname'>min_sig</a>() -&gt; u64 { ... }
+}</pre><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>A helper trait to avoid duplicating basically all the conversion code for <code>f32</code> and <code>f64</code>.</p>
+
+<p>See the parent module&#39;s doc comment for why this is necessary.</p>
+
+<p>Should <strong>never ever</strong> be implemented for other types or be used outside the dec2flt module.
+Inherits from <code>Float</code> because there is some overlap, but all the reused methods are trivial.
+The &quot;methods&quot; (pseudo-constants) with default implementation should not be overriden.</p>
+</div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.transmute' class='method stab unstable'><code>fn <a href='#tymethod.transmute' class='fnname'>transmute</a>(self) -&gt; u64</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Get the raw binary representation of the float.</p>
+</div><h3 id='tymethod.from_bits' class='method stab unstable'><code>fn <a href='#tymethod.from_bits' class='fnname'>from_bits</a>(bits: u64) -&gt; Self</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Transmute the raw binary representation into a float.</p>
+</div><h3 id='tymethod.unpack' class='method stab unstable'><code>fn <a href='#tymethod.unpack' class='fnname'>unpack</a>(self) -&gt; <a class='struct' href='../../../../core/num/dec2flt/rawfp/struct.Unpacked.html' title='core::num::dec2flt::rawfp::Unpacked'>Unpacked</a></code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Decode the float.</p>
+</div><h3 id='tymethod.from_int' class='method stab unstable'><code>fn <a href='#tymethod.from_int' class='fnname'>from_int</a>(x: u64) -&gt; Self</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Cast from a small integer that can be represented exactly.  Panic if the integer can&#39;t be
+represented, the other code in this module makes sure to never let that happen.</p>
+</div><h3 id='tymethod.short_fast_pow10' class='method stab unstable'><code>fn <a href='#tymethod.short_fast_pow10' class='fnname'>short_fast_pow10</a>(e: usize) -&gt; Self</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Get the value 10<sup>e</sup> from a pre-computed table. Panics for e &gt;= ceil_log5_of_max_sig().</p>
+</div><h3 id='tymethod.ceil_log5_of_max_sig' class='method stab unstable'><code>fn <a href='#tymethod.ceil_log5_of_max_sig' class='fnname'>ceil_log5_of_max_sig</a>() -&gt; i16</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>What the name says. It&#39;s easier to hard code than juggling intrinsics and
+hoping LLVM constant folds it.</p>
+</div><h3 id='tymethod.max_normal_digits' class='method stab unstable'><code>fn <a href='#tymethod.max_normal_digits' class='fnname'>max_normal_digits</a>() -&gt; usize</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>subnormals. Probably the decimal exponent of the maximum normal value, hence the name.</p>
+</div><h3 id='tymethod.inf_cutoff' class='method stab unstable'><code>fn <a href='#tymethod.inf_cutoff' class='fnname'>inf_cutoff</a>() -&gt; i64</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>When the most significant decimal digit has a place value greater than this, the number
+is certainly rounded to infinity.</p>
+</div><h3 id='tymethod.zero_cutoff' class='method stab unstable'><code>fn <a href='#tymethod.zero_cutoff' class='fnname'>zero_cutoff</a>() -&gt; i64</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>When the most significant decimal digit has a place value less than this, the number
+is certainly rounded to zero.</p>
+</div><h3 id='tymethod.exp_bits' class='method stab unstable'><code>fn <a href='#tymethod.exp_bits' class='fnname'>exp_bits</a>() -&gt; u8</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>The number of bits in the exponent.</p>
+</div><h3 id='tymethod.sig_bits' class='method stab unstable'><code>fn <a href='#tymethod.sig_bits' class='fnname'>sig_bits</a>() -&gt; u8</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>The number of bits in the singificand, <em>including</em> the hidden bit.</p>
+</div></div>
+            <h2 id='provided-methods'>Provided Methods</h2>
+            <div class='methods'>
+        <h3 id='method.explicit_sig_bits' class='method stab unstable'><code>fn <a href='#method.explicit_sig_bits' class='fnname'>explicit_sig_bits</a>() -&gt; u8</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>The number of bits in the singificand, <em>excluding</em> the hidden bit.</p>
+</div><h3 id='method.max_exp' class='method stab unstable'><code>fn <a href='#method.max_exp' class='fnname'>max_exp</a>() -&gt; i16</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>The maximum legal exponent in fractional representation.</p>
+</div><h3 id='method.min_exp' class='method stab unstable'><code>fn <a href='#method.min_exp' class='fnname'>min_exp</a>() -&gt; i16</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>The minimum legal exponent in fractional representation, excluding subnormals.</p>
+</div><h3 id='method.max_exp_int' class='method stab unstable'><code>fn <a href='#method.max_exp_int' class='fnname'>max_exp_int</a>() -&gt; i16</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p><code>MAX_EXP</code> for integral representation, i.e., with the shift applied.</p>
+</div><h3 id='method.max_encoded_exp' class='method stab unstable'><code>fn <a href='#method.max_encoded_exp' class='fnname'>max_encoded_exp</a>() -&gt; i16</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p><code>MAX_EXP</code> encoded (i.e., with offset bias)</p>
+</div><h3 id='method.min_exp_int' class='method stab unstable'><code>fn <a href='#method.min_exp_int' class='fnname'>min_exp_int</a>() -&gt; i16</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p><code>MIN_EXP</code> for integral representation, i.e., with the shift applied.</p>
+</div><h3 id='method.max_sig' class='method stab unstable'><code>fn <a href='#method.max_sig' class='fnname'>max_sig</a>() -&gt; u64</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>The maximum normalized singificand in integral representation.</p>
+</div><h3 id='method.min_sig' class='method stab unstable'><code>fn <a href='#method.min_sig' class='fnname'>min_sig</a>() -&gt; u64</code></h3><div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>The minimal normalized significand in integral representation.</p>
+</div></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><code>impl <a class='trait' href='../../../../core/num/dec2flt/rawfp/trait.RawFloat.html' title='core::num::dec2flt::rawfp::RawFloat'>RawFloat</a> for f32</code></li>
+<li><code>impl <a class='trait' href='../../../../core/num/dec2flt/rawfp/trait.RawFloat.html' title='core::num::dec2flt::rawfp::RawFloat'>RawFloat</a> for f64</code></li>
+</ul><script type="text/javascript" async
+                              src="../../../../implementors/core/num/dec2flt/rawfp/trait.RawFloat.js">
+                      </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "core";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    <script src="../../../../playpen.js"></script>
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>

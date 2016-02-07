@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["PAGE_DIRECTORY",""],["PAGE_END",""],["PAGE_ENTRY_SIZE",""],["PAGE_SIZE",""],["PAGE_TABLES",""],["PAGE_TABLE_SIZE",""]],"struct":[["Page","A memory page"]]});

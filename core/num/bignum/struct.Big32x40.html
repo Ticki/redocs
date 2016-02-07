@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Big32x40` struct in crate `core`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Big32x40">
+
+    <title>core::num::bignum::Big32x40 - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../../core/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../../index.html'>core</a>::<wbr><a href='../index.html'>num</a>::<wbr><a href='index.html'>bignum</a></p><script>window.sidebarCurrent = {name: 'Big32x40', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>core</a>::<wbr><a href='../index.html'>num</a>::<wbr><a href='index.html'>bignum</a>::<wbr><a class='struct' href=''>Big32x40</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2850' class='srclink' href='../../../src/core/num/bignum.rs.html#122-130' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Big32x40 {
+    size: usize,
+    base: [<a class='type' href='../../../core/num/bignum/type.Digit32.html' title='core::num::bignum::Digit32'>Digit32</a>; 40],
+}</pre><div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Stack-allocated arbitrary-precision (up to certain limit) integer.</p>
+
+<p>This is backed by a fixed-size array of given type (&quot;digit&quot;).
+While the array is not very large (normally some hundred bytes),
+copying it recklessly may result in the performance hit.
+Thus this is intentionally not <code>Copy</code>.</p>
+
+<p>All operations available to bignums panic in the case of over/underflows.
+The caller is responsible to use large enough bignum types.</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab unstable'>
+                                  <td id='structfield.size'><code>size</code></td><td><div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>One plus the offset to the maximum &quot;digit&quot; in use.
+This does not decrease, so be aware of the computation order.
+<code>base[size..]</code> should be zero.</p>
+</div></td></tr><tr class='stab unstable'>
+                                  <td id='structfield.base'><code>base</code></td><td><div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Digits. <code>[a, b, c, ...]</code> represents <code>a + b*2^W + c*2^(2W) + ...</code>
+where <code>W</code> is the number of bits in the digit type.</p>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h3><div class='impl-items'><h4 id='method.from_small' class='method'><code>fn <a href='#method.from_small' class='fnname'>from_small</a>(v: <a class='type' href='../../../core/num/bignum/type.Digit32.html' title='core::num::bignum::Digit32'>Digit32</a>) -&gt; <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Makes a bignum from one digit.</p>
+</div><h4 id='method.from_u64' class='method'><code>fn <a href='#method.from_u64' class='fnname'>from_u64</a>(v: u64) -&gt; <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Makes a bignum from <code>u64</code> value.</p>
+</div><h4 id='method.digits' class='method'><code>fn <a href='#method.digits' class='fnname'>digits</a>(&amp;self) -&gt; &amp;[<a class='type' href='../../../core/num/bignum/type.Digit32.html' title='core::num::bignum::Digit32'>Digit32</a>]</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Return the internal digits as a slice <code>[a, b, c, ...]</code> such that the numeric
+value is <code>a + b * 2^W + c * 2^(2W) + ...</code> where <code>W</code> is the number of bits in
+the digit type.</p>
+</div><h4 id='method.get_bit' class='method'><code>fn <a href='#method.get_bit' class='fnname'>get_bit</a>(&amp;self, i: usize) -&gt; u8</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Return the <code>i</code>-th bit where bit 0 is the least significant one.
+In other words, the bit with weight <code>2^i</code>.</p>
+</div><h4 id='method.is_zero' class='method'><code>fn <a href='#method.is_zero' class='fnname'>is_zero</a>(&amp;self) -&gt; bool</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Returns true if the bignum is zero.</p>
+</div><h4 id='method.bit_length' class='method'><code>fn <a href='#method.bit_length' class='fnname'>bit_length</a>(&amp;self) -&gt; usize</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Returns the number of bits necessary to represent this value. Note that zero
+is considered to need 0 bits.</p>
+</div><h4 id='method.add' class='method'><code>fn <a href='#method.add' class='fnname'>add</a>&lt;'a&gt;(&amp;'a mut self, other: &amp;<a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>) -&gt; &amp;'a mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Adds <code>other</code> to itself and returns its own mutable reference.</p>
+</div><h4 id='method.add_small' class='method'><code>fn <a href='#method.add_small' class='fnname'>add_small</a>(&amp;mut self, other: <a class='type' href='../../../core/num/bignum/type.Digit32.html' title='core::num::bignum::Digit32'>Digit32</a>) -&gt; &amp;mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><h4 id='method.sub' class='method'><code>fn <a href='#method.sub' class='fnname'>sub</a>&lt;'a&gt;(&amp;'a mut self, other: &amp;<a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>) -&gt; &amp;'a mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Subtracts <code>other</code> from itself and returns its own mutable reference.</p>
+</div><h4 id='method.mul_small' class='method'><code>fn <a href='#method.mul_small' class='fnname'>mul_small</a>(&amp;mut self, other: <a class='type' href='../../../core/num/bignum/type.Digit32.html' title='core::num::bignum::Digit32'>Digit32</a>) -&gt; &amp;mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Multiplies itself by a digit-sized <code>other</code> and returns its own
+mutable reference.</p>
+</div><h4 id='method.mul_pow2' class='method'><code>fn <a href='#method.mul_pow2' class='fnname'>mul_pow2</a>(&amp;mut self, bits: usize) -&gt; &amp;mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Multiplies itself by <code>2^bits</code> and returns its own mutable reference.</p>
+</div><h4 id='method.mul_pow5' class='method'><code>fn <a href='#method.mul_pow5' class='fnname'>mul_pow5</a>(&amp;mut self, e: usize) -&gt; &amp;mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Multiplies itself by <code>5^e</code> and returns its own mutable reference.</p>
+</div><h4 id='method.mul_digits' class='method'><code>fn <a href='#method.mul_digits' class='fnname'>mul_digits</a>&lt;'a&gt;(&amp;'a mut self, other: &amp;[<a class='type' href='../../../core/num/bignum/type.Digit32.html' title='core::num::bignum::Digit32'>Digit32</a>]) -&gt; &amp;'a mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Multiplies itself by a number described by <code>other[0] + other[1] * 2^W + other[2] * 2^(2W) + ...</code> (where <code>W</code> is the number of bits in the digit type)
+and returns its own mutable reference.</p>
+</div><h4 id='method.div_rem_small' class='method'><code>fn <a href='#method.div_rem_small' class='fnname'>div_rem_small</a>(&amp;mut self, other: <a class='type' href='../../../core/num/bignum/type.Digit32.html' title='core::num::bignum::Digit32'>Digit32</a>) -&gt; (&amp;mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>, <a class='type' href='../../../core/num/bignum/type.Digit32.html' title='core::num::bignum::Digit32'>Digit32</a>)</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Divides itself by a digit-sized <code>other</code> and returns its own
+mutable reference <em>and</em> the remainder.</p>
+</div><h4 id='method.div_rem' class='method'><code>fn <a href='#method.div_rem' class='fnname'>div_rem</a>(&amp;self, d: &amp;<a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>, q: &amp;mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>, r: &amp;mut <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>)</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>core_private_bignum</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Divide self by another bignum, overwriting <code>q</code> with the quotient and <code>r</code> with the
+remainder.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../../core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='../../../core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, other: &amp;<a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>) -&gt; bool</code></h4>
+<h4 id='method.ne' class='method'><code>fn <a href='../../../core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; bool</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h3><div class='impl-items'><h4 id='method.assert_receiver_is_total_eq' class='method'><code>fn <a href='../../../core/cmp/trait.Eq.html#method.assert_receiver_is_total_eq' class='fnname'>assert_receiver_is_total_eq</a>(&amp;self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a> for <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h3><div class='impl-items'><h4 id='method.partial_cmp' class='method'><code>fn <a href='../../../core/cmp/trait.PartialOrd.html#method.partial_cmp' class='fnname'>partial_cmp</a>(&amp;self, other: &amp;<a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>) -&gt; <a class='enum' href='../../../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a>&gt;</code></h4>
+<h4 id='method.lt' class='method'><code>fn <a href='../../../core/cmp/trait.PartialOrd.html#method.lt' class='fnname'>lt</a>(&amp;self, other: &amp;Rhs) -&gt; bool</code></h4>
+<h4 id='method.le' class='method'><code>fn <a href='../../../core/cmp/trait.PartialOrd.html#method.le' class='fnname'>le</a>(&amp;self, other: &amp;Rhs) -&gt; bool</code></h4>
+<h4 id='method.gt' class='method'><code>fn <a href='../../../core/cmp/trait.PartialOrd.html#method.gt' class='fnname'>gt</a>(&amp;self, other: &amp;Rhs) -&gt; bool</code></h4>
+<h4 id='method.ge' class='method'><code>fn <a href='../../../core/cmp/trait.PartialOrd.html#method.ge' class='fnname'>ge</a>(&amp;self, other: &amp;Rhs) -&gt; bool</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a> for <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h3><div class='impl-items'><h4 id='method.cmp' class='method'><code>fn <a href='../../../core/cmp/trait.Ord.html#method.cmp' class='fnname'>cmp</a>(&amp;self, other: &amp;<a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a>) -&gt; <a class='enum' href='../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='../../../core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='../../../core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big32x40</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='../../../core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='../../../core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='../../../core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "core";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    <script src="../../../playpen.js"></script>
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

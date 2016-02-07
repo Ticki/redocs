@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `num` mod in crate `core`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, num">
+
+    <title>core::num - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../core/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../index.html'>core</a></p><script>window.sidebarCurrent = {name: 'num', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>core</a>::<wbr><a class='mod' href=''>num</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-220' class='srclink' href='../../src/core/num/mod.rs.html#11-2488' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Numeric traits and functions for the built-in numeric types.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use char::<a class='trait' href='../../core/char/trait.CharExt.html' title='core::char::CharExt'>CharExt</a>;</code></td></tr><tr><td><code>use cmp::{<a class='trait' href='../../core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a>, <a class='trait' href='../../core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a>};</code></td></tr><tr><td><code>use convert::<a class='trait' href='../../core/convert/trait.From.html' title='core::convert::From'>From</a>;</code></td></tr><tr><td><code>use <a class='mod' href='../../core/fmt/index.html' title='core::fmt'>fmt</a>;</code></td></tr><tr><td><code>use <a class='mod' href='../../core/intrinsics/index.html' title='core::intrinsics'>intrinsics</a>;</code></td></tr><tr><td><code>use marker::{<a class='trait' href='../../core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a>, <a class='trait' href='../../core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>};</code></td></tr><tr><td><code>use mem::<a class='fn' href='../../core/mem/fn.size_of.html' title='core::mem::size_of'>size_of</a>;</code></td></tr><tr><td><code>use option::Option::{<a class='enum' href='../../core/option/enum.Option.html' title='core::option::Option'>self</a>, <a class='enum' href='../../core/option/enum.Option.html' title='core::option::Option'>Some</a>, <a class='enum' href='../../core/option/enum.Option.html' title='core::option::Option'>None</a>};</code></td></tr><tr><td><code>use result::Result::{<a class='enum' href='../../core/result/enum.Result.html' title='core::result::Result'>self</a>, <a class='enum' href='../../core/result/enum.Result.html' title='core::result::Result'>Ok</a>, <a class='enum' href='../../core/result/enum.Result.html' title='core::result::Result'>Err</a>};</code></td></tr><tr><td><code>use str::{<a class='trait' href='../../core/str/trait.FromStr.html' title='core::str::FromStr'>FromStr</a>, <a class='trait' href='../../core/str/trait.StrExt.html' title='core::str::StrExt'>StrExt</a>};</code></td></tr><tr><td><code>use slice::<a class='trait' href='../../core/slice/trait.SliceExt.html' title='core::slice::SliceExt'>SliceExt</a>;</code></td></tr><tr><td><code>pub use num::dec2flt::<a class='struct' href='../../core/num/dec2flt/struct.ParseFloatError.html' title='core::num::dec2flt::ParseFloatError'>ParseFloatError</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='bignum/index.html'
+                               title='core::num::bignum'>bignum</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Custom arbitrary-precision number (bignum) implementation.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='dec2flt/index.html'
+                               title='core::num::dec2flt'>dec2flt</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Converting decimal strings into IEEE 754 binary floating point numbers.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='diy_float/index.html'
+                               title='core::num::diy_float'>diy_float</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Extended precision &quot;soft float&quot;, for internal use only.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='flt2dec/index.html'
+                               title='core::num::flt2dec'>flt2dec</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Floating-point number to decimal conversion routines.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='wrapping/index.html'
+                               title='core::num::wrapping'>wrapping</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.ParseIntError.html'
+                               title='core::num::ParseIntError'>ParseIntError</a></td>
+                        <td class='docblock short'>
+                             <p>An error which can be returned when parsing an integer.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Wrapping.html'
+                               title='core::num::Wrapping'>Wrapping</a></td>
+                        <td class='docblock short'>
+                             <p>Provides intentionally-wrapped arithmetic on <code>T</code>.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.FpCategory.html'
+                               title='core::num::FpCategory'>FpCategory</a></td>
+                        <td class='docblock short'>
+                             <p>Used for representing the classification of floating point numbers</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.IntErrorKind.html'
+                               title='core::num::IntErrorKind'>IntErrorKind</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='trait' href='trait.Float.html'
+                               title='core::num::Float'>Float</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>A built-in floating point number.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.FromStrRadixHelper.html'
+                               title='core::num::FromStrRadixHelper'>FromStrRadixHelper</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='trait' href='trait.One.html'
+                               title='core::num::One'>One</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Types that have a &quot;one&quot; value.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='trait' href='trait.Zero.html'
+                               title='core::num::Zero'>Zero</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Types that have a &quot;zero&quot; value.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.from_str_radix.html'
+                               title='core::num::from_str_radix'>from_str_radix</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "core";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script src="../../playpen.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

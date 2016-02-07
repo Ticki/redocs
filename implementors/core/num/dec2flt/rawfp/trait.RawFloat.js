@@ -1,5 +1,5 @@
 (function() {var implementors = {};
-implementors['redox'] = [];
+implementors['core'] = [];implementors['rustc_unicode'] = [];implementors['collections'] = [];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);

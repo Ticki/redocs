@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Pio` struct in crate `io`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Pio">
+
+    <title>io::pio::Pio - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>io</a>::<wbr><a href='index.html'>pio</a></p><script>window.sidebarCurrent = {name: 'Pio', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>io</a>::<wbr><a href='index.html'>pio</a>::<wbr><a class='struct' href=''>Pio</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-26' class='srclink' href='../../src/io/pio.rs.html#7-10' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Pio&lt;T&gt; {
+    port: u16,
+    value: <a class='struct' href='../../core/marker/struct.PhantomData.html' title='core::marker::PhantomData'>PhantomData</a>&lt;T&gt;,
+}</pre><div class='docblock'><p>Generic PIO</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.port'><code>port</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.value'><code>value</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;T&gt; <a class='struct' href='../../io/struct.Pio.html' title='io::Pio'>Pio</a>&lt;T&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(port: u16) -&gt; Self</code></h4>
+<div class='docblock'><p>Create a PIO from a given port</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../io/trait.Io.html' title='io::Io'>Io</a>&lt;u8&gt; for <a class='struct' href='../../io/struct.Pio.html' title='io::Pio'>Pio</a>&lt;u8&gt;</code></h3><div class='docblock'><p>Read/Write for byte PIO</p>
+</div><div class='impl-items'><h4 id='method.read' class='method'><code>fn <a href='../../io/trait.Io.html#method.read' class='fnname'>read</a>(&amp;self) -&gt; u8</code></h4>
+<h4 id='method.write' class='method'><code>fn <a href='../../io/trait.Io.html#method.write' class='fnname'>write</a>(&amp;mut self, value: u8)</code></h4>
+<h4 id='method.readf' class='method'><code>fn <a href='../../io/trait.Io.html#method.readf' class='fnname'>readf</a>(&amp;self, flags: T) -&gt; bool <span class='where'>where T: <a class='trait' href='../../core/ops/trait.BitAnd.html' title='core::ops::BitAnd'>BitAnd</a>&lt;Output=T&gt; + <a class='trait' href='../../core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&lt;T&gt; + <a class='trait' href='../../core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a></span></code></h4>
+<h4 id='method.writef' class='method'><code>fn <a href='../../io/trait.Io.html#method.writef' class='fnname'>writef</a>(&amp;mut self, flags: T, value: bool) <span class='where'>where T: <a class='trait' href='../../core/ops/trait.BitAnd.html' title='core::ops::BitAnd'>BitAnd</a>&lt;Output=T&gt; + <a class='trait' href='../../core/ops/trait.BitOr.html' title='core::ops::BitOr'>BitOr</a>&lt;Output=T&gt; + <a class='trait' href='../../core/ops/trait.Not.html' title='core::ops::Not'>Not</a>&lt;Output=T&gt;</span></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../io/trait.Io.html' title='io::Io'>Io</a>&lt;u16&gt; for <a class='struct' href='../../io/struct.Pio.html' title='io::Pio'>Pio</a>&lt;u16&gt;</code></h3><div class='docblock'><p>Read/Write for word PIO</p>
+</div><div class='impl-items'><h4 id='method.read-1' class='method'><code>fn <a href='../../io/trait.Io.html#method.read' class='fnname'>read</a>(&amp;self) -&gt; u16</code></h4>
+<h4 id='method.write-1' class='method'><code>fn <a href='../../io/trait.Io.html#method.write' class='fnname'>write</a>(&amp;mut self, value: u16)</code></h4>
+<h4 id='method.readf-1' class='method'><code>fn <a href='../../io/trait.Io.html#method.readf' class='fnname'>readf</a>(&amp;self, flags: T) -&gt; bool <span class='where'>where T: <a class='trait' href='../../core/ops/trait.BitAnd.html' title='core::ops::BitAnd'>BitAnd</a>&lt;Output=T&gt; + <a class='trait' href='../../core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&lt;T&gt; + <a class='trait' href='../../core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a></span></code></h4>
+<h4 id='method.writef-1' class='method'><code>fn <a href='../../io/trait.Io.html#method.writef' class='fnname'>writef</a>(&amp;mut self, flags: T, value: bool) <span class='where'>where T: <a class='trait' href='../../core/ops/trait.BitAnd.html' title='core::ops::BitAnd'>BitAnd</a>&lt;Output=T&gt; + <a class='trait' href='../../core/ops/trait.BitOr.html' title='core::ops::BitOr'>BitOr</a>&lt;Output=T&gt; + <a class='trait' href='../../core/ops/trait.Not.html' title='core::ops::Not'>Not</a>&lt;Output=T&gt;</span></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../io/trait.Io.html' title='io::Io'>Io</a>&lt;u32&gt; for <a class='struct' href='../../io/struct.Pio.html' title='io::Pio'>Pio</a>&lt;u32&gt;</code></h3><div class='docblock'><p>Read/Write for doubleword PIO</p>
+</div><div class='impl-items'><h4 id='method.read-2' class='method'><code>fn <a href='../../io/trait.Io.html#method.read' class='fnname'>read</a>(&amp;self) -&gt; u32</code></h4>
+<h4 id='method.write-2' class='method'><code>fn <a href='../../io/trait.Io.html#method.write' class='fnname'>write</a>(&amp;mut self, value: u32)</code></h4>
+<h4 id='method.readf-2' class='method'><code>fn <a href='../../io/trait.Io.html#method.readf' class='fnname'>readf</a>(&amp;self, flags: T) -&gt; bool <span class='where'>where T: <a class='trait' href='../../core/ops/trait.BitAnd.html' title='core::ops::BitAnd'>BitAnd</a>&lt;Output=T&gt; + <a class='trait' href='../../core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&lt;T&gt; + <a class='trait' href='../../core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a></span></code></h4>
+<h4 id='method.writef-2' class='method'><code>fn <a href='../../io/trait.Io.html#method.writef' class='fnname'>writef</a>(&amp;mut self, flags: T, value: bool) <span class='where'>where T: <a class='trait' href='../../core/ops/trait.BitAnd.html' title='core::ops::BitAnd'>BitAnd</a>&lt;Output=T&gt; + <a class='trait' href='../../core/ops/trait.BitOr.html' title='core::ops::BitOr'>BitOr</a>&lt;Output=T&gt; + <a class='trait' href='../../core/ops/trait.Not.html' title='core::ops::Not'>Not</a>&lt;Output=T&gt;</span></code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl&lt;T: <a class='trait' href='../../core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a>&gt; <a class='trait' href='../../core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../io/struct.Pio.html' title='io::Pio'>Pio</a>&lt;T&gt;</code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='../../core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../io/struct.Pio.html' title='io::Pio'>Pio</a>&lt;T&gt;</code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='../../core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl&lt;T: <a class='trait' href='../../core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a>&gt; <a class='trait' href='../../core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../io/struct.Pio.html' title='io::Pio'>Pio</a>&lt;T&gt;</code></h3><div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "io";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

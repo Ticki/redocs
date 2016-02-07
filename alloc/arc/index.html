@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `arc` mod in crate `alloc`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, arc">
+
+    <title>alloc::arc - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../alloc/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../index.html'>alloc</a></p><script>window.sidebarCurrent = {name: 'arc', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>alloc</a>::<wbr><a class='mod' href=''>arc</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-331' class='srclink' href='../../src/alloc/arc.rs.html#11-1208' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Threadsafe reference-counted boxes (the <code>Arc&lt;T&gt;</code> type).</p>
+
+<p>The <code>Arc&lt;T&gt;</code> type provides shared ownership of an immutable value.
+Destruction is deterministic, and will occur as soon as the last owner is
+gone. It is marked as <code>Send</code> because it uses atomic reference counting.</p>
+
+<p>If you do not need thread-safety, and just need shared ownership, consider
+the <a href="../rc/struct.Rc.html"><code>Rc&lt;T&gt;</code> type</a>. It is the same as <code>Arc&lt;T&gt;</code>, but
+does not use atomics, making it both thread-unsafe as well as significantly
+faster when updating the reference count.</p>
+
+<p>The <code>downgrade</code> method can be used to create a non-owning <code>Weak&lt;T&gt;</code> pointer
+to the box. A <code>Weak&lt;T&gt;</code> pointer can be upgraded to an <code>Arc&lt;T&gt;</code> pointer, but
+will return <code>None</code> if the value has already been dropped.</p>
+
+<p>For example, a tree with parent pointers can be represented by putting the
+nodes behind strong <code>Arc&lt;T&gt;</code> pointers, and then storing the parent pointers
+as <code>Weak&lt;T&gt;</code> pointers.</p>
+
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<p>Sharing some immutable data between threads:</p>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>Arc</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+
+<span class='kw'>let</span> <span class='ident'>five</span> <span class='op'>=</span> <span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='number'>5</span>);
+
+<span class='kw'>for</span> _ <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
+    <span class='kw'>let</span> <span class='ident'>five</span> <span class='op'>=</span> <span class='ident'>five</span>.<span class='ident'>clone</span>();
+
+    <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
+        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>five</span>);
+    });
+}</pre>
+
+<p>Sharing mutable data safely between threads with a <code>Mutex</code>:</p>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::{<span class='ident'>Arc</span>, <span class='ident'>Mutex</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+
+<span class='kw'>let</span> <span class='ident'>five</span> <span class='op'>=</span> <span class='ident'>Arc</span>::<span class='ident'>new</span>(<span class='ident'>Mutex</span>::<span class='ident'>new</span>(<span class='number'>5</span>));
+
+<span class='kw'>for</span> _ <span class='kw'>in</span> <span class='number'>0</span>..<span class='number'>10</span> {
+    <span class='kw'>let</span> <span class='ident'>five</span> <span class='op'>=</span> <span class='ident'>five</span>.<span class='ident'>clone</span>();
+
+    <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>number</span> <span class='op'>=</span> <span class='ident'>five</span>.<span class='ident'>lock</span>().<span class='ident'>unwrap</span>();
+
+        <span class='op'>*</span><span class='ident'>number</span> <span class='op'>+=</span> <span class='number'>1</span>;
+
+        <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='op'>*</span><span class='ident'>number</span>); <span class='comment'>// prints 6</span>
+    });
+}</pre>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use core::prelude::<a class='mod' href='../../core/prelude/v1/index.html' title='core::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use boxed::<a class='struct' href='../../alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>;</code></td></tr><tr><td><code>use core::sync::<a class='mod' href='../../core/sync/atomic/index.html' title='core::sync::atomic'>atomic</a>;</code></td></tr><tr><td><code>use core::sync::atomic::Ordering::{<a class='enum' href='../../core/sync/atomic/enum.Ordering.html' title='core::sync::atomic::Ordering'>Relaxed</a>, <a class='enum' href='../../core/sync/atomic/enum.Ordering.html' title='core::sync::atomic::Ordering'>Release</a>, <a class='enum' href='../../core/sync/atomic/enum.Ordering.html' title='core::sync::atomic::Ordering'>Acquire</a>, <a class='enum' href='../../core/sync/atomic/enum.Ordering.html' title='core::sync::atomic::Ordering'>SeqCst</a>};</code></td></tr><tr><td><code>use core::<a class='mod' href='../../core/borrow/index.html' title='core::borrow'>borrow</a>;</code></td></tr><tr><td><code>use core::<a class='mod' href='../../core/fmt/index.html' title='core::fmt'>fmt</a>;</code></td></tr><tr><td><code>use core::cmp::<a class='enum' href='../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a>;</code></td></tr><tr><td><code>use core::mem::{<a class='fn' href='../../core/mem/fn.align_of_val.html' title='core::mem::align_of_val'>align_of_val</a>, <a class='fn' href='../../core/mem/fn.size_of_val.html' title='core::mem::size_of_val'>size_of_val</a>};</code></td></tr><tr><td><code>use core::intrinsics::<a class='fn' href='../../core/intrinsics/fn.abort.html' title='core::intrinsics::abort'>abort</a>;</code></td></tr><tr><td><code>use core::<a class='mod' href='../../core/mem/index.html' title='core::mem'>mem</a>;</code></td></tr><tr><td><code>use core::mem::<a class='fn' href='../../core/mem/fn.uninitialized.html' title='core::mem::uninitialized'>uninitialized</a>;</code></td></tr><tr><td><code>use core::ops::<a class='trait' href='../../core/ops/trait.Deref.html' title='core::ops::Deref'>Deref</a>;</code></td></tr><tr><td><code>use core::ops::<a class='trait' href='../../core/ops/trait.CoerceUnsized.html' title='core::ops::CoerceUnsized'>CoerceUnsized</a>;</code></td></tr><tr><td><code>use core::ptr::{<a class='mod' href='../../core/ptr/index.html' title='core::ptr'>self</a>, <a class='struct' href='../../core/ptr/struct.Shared.html' title='core::ptr::Shared'>Shared</a>};</code></td></tr><tr><td><code>use core::marker::<a class='trait' href='../../core/marker/trait.Unsize.html' title='core::marker::Unsize'>Unsize</a>;</code></td></tr><tr><td><code>use core::hash::{<a class='trait' href='../../core/hash/trait.Hash.html' title='core::hash::Hash'>Hash</a>, <a class='trait' href='../../core/hash/trait.Hasher.html' title='core::hash::Hasher'>Hasher</a>};</code></td></tr><tr><td><code>use core::{<a class='mod' href='../../core/usize/index.html' title='core::usize'>usize</a>, <a class='mod' href='../../core/isize/index.html' title='core::isize'>isize</a>};</code></td></tr><tr><td><code>use core::convert::<a class='trait' href='../../core/convert/trait.From.html' title='core::convert::From'>From</a>;</code></td></tr><tr><td><code>use heap::<a class='fn' href='../../alloc/heap/fn.deallocate.html' title='alloc::heap::deallocate'>deallocate</a>;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Arc.html'
+                               title='alloc::arc::Arc'>Arc</a></td>
+                        <td class='docblock short'>
+                             <p>An atomically reference counted wrapper for shared state.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.ArcInner.html'
+                               title='alloc::arc::ArcInner'>ArcInner</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Weak.html'
+                               title='alloc::arc::Weak'>Weak</a></td>
+                        <td class='docblock short'>
+                             <p>A weak pointer to an <code>Arc</code>.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.MAX_REFCOUNT.html'
+                               title='alloc::arc::MAX_REFCOUNT'>MAX_REFCOUNT</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "alloc";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Display` struct in crate `kernel`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Display">
+
+    <title>kernel::graphics::display::Display - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>graphics</a>::<wbr><a href='index.html'>display</a></p><script>window.sidebarCurrent = {name: 'Display', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>graphics</a>::<wbr><a href='index.html'>display</a>::<wbr><a class='struct' href=''>Display</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1756' class='srclink' href='../../../src/kernel/graphics/display.rs.html#55-63' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Display {
+    pub offscreen: usize,
+    pub onscreen: usize,
+    pub size: usize,
+    pub bytesperrow: usize,
+    pub width: usize,
+    pub height: usize,
+    pub root: bool,
+}</pre><div class='docblock'><p>A display</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.offscreen'><code>offscreen</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.onscreen'><code>onscreen</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.size'><code>size</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.bytesperrow'><code>bytesperrow</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.width'><code>width</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.height'><code>height</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.root'><code>root</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../../kernel/graphics/display/struct.Display.html' title='kernel::graphics::display::Display'>Display</a></code></h3><div class='impl-items'><h4 id='method.root' class='method'><code>unsafe fn <a href='#method.root' class='fnname'>root</a>() -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;Self&gt;</code></h4>
+<h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(width: usize, height: usize) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;Self&gt;</code></h4>
+<div class='docblock'><p>Create a new display</p>
+</div><h4 id='method.set_run' class='method'><code>unsafe fn <a href='#method.set_run' class='fnname'>set_run</a>(data: u32, dst: usize, len: usize)</code></h4>
+<h4 id='method.copy_run' class='method'><code>unsafe fn <a href='#method.copy_run' class='fnname'>copy_run</a>(src: usize, dst: usize, len: usize)</code></h4>
+<h4 id='method.set' class='method'><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;self, color: <a class='struct' href='../../../kernel/graphics/color/struct.Color.html' title='kernel::graphics::color::Color'>Color</a>)</code></h4>
+<div class='docblock'><p>Set the color</p>
+</div><h4 id='method.scroll' class='method'><code>fn <a href='#method.scroll' class='fnname'>scroll</a>(&amp;self, rows: usize)</code></h4>
+<div class='docblock'><p>Scroll the display</p>
+</div><h4 id='method.flip' class='method'><code>fn <a href='#method.flip' class='fnname'>flip</a>(&amp;self)</code></h4>
+<div class='docblock'><p>Flip the display</p>
+</div><h4 id='method.rect' class='method'><code>fn <a href='#method.rect' class='fnname'>rect</a>(&amp;self, point: <a class='struct' href='../../../kernel/graphics/point/struct.Point.html' title='kernel::graphics::point::Point'>Point</a>, size: <a class='struct' href='../../../kernel/graphics/size/struct.Size.html' title='kernel::graphics::size::Size'>Size</a>, color: <a class='struct' href='../../../kernel/graphics/color/struct.Color.html' title='kernel::graphics::color::Color'>Color</a>)</code></h4>
+<div class='docblock'><p>Draw a rectangle</p>
+</div><h4 id='method.pixel' class='method'><code>fn <a href='#method.pixel' class='fnname'>pixel</a>(&amp;self, point: <a class='struct' href='../../../kernel/graphics/point/struct.Point.html' title='kernel::graphics::point::Point'>Point</a>, color: <a class='struct' href='../../../kernel/graphics/color/struct.Color.html' title='kernel::graphics::color::Color'>Color</a>)</code></h4>
+<div class='docblock'><p>Set the color of a pixel</p>
+</div><h4 id='method.line' class='method'><code>fn <a href='#method.line' class='fnname'>line</a>(&amp;self, point_a: <a class='struct' href='../../../kernel/graphics/point/struct.Point.html' title='kernel::graphics::point::Point'>Point</a>, point_b: <a class='struct' href='../../../kernel/graphics/point/struct.Point.html' title='kernel::graphics::point::Point'>Point</a>, color: <a class='struct' href='../../../kernel/graphics/color/struct.Color.html' title='kernel::graphics::color::Color'>Color</a>)</code></h4>
+<div class='docblock'><p>Draw an line (without antialiasing) with width 1
+(using Bresenham&#39;s algorithm)</p>
+</div><h4 id='method.image' class='method'><code>unsafe fn <a href='#method.image' class='fnname'>image</a>(&amp;self, point: <a class='struct' href='../../../kernel/graphics/point/struct.Point.html' title='kernel::graphics::point::Point'>Point</a>, data: *const u32, size: <a class='struct' href='../../../kernel/graphics/size/struct.Size.html' title='kernel::graphics::size::Size'>Size</a>)</code></h4>
+<div class='docblock'><p>Draw an image</p>
+</div><h4 id='method.image_alpha' class='method'><code>unsafe fn <a href='#method.image_alpha' class='fnname'>image_alpha</a>(&amp;self, point: <a class='struct' href='../../../kernel/graphics/point/struct.Point.html' title='kernel::graphics::point::Point'>Point</a>, data: *const u32, size: <a class='struct' href='../../../kernel/graphics/size/struct.Size.html' title='kernel::graphics::size::Size'>Size</a>)</code></h4>
+<div class='docblock'><p>Draw a image with opacity</p>
+</div><h4 id='method.set_run_alpha' class='method'><code>unsafe fn <a href='#method.set_run_alpha' class='fnname'>set_run_alpha</a>(premul: u32, n_alpha: u32, dst: usize, len: usize)</code></h4>
+<h4 id='method.copy_run_alpha' class='method'><code>unsafe fn <a href='#method.copy_run_alpha' class='fnname'>copy_run_alpha</a>(src: usize, dst: usize, len: usize)</code></h4>
+<h4 id='method.char' class='method'><code>fn <a href='#method.char' class='fnname'>char</a>(&amp;self, point: <a class='struct' href='../../../kernel/graphics/point/struct.Point.html' title='kernel::graphics::point::Point'>Point</a>, character: char, color: <a class='struct' href='../../../kernel/graphics/color/struct.Color.html' title='kernel::graphics::color::Color'>Color</a>)</code></h4>
+<div class='docblock'><p>Draw a char</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../../../kernel/graphics/display/struct.Display.html' title='kernel::graphics::display::Display'>Display</a></code></h3><div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Drop.html#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "kernel";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>

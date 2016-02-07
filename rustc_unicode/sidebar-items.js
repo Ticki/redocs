@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["char","A character type."],["derived_property",""],["str",""],["tables",""],["u_str","Unicode-intensive string manipulations."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["load_u64_le","Load a full u64 word from a byte stream, in LE order. Use `copy_nonoverlapping` to let the compiler generate the most efficient way to load u64 from a possibly unaligned address."]],"struct":[["SipHasher","An implementation of SipHash 2-4."]]});

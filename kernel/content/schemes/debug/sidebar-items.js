@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["DebugResource","A debug resource"],["DebugScheme",""]]});

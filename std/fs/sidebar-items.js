@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["create_dir","Create a new directory, using a path The default mode of the directory is 744"],["read_dir",""],["remove_dir",""],["remove_file",""]],"struct":[["DirEntry",""],["File","A Unix-style file"],["FileType",""],["ReadDir",""]]});

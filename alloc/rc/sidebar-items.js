@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Rc","A reference-counted pointer type over an immutable value."],["RcBox",""],["Weak","A weak version of `Rc<T>`."]],"trait":[["RcBoxPtr",""]]});

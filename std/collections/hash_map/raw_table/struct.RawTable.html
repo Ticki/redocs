@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `RawTable` struct in crate `std`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, RawTable">
+
+    <title>std::collections::hash_map::raw_table::RawTable - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../../index.html'>std</a>::<wbr><a href='../../index.html'>collections</a>::<wbr><a href='../index.html'>hash_map</a>::<wbr><a href='index.html'>raw_table</a></p><script>window.sidebarCurrent = {name: 'RawTable', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../../index.html'>std</a>::<wbr><a href='../../index.html'>collections</a>::<wbr><a href='../index.html'>hash_map</a>::<wbr><a href='index.html'>raw_table</a>::<wbr><a class='struct' href=''>RawTable</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-386' class='srclink' href='../../../../src/std/collections/hash_map.rs.html#82-90' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct RawTable&lt;K, V&gt; {
+    capacity: usize,
+    size: usize,
+    hashes: <a class='struct' href='../../../../std/ptr/struct.Unique.html' title='std::ptr::Unique'>Unique</a>&lt;u64&gt;,
+    marker: <a class='struct' href='../../../../std/marker/struct.PhantomData.html' title='std::marker::PhantomData'>PhantomData</a>&lt;(K, V)&gt;,
+}</pre><div class='docblock'><p>The raw hashtable, providing safe-ish access to the unzipped and highly
+optimized arrays of hashes, keys, and values.</p>
+
+<p>This design uses less memory and is a lot faster than the naive
+<code>Vec&lt;Option&lt;u64, K, V&gt;&gt;</code>, because we don&#39;t pay for the overhead of an
+option on every element, and we get a generally more cache-aware design.</p>
+
+<p>Essential invariants of this structure:</p>
+
+<ul>
+<li><p>if t.hashes[i] == EMPTY_BUCKET, then <code>Bucket::at_index(&amp;t, i).raw</code>
+points to &#39;undefined&#39; contents. Don&#39;t read from it. This invariant is
+enforced outside this module with the <code>EmptyBucket</code>, <code>FullBucket</code>,
+and <code>SafeHash</code> types.</p></li>
+<li><p>An <code>EmptyBucket</code> is only constructed at an index with
+a hash of EMPTY_BUCKET.</p></li>
+<li><p>A <code>FullBucket</code> is only constructed at an index with a
+non-EMPTY_BUCKET hash.</p></li>
+<li><p>A <code>SafeHash</code> is only constructed for non-<code>EMPTY_BUCKET</code> hash. We get
+around hashes of zero by changing them to 0x8000_0000_0000_0000,
+which will likely map to the same bucket, while not being confused
+with &quot;empty&quot;.</p></li>
+<li><p>All three &quot;arrays represented by pointers&quot; are the same length:
+<code>capacity</code>. This is set at creation and never changes. The arrays
+are unzipped to save space (we don&#39;t have to pay for the padding
+between odd sized elements, such as in a map from u64 to u8), and
+be more cache aware (scanning through 8 hashes brings in at most
+2 cache lines, since they&#39;re all right beside each other).</p></li>
+</ul>
+
+<p>You can kind of think of this module/data structure as a safe wrapper
+around just the &quot;table&quot; part of the hashtable. It enforces some
+invariants at the type level and employs some performance trickery,
+but in general is just a tricked out <code>Vec&lt;Option&lt;u64, K, V&gt;&gt;</code>.</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.capacity'><code>capacity</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.size'><code>size</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.hashes'><code>hashes</code></td><td></td></tr><tr class='stab '>
+                                  <td id='structfield.marker'><code>marker</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;K, V&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawTable.html' title='std::collections::hash_map::raw_table::RawTable'>RawTable</a>&lt;K, V&gt;</code></h3><div class='impl-items'><h4 id='method.new_uninitialized' class='method'><code>unsafe fn <a href='#method.new_uninitialized' class='fnname'>new_uninitialized</a>(capacity: usize) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawTable.html' title='std::collections::hash_map::raw_table::RawTable'>RawTable</a>&lt;K, V&gt;</code></h4>
+<div class='docblock'><p>Does not initialize the buckets. The caller should ensure they,
+at the very least, set every hash to EMPTY_BUCKET.</p>
+</div><h4 id='method.first_bucket_raw' class='method'><code>fn <a href='#method.first_bucket_raw' class='fnname'>first_bucket_raw</a>(&amp;self) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawBucket.html' title='std::collections::hash_map::raw_table::RawBucket'>RawBucket</a>&lt;K, V&gt;</code></h4>
+<h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(capacity: usize) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawTable.html' title='std::collections::hash_map::raw_table::RawTable'>RawTable</a>&lt;K, V&gt;</code></h4>
+<div class='docblock'><p>Creates a new raw table from a given capacity. All buckets are
+initially empty.</p>
+</div><h4 id='method.capacity' class='method'><code>fn <a href='#method.capacity' class='fnname'>capacity</a>(&amp;self) -&gt; usize</code></h4>
+<div class='docblock'><p>The hashtable&#39;s capacity, similar to a vector&#39;s.</p>
+</div><h4 id='method.size' class='method'><code>fn <a href='#method.size' class='fnname'>size</a>(&amp;self) -&gt; usize</code></h4>
+<div class='docblock'><p>The number of elements ever <code>put</code> in the hashtable, minus the number
+of elements ever <code>take</code>n.</p>
+</div><h4 id='method.raw_buckets' class='method'><code>fn <a href='#method.raw_buckets' class='fnname'>raw_buckets</a>(&amp;self) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawBuckets.html' title='std::collections::hash_map::raw_table::RawBuckets'>RawBuckets</a>&lt;K, V&gt;</code></h4>
+<h4 id='method.iter' class='method'><code>fn <a href='#method.iter' class='fnname'>iter</a>(&amp;self) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.Iter.html' title='std::collections::hash_map::raw_table::Iter'>Iter</a>&lt;K, V&gt;</code></h4>
+<h4 id='method.iter_mut' class='method'><code>fn <a href='#method.iter_mut' class='fnname'>iter_mut</a>(&amp;mut self) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.IterMut.html' title='std::collections::hash_map::raw_table::IterMut'>IterMut</a>&lt;K, V&gt;</code></h4>
+<h4 id='method.into_iter' class='method'><code>fn <a href='#method.into_iter' class='fnname'>into_iter</a>(self) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.IntoIter.html' title='std::collections::hash_map::raw_table::IntoIter'>IntoIter</a>&lt;K, V&gt;</code></h4>
+<h4 id='method.drain' class='method'><code>fn <a href='#method.drain' class='fnname'>drain</a>(&amp;mut self) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.Drain.html' title='std::collections::hash_map::raw_table::Drain'>Drain</a>&lt;K, V&gt;</code></h4>
+<h4 id='method.rev_move_buckets' class='method'><code>unsafe fn <a href='#method.rev_move_buckets' class='fnname'>rev_move_buckets</a>(&amp;mut self) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RevMoveBuckets.html' title='std::collections::hash_map::raw_table::RevMoveBuckets'>RevMoveBuckets</a>&lt;K, V&gt;</code></h4>
+<div class='docblock'><p>Returns an iterator that copies out each entry. Used while the table
+is being dropped.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;K: <a class='trait' href='../../../../std/marker/trait.Send.html' title='std::marker::Send'>Send</a>, V: <a class='trait' href='../../../../std/marker/trait.Send.html' title='std::marker::Send'>Send</a>&gt; <a class='trait' href='../../../../std/marker/trait.Send.html' title='std::marker::Send'>Send</a> for <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawTable.html' title='std::collections::hash_map::raw_table::RawTable'>RawTable</a>&lt;K, V&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;K: <a class='trait' href='../../../../std/marker/trait.Sync.html' title='std::marker::Sync'>Sync</a>, V: <a class='trait' href='../../../../std/marker/trait.Sync.html' title='std::marker::Sync'>Sync</a>&gt; <a class='trait' href='../../../../std/marker/trait.Sync.html' title='std::marker::Sync'>Sync</a> for <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawTable.html' title='std::collections::hash_map::raw_table::RawTable'>RawTable</a>&lt;K, V&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;K: <a class='trait' href='../../../../std/clone/trait.Clone.html' title='std::clone::Clone'>Clone</a>, V: <a class='trait' href='../../../../std/clone/trait.Clone.html' title='std::clone::Clone'>Clone</a>&gt; <a class='trait' href='../../../../std/clone/trait.Clone.html' title='std::clone::Clone'>Clone</a> for <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawTable.html' title='std::collections::hash_map::raw_table::RawTable'>RawTable</a>&lt;K, V&gt;</code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='../../../../std/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawTable.html' title='std::collections::hash_map::raw_table::RawTable'>RawTable</a>&lt;K, V&gt;</code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='../../../../std/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl&lt;K, V&gt; <a class='trait' href='../../../../std/ops/trait.Drop.html' title='std::ops::Drop'>Drop</a> for <a class='struct' href='../../../../std/collections/hash_map/raw_table/struct.RawTable.html' title='std::collections::hash_map::raw_table::RawTable'>RawTable</a>&lt;K, V&gt;</code></h3><div class='impl-items'><h4 id='method.drop' class='method'><code>fn <a href='../../../../std/ops/trait.Drop.html#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "std";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>

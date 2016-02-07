@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `rawfp` mod in crate `std`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, rawfp">
+
+    <title>std::num::dec2flt::rawfp - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../../index.html'>std</a>::<wbr><a href='../../index.html'>num</a>::<wbr><a href='../index.html'>dec2flt</a></p><script>window.sidebarCurrent = {name: 'rawfp', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../../index.html'>std</a>::<wbr><a href='../../index.html'>num</a>::<wbr><a href='../index.html'>dec2flt</a>::<wbr><a class='mod' href=''>rawfp</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2338' class='srclink' href='../../../../core/num/dec2flt/rawfp/index.html?gotosrc=2338' title='goto source code'>[src]</a></span></h1>
+<div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Bit fiddling on positive IEEE 754 floats. Negative numbers aren&#39;t and needn&#39;t be handled.
+Normal floating point numbers have a canonical representation as (frac, exp) such that the
+value is 2<sup>exp</sup> * (1 + sum(frac[N-i] / 2<sup>i))</sup> where N is the number of bits. Subnormals are
+slightly different and weird, but the same principle applies.</p>
+
+<p>Here, however, we represent them as (sig, k) with f positive, such that the value is f * 2<sup>e.</sup>
+Besides making the &quot;hidden bit&quot; explicit, this changes the exponent by the so-called
+mantissa shift.</p>
+
+<p>Put another way, normally floats are written as (1) but here they are written as (2):</p>
+
+<ol>
+<li><code>1.101100...11 * 2^m</code></li>
+<li><code>1101100...11 * 2^n</code></li>
+</ol>
+
+<p>We call (1) the <strong>fractional representation</strong> and (2) the <strong>integral representation</strong>.</p>
+
+<p>Many functions in this module only handle normal numbers. The dec2flt routines conservatively
+take the universally-correct slow path (Algorithm M) for very small and very large numbers.
+That algorithm needs only next_float() which does handle subnormals and zeros.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='struct' href='struct.Unpacked.html'
+                               title='std::num::dec2flt::rawfp::Unpacked'>Unpacked</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='trait' href='trait.RawFloat.html'
+                               title='std::num::dec2flt::rawfp::RawFloat'>RawFloat</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>A helper trait to avoid duplicating basically all the conversion code for <code>f32</code> and <code>f64</code>.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.big_to_fp.html'
+                               title='std::num::dec2flt::rawfp::big_to_fp'>big_to_fp</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Approximate a bignum with an Fp. Rounds within 0.5 ULP with half-to-even.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.encode_normal.html'
+                               title='std::num::dec2flt::rawfp::encode_normal'>encode_normal</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Inverse of <code>RawFloat::unpack()</code> for normalized numbers.
+Panics if the significand or exponent are not valid for normalized numbers.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.encode_subnormal.html'
+                               title='std::num::dec2flt::rawfp::encode_subnormal'>encode_subnormal</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Construct the subnormal. A mantissa of 0 is allowed and constructs zero.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.fp_to_float.html'
+                               title='std::num::dec2flt::rawfp::fp_to_float'>fp_to_float</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Convert an Fp to the closest f64. Only handles number that fit into a normalized f64.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.next_float.html'
+                               title='std::num::dec2flt::rawfp::next_float'>next_float</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.prev_float.html'
+                               title='std::num::dec2flt::rawfp::prev_float'>prev_float</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Find the largest floating point number strictly smaller than the argument.
+Does not handle subnormals, zero, or exponent underflow.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.round_normal.html'
+                               title='std::num::dec2flt::rawfp::round_normal'>round_normal</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Round the 64-bit significand to 53 bit with half-to-even. Does not handle exponent overflow.</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "std";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>

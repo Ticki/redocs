@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["c_string_to_str","Helper function for handling C strings, please do not copy it or make it pub or change it"]],"struct":[["Packet",""]],"trait":[["Scheme",""]]});

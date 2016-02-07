@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `NodeRef` struct in crate `collections`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, NodeRef">
+
+    <title>collections::btree::node::NodeRef - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../../collections/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../../index.html'>collections</a>::<wbr><a href='../index.html'>btree</a>::<wbr><a href='index.html'>node</a></p><script>window.sidebarCurrent = {name: 'NodeRef', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>collections</a>::<wbr><a href='../index.html'>btree</a>::<wbr><a href='index.html'>node</a>::<wbr><a class='struct' href=''>NodeRef</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-334' class='srclink' href='../../../src/collections/btree/node.rs.html#229-234' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct NodeRef&lt;BorrowType, K, V, Type&gt; {
+    height: usize,
+    node: <a class='struct' href='../../../core/nonzero/struct.NonZero.html' title='core::nonzero::NonZero'>NonZero</a>&lt;*const <a class='struct' href='../../../collections/btree/node/struct.LeafNode.html' title='collections::btree::node::LeafNode'>LeafNode</a>&lt;K, V&gt;&gt;,
+    root: *const <a class='struct' href='../../../collections/btree/node/struct.Root.html' title='collections::btree::node::Root'>Root</a>&lt;K, V&gt;,
+    _marker: <a class='struct' href='../../../core/marker/struct.PhantomData.html' title='core::marker::PhantomData'>PhantomData</a>&lt;(BorrowType, Type)&gt;,
+}</pre><div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><div class='docblock'><p>A reference to a node.</p>
+
+<p>This type has a number of paramaters that controls how it acts:
+- <code>BorrowType</code>: This can be <code>Immut&lt;&#39;a&gt;</code> or <code>Mut&lt;&#39;a&gt;</code> for some <code>&#39;a</code> or <code>Owned</code>.
+   When this is <code>Immut&lt;&#39;a&gt;</code>, the <code>NodeRef</code> acts roughly like <code>&amp;&#39;a Node</code>,
+   when this is <code>Mut&lt;&#39;a&gt;</code>, the <code>NodeRef</code> acts roughly like <code>&amp;&#39;a mut Node</code>,
+   and when this is <code>Owned</code>, the <code>NodeRef</code> acts roughly like <code>Box&lt;Node&gt;</code>.
+- <code>K</code> and <code>V</code>: These control what types of things are stored in the nodes.
+- <code>Type</code>: This can be <code>Leaf</code>, <code>Internal</code>, or <code>LeafOrInternal</code>. When this is
+  <code>Leaf</code>, the <code>NodeRef</code> points to a leaf node, when this is <code>Internal</code> the
+  <code>NodeRef</code> points to an internal node, and when this is <code>LeafOrInternal</code> the
+  <code>NodeRef</code> could be pointing to either type of node.</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab unstable'>
+                                  <td id='structfield.height'><code>height</code></td><td><div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></td></tr><tr class='stab unstable'>
+                                  <td id='structfield.node'><code>node</code></td><td><div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></td></tr><tr class='stab unstable'>
+                                  <td id='structfield.root'><code>root</code></td><td><div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></td></tr><tr class='stab unstable'>
+                                  <td id='structfield._marker'><code>_marker</code></td><td><div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;BorrowType, K, V&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;BorrowType, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Internal.html' title='collections::btree::node::marker::Internal'>Internal</a>&gt;</code></h3><div class='impl-items'><h4 id='method.as_internal' class='method'><code>fn <a href='#method.as_internal' class='fnname'>as_internal</a>(&amp;self) -&gt; &amp;<a class='struct' href='../../../collections/btree/node/struct.InternalNode.html' title='collections::btree::node::InternalNode'>InternalNode</a>&lt;K, V&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;'a, K, V&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>&lt;'a&gt;, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Internal.html' title='collections::btree::node::marker::Internal'>Internal</a>&gt;</code></h3><div class='impl-items'><h4 id='method.as_internal_mut' class='method'><code>fn <a href='#method.as_internal_mut' class='fnname'>as_internal_mut</a>(&amp;mut self) -&gt; &amp;mut <a class='struct' href='../../../collections/btree/node/struct.InternalNode.html' title='collections::btree::node::InternalNode'>InternalNode</a>&lt;K, V&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;BorrowType, K, V, Type&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;BorrowType, K, V, Type&gt;</code></h3><div class='impl-items'><h4 id='method.len' class='method'><code>fn <a href='#method.len' class='fnname'>len</a>(&amp;self) -&gt; usize</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.forget_type' class='method'><code>fn <a href='#method.forget_type' class='fnname'>forget_type</a>(self) -&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;BorrowType, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.LeafOrInternal.html' title='collections::btree::node::marker::LeafOrInternal'>LeafOrInternal</a>&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.reborrow' class='method'><code>fn <a href='#method.reborrow' class='fnname'>reborrow</a>&lt;'a&gt;(&amp;'a self) -&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Immut.html' title='collections::btree::node::marker::Immut'>Immut</a>&lt;'a&gt;, K, V, Type&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.as_leaf' class='method'><code>fn <a href='#method.as_leaf' class='fnname'>as_leaf</a>(&amp;self) -&gt; &amp;<a class='struct' href='../../../collections/btree/node/struct.LeafNode.html' title='collections::btree::node::LeafNode'>LeafNode</a>&lt;K, V&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.keys' class='method'><code>fn <a href='#method.keys' class='fnname'>keys</a>(&amp;self) -&gt; &amp;[K]</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.vals' class='method'><code>fn <a href='#method.vals' class='fnname'>vals</a>(&amp;self) -&gt; &amp;[V]</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.ascend' class='method'><code>fn <a href='#method.ascend' class='fnname'>ascend</a>(self) -&gt; <a class='enum' href='../../../core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.Handle.html' title='collections::btree::node::Handle'>Handle</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;BorrowType, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Internal.html' title='collections::btree::node::marker::Internal'>Internal</a>&gt;, <a class='enum' href='../../../collections/btree/node/marker/enum.Edge.html' title='collections::btree::node::marker::Edge'>Edge</a>&gt;, Self&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.first_edge' class='method'><code>fn <a href='#method.first_edge' class='fnname'>first_edge</a>(self) -&gt; <a class='struct' href='../../../collections/btree/node/struct.Handle.html' title='collections::btree::node::Handle'>Handle</a>&lt;Self, <a class='enum' href='../../../collections/btree/node/marker/enum.Edge.html' title='collections::btree::node::marker::Edge'>Edge</a>&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.last_edge' class='method'><code>fn <a href='#method.last_edge' class='fnname'>last_edge</a>(self) -&gt; <a class='struct' href='../../../collections/btree/node/struct.Handle.html' title='collections::btree::node::Handle'>Handle</a>&lt;Self, <a class='enum' href='../../../collections/btree/node/marker/enum.Edge.html' title='collections::btree::node::marker::Edge'>Edge</a>&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;K, V&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='enum' href='../../../collections/btree/node/marker/enum.Owned.html' title='collections::btree::node::marker::Owned'>Owned</a>, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Leaf.html' title='collections::btree::node::marker::Leaf'>Leaf</a>&gt;</code></h3><div class='impl-items'><h4 id='method.deallocate_and_ascend' class='method'><code>unsafe fn <a href='#method.deallocate_and_ascend' class='fnname'>deallocate_and_ascend</a>(self) -&gt; <a class='enum' href='../../../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.Handle.html' title='collections::btree::node::Handle'>Handle</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='enum' href='../../../collections/btree/node/marker/enum.Owned.html' title='collections::btree::node::marker::Owned'>Owned</a>, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Internal.html' title='collections::btree::node::marker::Internal'>Internal</a>&gt;, <a class='enum' href='../../../collections/btree/node/marker/enum.Edge.html' title='collections::btree::node::marker::Edge'>Edge</a>&gt;&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;K, V&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='enum' href='../../../collections/btree/node/marker/enum.Owned.html' title='collections::btree::node::marker::Owned'>Owned</a>, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Internal.html' title='collections::btree::node::marker::Internal'>Internal</a>&gt;</code></h3><div class='impl-items'><h4 id='method.deallocate_and_ascend-1' class='method'><code>unsafe fn <a href='#method.deallocate_and_ascend' class='fnname'>deallocate_and_ascend</a>(self) -&gt; <a class='enum' href='../../../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.Handle.html' title='collections::btree::node::Handle'>Handle</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='enum' href='../../../collections/btree/node/marker/enum.Owned.html' title='collections::btree::node::marker::Owned'>Owned</a>, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Internal.html' title='collections::btree::node::marker::Internal'>Internal</a>&gt;, <a class='enum' href='../../../collections/btree/node/marker/enum.Edge.html' title='collections::btree::node::marker::Edge'>Edge</a>&gt;&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;'a, K, V, Type&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>&lt;'a&gt;, K, V, Type&gt;</code></h3><div class='impl-items'><h4 id='method.cast_unchecked' class='method'><code>unsafe fn <a href='#method.cast_unchecked' class='fnname'>cast_unchecked</a>&lt;NewType&gt;(&amp;mut self) -&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>, K, V, NewType&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.reborrow_mut' class='method'><code>unsafe fn <a href='#method.reborrow_mut' class='fnname'>reborrow_mut</a>(&amp;mut self) -&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>, K, V, Type&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.as_leaf_mut' class='method'><code>fn <a href='#method.as_leaf_mut' class='fnname'>as_leaf_mut</a>(&amp;mut self) -&gt; &amp;mut <a class='struct' href='../../../collections/btree/node/struct.LeafNode.html' title='collections::btree::node::LeafNode'>LeafNode</a>&lt;K, V&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.keys_mut' class='method'><code>fn <a href='#method.keys_mut' class='fnname'>keys_mut</a>(&amp;mut self) -&gt; &amp;mut [K]</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.vals_mut' class='method'><code>fn <a href='#method.vals_mut' class='fnname'>vals_mut</a>(&amp;mut self) -&gt; &amp;mut [V]</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;'a, K: 'a, V: 'a, Type&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Immut.html' title='collections::btree::node::marker::Immut'>Immut</a>&lt;'a&gt;, K, V, Type&gt;</code></h3><div class='impl-items'><h4 id='method.into_slices' class='method'><code>fn <a href='#method.into_slices' class='fnname'>into_slices</a>(self) -&gt; (&amp;'a [K], &amp;'a [V])</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;'a, K: 'a, V: 'a, Type&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>&lt;'a&gt;, K, V, Type&gt;</code></h3><div class='impl-items'><h4 id='method.into_root_mut' class='method'><code>fn <a href='#method.into_root_mut' class='fnname'>into_root_mut</a>(self) -&gt; &amp;'a mut <a class='struct' href='../../../collections/btree/node/struct.Root.html' title='collections::btree::node::Root'>Root</a>&lt;K, V&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.into_slices_mut' class='method'><code>fn <a href='#method.into_slices_mut' class='fnname'>into_slices_mut</a>(self) -&gt; (&amp;'a mut [K], &amp;'a mut [V])</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;'a, K, V&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>&lt;'a&gt;, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Leaf.html' title='collections::btree::node::marker::Leaf'>Leaf</a>&gt;</code></h3><div class='impl-items'><h4 id='method.push' class='method'><code>fn <a href='#method.push' class='fnname'>push</a>(&amp;mut self, key: K, val: V)</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.push_front' class='method'><code>fn <a href='#method.push_front' class='fnname'>push_front</a>(&amp;mut self, key: K, val: V)</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;'a, K, V&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>&lt;'a&gt;, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Internal.html' title='collections::btree::node::marker::Internal'>Internal</a>&gt;</code></h3><div class='impl-items'><h4 id='method.push-1' class='method'><code>fn <a href='#method.push' class='fnname'>push</a>(&amp;mut self, key: K, val: V, edge: <a class='struct' href='../../../collections/btree/node/struct.Root.html' title='collections::btree::node::Root'>Root</a>&lt;K, V&gt;)</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.push_front-1' class='method'><code>fn <a href='#method.push_front' class='fnname'>push_front</a>(&amp;mut self, key: K, val: V, edge: <a class='struct' href='../../../collections/btree/node/struct.Root.html' title='collections::btree::node::Root'>Root</a>&lt;K, V&gt;)</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;'a, K, V&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>&lt;'a&gt;, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.LeafOrInternal.html' title='collections::btree::node::marker::LeafOrInternal'>LeafOrInternal</a>&gt;</code></h3><div class='impl-items'><h4 id='method.pop' class='method'><code>fn <a href='#method.pop' class='fnname'>pop</a>(&amp;mut self) -&gt; (K, V, <a class='enum' href='../../../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.Root.html' title='collections::btree::node::Root'>Root</a>&lt;K, V&gt;&gt;)</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h4 id='method.pop_front' class='method'><code>fn <a href='#method.pop_front' class='fnname'>pop_front</a>(&amp;mut self) -&gt; (K, V, <a class='enum' href='../../../core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.Root.html' title='collections::btree::node::Root'>Root</a>&lt;K, V&gt;&gt;)</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h3 class='impl'><code>impl&lt;BorrowType, K, V&gt; <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;BorrowType, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.LeafOrInternal.html' title='collections::btree::node::marker::LeafOrInternal'>LeafOrInternal</a>&gt;</code></h3><div class='impl-items'><h4 id='method.force' class='method'><code>fn <a href='#method.force' class='fnname'>force</a>(self) -&gt; <a class='enum' href='../../../collections/btree/node/enum.ForceResult.html' title='collections::btree::node::ForceResult'>ForceResult</a>&lt;<a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;BorrowType, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Leaf.html' title='collections::btree::node::marker::Leaf'>Leaf</a>&gt;, <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;BorrowType, K, V, <a class='enum' href='../../../collections/btree/node/marker/enum.Internal.html' title='collections::btree::node::marker::Internal'>Internal</a>&gt;&gt;</code></h4>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;'a, K: 'a, V: 'a, Type&gt; <a class='trait' href='../../../core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Immut.html' title='collections::btree::node::marker::Immut'>Immut</a>&lt;'a&gt;, K, V, Type&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;'a, K: 'a, V: 'a, Type&gt; <a class='trait' href='../../../core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Immut.html' title='collections::btree::node::marker::Immut'>Immut</a>&lt;'a&gt;, K, V, Type&gt;</code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='../../../core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; Self</code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='../../../core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl&lt;BorrowType, K: <a class='trait' href='../../../core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a>, V: <a class='trait' href='../../../core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a>, Type&gt; <a class='trait' href='../../../core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> for <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;BorrowType, K, V, Type&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;'a, K: <a class='trait' href='../../../core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> + 'a, V: <a class='trait' href='../../../core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a> + 'a, Type&gt; <a class='trait' href='../../../core/marker/trait.Send.html' title='core::marker::Send'>Send</a> for <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Immut.html' title='collections::btree::node::marker::Immut'>Immut</a>&lt;'a&gt;, K, V, Type&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;'a, K: <a class='trait' href='../../../core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'a, V: <a class='trait' href='../../../core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'a, Type&gt; <a class='trait' href='../../../core/marker/trait.Send.html' title='core::marker::Send'>Send</a> for <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='struct' href='../../../collections/btree/node/marker/struct.Mut.html' title='collections::btree::node::marker::Mut'>Mut</a>&lt;'a&gt;, K, V, Type&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;K: <a class='trait' href='../../../core/marker/trait.Send.html' title='core::marker::Send'>Send</a>, V: <a class='trait' href='../../../core/marker/trait.Send.html' title='core::marker::Send'>Send</a>, Type&gt; <a class='trait' href='../../../core/marker/trait.Send.html' title='core::marker::Send'>Send</a> for <a class='struct' href='../../../collections/btree/node/struct.NodeRef.html' title='collections::btree::node::NodeRef'>NodeRef</a>&lt;<a class='enum' href='../../../collections/btree/node/marker/enum.Owned.html' title='collections::btree::node::marker::Owned'>Owned</a>, K, V, Type&gt;</code></h3><div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "collections";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    <script src="../../../playpen.js"></script>
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

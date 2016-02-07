@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `algorithm` mod in crate `core`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, algorithm">
+
+    <title>core::num::dec2flt::algorithm - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../../../core/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../../../index.html'>core</a>::<wbr><a href='../../index.html'>num</a>::<wbr><a href='../index.html'>dec2flt</a></p><script>window.sidebarCurrent = {name: 'algorithm', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../../index.html'>core</a>::<wbr><a href='../../index.html'>num</a>::<wbr><a href='../index.html'>dec2flt</a>::<wbr><a class='mod' href=''>algorithm</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2187' class='srclink' href='../../../../src/core/num/dec2flt/algorithm.rs.html#11-357' title='goto source code'>[src]</a></span></h1>
+<div class='stability'><em class='stab unstable'>Unstable (<code>dec2flt</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>The various algorithms from the paper.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use prelude::<a class='mod' href='../../../../core/prelude/v1/index.html' title='core::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use cmp::<a class='fn' href='../../../../core/cmp/fn.min.html' title='core::cmp::min'>min</a>;</code></td></tr><tr><td><code>use cmp::Ordering::{<a class='enum' href='../../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Less</a>, <a class='enum' href='../../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Equal</a>, <a class='enum' href='../../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Greater</a>};</code></td></tr><tr><td><code>use num::diy_float::<a class='struct' href='../../../../core/num/diy_float/struct.Fp.html' title='core::num::diy_float::Fp'>Fp</a>;</code></td></tr><tr><td><code>use num::dec2flt::<a class='mod' href='../../../../core/num/dec2flt/table/index.html' title='core::num::dec2flt::table'>table</a>;</code></td></tr><tr><td><code>use num::dec2flt::rawfp::{<a class='mod' href='../../../../core/num/dec2flt/rawfp/index.html' title='core::num::dec2flt::rawfp'>self</a>, <a class='struct' href='../../../../core/num/dec2flt/rawfp/struct.Unpacked.html' title='core::num::dec2flt::rawfp::Unpacked'>Unpacked</a>, <a class='trait' href='../../../../core/num/dec2flt/rawfp/trait.RawFloat.html' title='core::num::dec2flt::rawfp::RawFloat'>RawFloat</a>, <a class='fn' href='../../../../core/num/dec2flt/rawfp/fn.fp_to_float.html' title='core::num::dec2flt::rawfp::fp_to_float'>fp_to_float</a>, <a class='fn' href='../../../../core/num/dec2flt/rawfp/fn.next_float.html' title='core::num::dec2flt::rawfp::next_float'>next_float</a>, <a class='fn' href='../../../../core/num/dec2flt/rawfp/fn.prev_float.html' title='core::num::dec2flt::rawfp::prev_float'>prev_float</a>};</code></td></tr><tr><td><code>use num::dec2flt::num::{<a class='mod' href='../../../../core/num/dec2flt/num/index.html' title='core::num::dec2flt::num'>self</a>, <a class='struct' href='../../../../core/num/bignum/struct.Big32x40.html' title='core::num::bignum::Big32x40'>Big</a>};</code></td></tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='constant' href='constant.P.html'
+                               title='core::num::dec2flt::algorithm::P'>P</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Number of significand bits in Fp</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.algorithm_m.html'
+                               title='core::num::dec2flt::algorithm::algorithm_m'>algorithm_m</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Conceptually, Algorithm M is the simplest way to convert a decimal to a float.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.algorithm_r.html'
+                               title='core::num::dec2flt::algorithm::algorithm_r'>algorithm_r</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>An iterative algorithm that improves a floating point approximation of <code>f * 10^e</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.bellerophon.html'
+                               title='core::num::dec2flt::algorithm::bellerophon'>bellerophon</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Algorithm Bellerophon is trivial code justified by non-trivial numeric analysis.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.fast_path.html'
+                               title='core::num::dec2flt::algorithm::fast_path'>fast_path</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>The fast path of Bellerophon using machine-sized integers and floats.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.make_ratio.html'
+                               title='core::num::dec2flt::algorithm::make_ratio'>make_ratio</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Given <code>x = f</code> and <code>y = m</code> where <code>f</code> represent input decimal digits as usual and <code>m</code> is the
+significand of a floating point approximation, make the ratio <code>x / y</code> equal to
+<code>(f * 10^e) / (m * 2^k)</code>, possibly reduced by a power of two both have in common.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.power_of_ten.html'
+                               title='core::num::dec2flt::algorithm::power_of_ten'>power_of_ten</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.quick_start.html'
+                               title='core::num::dec2flt::algorithm::quick_start'>quick_start</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Skip over most AlgorithmM iterations by checking the bit length.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.round_by_remainder.html'
+                               title='core::num::dec2flt::algorithm::round_by_remainder'>round_by_remainder</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Ordinary round-to-even, obfuscated by having to round based on the remainder of a division.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.underflow.html'
+                               title='core::num::dec2flt::algorithm::underflow'>underflow</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "core";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    <script src="../../../../playpen.js"></script>
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"static":[["DUMMY",""]],"struct":[["Dummy",""],["Mutex","A mutex, i.e. a form of safe shared memory between threads. See rust std's Mutex."],["MutexGuard","A mutex guard (returned by .lock())"],["StaticMutex",""]]});

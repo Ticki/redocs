@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `event` mod in crate `kernel`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, event">
+
+    <title>kernel::common::event - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>common</a></p><script>window.sidebarCurrent = {name: 'event', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>kernel</a>::<wbr><a href='../index.html'>common</a>::<wbr><a class='mod' href=''>event</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-539' class='srclink' href='../../../src/kernel/common/event.rs.html#1-238' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Event input</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Event.html'
+                               title='kernel::common::event::Event'>Event</a></td>
+                        <td class='docblock short'>
+                             <p>An event</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.KeyEvent.html'
+                               title='kernel::common::event::KeyEvent'>KeyEvent</a></td>
+                        <td class='docblock short'>
+                             <p>A key event (such as a pressed key)</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.MouseEvent.html'
+                               title='kernel::common::event::MouseEvent'>MouseEvent</a></td>
+                        <td class='docblock short'>
+                             <p>A event related to the mouse</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.QuitEvent.html'
+                               title='kernel::common::event::QuitEvent'>QuitEvent</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.EventOption.html'
+                               title='kernel::common::event::EventOption'>EventOption</a></td>
+                        <td class='docblock short'>
+                             <p>An optional event</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_ALT.html'
+                               title='kernel::common::event::K_ALT'>K_ALT</a></td>
+                        <td class='docblock short'>
+                             <p>Alt key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_BKSP.html'
+                               title='kernel::common::event::K_BKSP'>K_BKSP</a></td>
+                        <td class='docblock short'>
+                             <p>Backspace key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_CTRL.html'
+                               title='kernel::common::event::K_CTRL'>K_CTRL</a></td>
+                        <td class='docblock short'>
+                             <p>Control key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_DEL.html'
+                               title='kernel::common::event::K_DEL'>K_DEL</a></td>
+                        <td class='docblock short'>
+                             <p>Delete key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_DOWN.html'
+                               title='kernel::common::event::K_DOWN'>K_DOWN</a></td>
+                        <td class='docblock short'>
+                             <p>Down key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_END.html'
+                               title='kernel::common::event::K_END'>K_END</a></td>
+                        <td class='docblock short'>
+                             <p>End key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_ESC.html'
+                               title='kernel::common::event::K_ESC'>K_ESC</a></td>
+                        <td class='docblock short'>
+                             <p>Escape key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F1.html'
+                               title='kernel::common::event::K_F1'>K_F1</a></td>
+                        <td class='docblock short'>
+                             <p>F1 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F10.html'
+                               title='kernel::common::event::K_F10'>K_F10</a></td>
+                        <td class='docblock short'>
+                             <p>F10 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F11.html'
+                               title='kernel::common::event::K_F11'>K_F11</a></td>
+                        <td class='docblock short'>
+                             <p>F11 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F12.html'
+                               title='kernel::common::event::K_F12'>K_F12</a></td>
+                        <td class='docblock short'>
+                             <p>F12 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F2.html'
+                               title='kernel::common::event::K_F2'>K_F2</a></td>
+                        <td class='docblock short'>
+                             <p>F2 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F3.html'
+                               title='kernel::common::event::K_F3'>K_F3</a></td>
+                        <td class='docblock short'>
+                             <p>F3 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F4.html'
+                               title='kernel::common::event::K_F4'>K_F4</a></td>
+                        <td class='docblock short'>
+                             <p>F4 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F5.html'
+                               title='kernel::common::event::K_F5'>K_F5</a></td>
+                        <td class='docblock short'>
+                             <p>F5 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F6.html'
+                               title='kernel::common::event::K_F6'>K_F6</a></td>
+                        <td class='docblock short'>
+                             <p>F6 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F7.html'
+                               title='kernel::common::event::K_F7'>K_F7</a></td>
+                        <td class='docblock short'>
+                             <p>F7 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F8.html'
+                               title='kernel::common::event::K_F8'>K_F8</a></td>
+                        <td class='docblock short'>
+                             <p>F8 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_F9.html'
+                               title='kernel::common::event::K_F9'>K_F9</a></td>
+                        <td class='docblock short'>
+                             <p>F9 key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_HOME.html'
+                               title='kernel::common::event::K_HOME'>K_HOME</a></td>
+                        <td class='docblock short'>
+                             <p>Home key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_LEFT.html'
+                               title='kernel::common::event::K_LEFT'>K_LEFT</a></td>
+                        <td class='docblock short'>
+                             <p>Left key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_PGDN.html'
+                               title='kernel::common::event::K_PGDN'>K_PGDN</a></td>
+                        <td class='docblock short'>
+                             <p>Page down key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_PGUP.html'
+                               title='kernel::common::event::K_PGUP'>K_PGUP</a></td>
+                        <td class='docblock short'>
+                             <p>Page up key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_RIGHT.html'
+                               title='kernel::common::event::K_RIGHT'>K_RIGHT</a></td>
+                        <td class='docblock short'>
+                             <p>Right key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_TAB.html'
+                               title='kernel::common::event::K_TAB'>K_TAB</a></td>
+                        <td class='docblock short'>
+                             <p>Tab key</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.K_UP.html'
+                               title='kernel::common::event::K_UP'>K_UP</a></td>
+                        <td class='docblock short'>
+                             <p>Up key</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "kernel";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>

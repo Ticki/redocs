@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `set` mod in crate `collections`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, set">
+
+    <title>collections::btree::set - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../../collections/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../../index.html'>collections</a>::<wbr><a href='../index.html'>btree</a></p><script>window.sidebarCurrent = {name: 'set', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>collections</a>::<wbr><a href='../index.html'>btree</a>::<wbr><a class='mod' href=''>set</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1594' class='srclink' href='../../../src/collections/btree/set.rs.html#14-896' title='goto source code'>[src]</a></span></h1>
+<div class='stability'><em class='stab unstable'>Unstable (<code>collections</code> <a href="https://github.com/rust-lang/rust/issues/27783">#27783</a>)<p>: library is unlikely to be stabilized with the current layout and name, use std::collections instead</p>
+</em></div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use core::prelude::<a class='mod' href='../../../core/prelude/v1/index.html' title='core::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use core::cmp::Ordering::{<a class='enum' href='../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>self</a>, <a class='enum' href='../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Less</a>, <a class='enum' href='../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Greater</a>, <a class='enum' href='../../../core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Equal</a>};</code></td></tr><tr><td><code>use core::cmp::{<a class='fn' href='../../../core/cmp/fn.min.html' title='core::cmp::min'>min</a>, <a class='fn' href='../../../core/cmp/fn.max.html' title='core::cmp::max'>max</a>};</code></td></tr><tr><td><code>use core::fmt::<a class='trait' href='../../../collections/fmt/trait.Debug.html' title='collections::fmt::Debug'>Debug</a>;</code></td></tr><tr><td><code>use core::<a class='mod' href='../../../core/fmt/index.html' title='core::fmt'>fmt</a>;</code></td></tr><tr><td><code>use core::iter::{<a class='struct' href='../../../core/iter/struct.Peekable.html' title='core::iter::Peekable'>Peekable</a>, <a class='trait' href='../../../core/iter/trait.FromIterator.html' title='core::iter::FromIterator'>FromIterator</a>};</code></td></tr><tr><td><code>use core::ops::{<a class='trait' href='../../../collections/std/ops/trait.BitOr.html' title='collections::std::ops::BitOr'>BitOr</a>, <a class='trait' href='../../../collections/std/ops/trait.BitAnd.html' title='collections::std::ops::BitAnd'>BitAnd</a>, <a class='trait' href='../../../collections/std/ops/trait.BitXor.html' title='collections::std::ops::BitXor'>BitXor</a>, <a class='trait' href='../../../collections/std/ops/trait.Sub.html' title='collections::std::ops::Sub'>Sub</a>};</code></td></tr><tr><td><code>use borrow::<a class='trait' href='../../../collections/borrow/trait.Borrow.html' title='collections::borrow::Borrow'>Borrow</a>;</code></td></tr><tr><td><code>use btree_map::{<a class='struct' href='../../../collections/struct.BTreeMap.html' title='collections::BTreeMap'>BTreeMap</a>, <a class='struct' href='../../../collections/btree/map/struct.Keys.html' title='collections::btree::map::Keys'>Keys</a>};</code></td></tr><tr><td><code>use super::<a class='trait' href='../../../collections/btree/trait.Recover.html' title='collections::btree::Recover'>Recover</a>;</code></td></tr><tr><td><code>use <a class='enum' href='../../../collections/enum.Bound.html' title='collections::Bound'>Bound</a>;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.BTreeSet.html'
+                               title='collections::btree::set::BTreeSet'>BTreeSet</a></td>
+                        <td class='docblock short'>
+                             <p>A set based on a B-Tree.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Difference.html'
+                               title='collections::btree::set::Difference'>Difference</a></td>
+                        <td class='docblock short'>
+                             <p>A lazy iterator producing elements in the set difference (in-order).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Intersection.html'
+                               title='collections::btree::set::Intersection'>Intersection</a></td>
+                        <td class='docblock short'>
+                             <p>A lazy iterator producing elements in the set intersection (in-order).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.IntoIter.html'
+                               title='collections::btree::set::IntoIter'>IntoIter</a></td>
+                        <td class='docblock short'>
+                             <p>An owning iterator over a BTreeSet&#39;s items.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Iter.html'
+                               title='collections::btree::set::Iter'>Iter</a></td>
+                        <td class='docblock short'>
+                             <p>An iterator over a BTreeSet&#39;s items.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.SymmetricDifference.html'
+                               title='collections::btree::set::SymmetricDifference'>SymmetricDifference</a></td>
+                        <td class='docblock short'>
+                             <p>A lazy iterator producing elements in the set symmetric difference (in-order).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Union.html'
+                               title='collections::btree::set::Union'>Union</a></td>
+                        <td class='docblock short'>
+                             <p>A lazy iterator producing elements in the set union (in-order).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='struct' href='struct.Range.html'
+                               title='collections::btree::set::Range'>Range</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>An iterator over a sub-range of BTreeSet&#39;s items.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.cmp_opt.html'
+                               title='collections::btree::set::cmp_opt'>cmp_opt</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Compare <code>x</code> and <code>y</code>, but return <code>short</code> if x is None and <code>long</code> if y is None</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "collections";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    <script src="../../../playpen.js"></script>
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

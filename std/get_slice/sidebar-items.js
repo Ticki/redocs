@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["GetSlice","Bounded slice abstraction"]]});

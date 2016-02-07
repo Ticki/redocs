@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `raw_table` mod in crate `std`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, raw_table">
+
+    <title>std::collections::hash_map::raw_table - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../../index.html'>std</a>::<wbr><a href='../../index.html'>collections</a>::<wbr><a href='../index.html'>hash_map</a></p><script>window.sidebarCurrent = {name: 'raw_table', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../../index.html'>std</a>::<wbr><a href='../../index.html'>collections</a>::<wbr><a href='../index.html'>hash_map</a>::<wbr><a class='mod' href=''>raw_table</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-372' class='srclink' href='../../../../src/std/collections/hash_map.rs.html#28-1052' title='goto source code'>[src]</a></span></h1>
+<h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use core::prelude::<a class='mod' href='../../../../core/prelude/v1/index.html' title='core::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use alloc::heap::{<a class='fn' href='../../../../alloc/heap/fn.allocate.html' title='alloc::heap::allocate'>allocate</a>, <a class='fn' href='../../../../alloc/heap/fn.deallocate.html' title='alloc::heap::deallocate'>deallocate</a>, EMPTY};</code></td></tr><tr><td><code>use <a class='mod' href='../../../../std/cmp/index.html' title='std::cmp'>cmp</a>;</code></td></tr><tr><td><code>use hash::{<a class='trait' href='../../../../std/hash/trait.Hash.html' title='std::hash::Hash'>Hash</a>, <a class='trait' href='../../../../std/hash/trait.Hasher.html' title='std::hash::Hasher'>Hasher</a>};</code></td></tr><tr><td><code>use <a class='mod' href='../../../../std/marker/index.html' title='std::marker'>marker</a>;</code></td></tr><tr><td><code>use mem::{<a class='fn' href='../../../../std/mem/fn.align_of.html' title='std::mem::align_of'>align_of</a>, <a class='fn' href='../../../../std/mem/fn.size_of.html' title='std::mem::size_of'>size_of</a>};</code></td></tr><tr><td><code>use <a class='mod' href='../../../../std/mem/index.html' title='std::mem'>mem</a>;</code></td></tr><tr><td><code>use num::wrapping::<a class='trait' href='../../../../std/num/wrapping/trait.OverflowingOps.html' title='std::num::wrapping::OverflowingOps'>OverflowingOps</a>;</code></td></tr><tr><td><code>use ops::{<a class='trait' href='../../../../std/ops/trait.Deref.html' title='std::ops::Deref'>Deref</a>, <a class='trait' href='../../../../std/ops/trait.DerefMut.html' title='std::ops::DerefMut'>DerefMut</a>};</code></td></tr><tr><td><code>use ptr::{<a class='mod' href='../../../../std/ptr/index.html' title='std::ptr'>self</a>, <a class='struct' href='../../../../std/ptr/struct.Unique.html' title='std::ptr::Unique'>Unique</a>};</code></td></tr><tr><td><code>use super::super::hash_state::<a class='trait' href='../../../../std/collections/hash_state/trait.HashState.html' title='std::collections::hash_state::HashState'>HashState</a>;</code></td></tr><tr><td><code>use self::<a class='enum' href='../../../../std/collections/hash_map/raw_table/enum.BucketState.html' title='std::collections::hash_map::raw_table::BucketState'>BucketState</a>::*;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Bucket.html'
+                               title='std::collections::hash_map::raw_table::Bucket'>Bucket</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Drain.html'
+                               title='std::collections::hash_map::raw_table::Drain'>Drain</a></td>
+                        <td class='docblock short'>
+                             <p>Iterator over the entries in a table, clearing the table.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.EmptyBucket.html'
+                               title='std::collections::hash_map::raw_table::EmptyBucket'>EmptyBucket</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.FullBucket.html'
+                               title='std::collections::hash_map::raw_table::FullBucket'>FullBucket</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.GapThenFull.html'
+                               title='std::collections::hash_map::raw_table::GapThenFull'>GapThenFull</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.IntoIter.html'
+                               title='std::collections::hash_map::raw_table::IntoIter'>IntoIter</a></td>
+                        <td class='docblock short'>
+                             <p>Iterator over the entries in a table, consuming the table.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Iter.html'
+                               title='std::collections::hash_map::raw_table::Iter'>Iter</a></td>
+                        <td class='docblock short'>
+                             <p>Iterator over shared references to entries in a table.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.IterMut.html'
+                               title='std::collections::hash_map::raw_table::IterMut'>IterMut</a></td>
+                        <td class='docblock short'>
+                             <p>Iterator over mutable references to entries in a table.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RawBucket.html'
+                               title='std::collections::hash_map::raw_table::RawBucket'>RawBucket</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RawBuckets.html'
+                               title='std::collections::hash_map::raw_table::RawBuckets'>RawBuckets</a></td>
+                        <td class='docblock short'>
+                             <p>A raw iterator. The basis for some other iterators in this module. Although
+this interface is safe, it&#39;s not used outside this module.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RawTable.html'
+                               title='std::collections::hash_map::raw_table::RawTable'>RawTable</a></td>
+                        <td class='docblock short'>
+                             <p>The raw hashtable, providing safe-ish access to the unzipped and highly
+optimized arrays of hashes, keys, and values.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RevMoveBuckets.html'
+                               title='std::collections::hash_map::raw_table::RevMoveBuckets'>RevMoveBuckets</a></td>
+                        <td class='docblock short'>
+                             <p>An iterator that moves out buckets in reverse order. It leaves the table
+in an inconsistent state and should only be used for dropping
+the table&#39;s remaining entries. It&#39;s used in the implementation of Drop.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.SafeHash.html'
+                               title='std::collections::hash_map::raw_table::SafeHash'>SafeHash</a></td>
+                        <td class='docblock short'>
+                             <p>A hash that is not zero, since we use a hash of zero to represent empty
+buckets.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.BucketState.html'
+                               title='std::collections::hash_map::raw_table::BucketState'>BucketState</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='constant' href='constant.EMPTY_BUCKET.html'
+                               title='std::collections::hash_map::raw_table::EMPTY_BUCKET'>EMPTY_BUCKET</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.calculate_allocation.html'
+                               title='std::collections::hash_map::raw_table::calculate_allocation'>calculate_allocation</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.calculate_offsets.html'
+                               title='std::collections::hash_map::raw_table::calculate_offsets'>calculate_offsets</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.make_hash.html'
+                               title='std::collections::hash_map::raw_table::make_hash'>make_hash</a></td>
+                        <td class='docblock short'>
+                             <p>We need to remove hashes of 0. That&#39;s reserved for empty buckets.
+This function wraps up <code>hash_keyed</code> to be the only way outside this
+module to generate a SafeHash.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.round_up_to_next.html'
+                               title='std::collections::hash_map::raw_table::round_up_to_next'>round_up_to_next</a></td>
+                        <td class='docblock short'>
+                             <p>Rounds up to a multiple of a power of two. Returns the closest multiple
+of <code>target_alignment</code> that is higher or equal to <code>unrounded</code>.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.EmptyBucketImm.html'
+                               title='std::collections::hash_map::raw_table::EmptyBucketImm'>EmptyBucketImm</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.EmptyBucketMut.html'
+                               title='std::collections::hash_map::raw_table::EmptyBucketMut'>EmptyBucketMut</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.FullBucketImm.html'
+                               title='std::collections::hash_map::raw_table::FullBucketImm'>FullBucketImm</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.FullBucketMut.html'
+                               title='std::collections::hash_map::raw_table::FullBucketMut'>FullBucketMut</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "std";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>

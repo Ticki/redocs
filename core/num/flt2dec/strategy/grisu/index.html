@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `grisu` mod in crate `core`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, grisu">
+
+    <title>core::num::flt2dec::strategy::grisu - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../../../../core/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../../../../index.html'>core</a>::<wbr><a href='../../../index.html'>num</a>::<wbr><a href='../../index.html'>flt2dec</a>::<wbr><a href='../index.html'>strategy</a></p><script>window.sidebarCurrent = {name: 'grisu', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../../../index.html'>core</a>::<wbr><a href='../../../index.html'>num</a>::<wbr><a href='../../index.html'>flt2dec</a>::<wbr><a href='../index.html'>strategy</a>::<wbr><a class='mod' href=''>grisu</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1727' class='srclink' href='../../../../../src/core/num/flt2dec/strategy/grisu.rs.html#11-696' title='goto source code'>[src]</a></span></h1>
+<div class='stability'><em class='stab unstable'>Unstable (<code>flt2dec</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Rust adaptation of Grisu3 algorithm described in [1]. It uses about
+1KB of precomputed table, and in turn, it&#39;s very quick for most inputs.</p>
+
+<p>[1] Florian Loitsch. 2010. Printing floating-point numbers quickly and
+    accurately with integers. SIGPLAN Not. 45, 6 (June 2010), 233-243.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use prelude::<a class='mod' href='../../../../../core/prelude/v1/index.html' title='core::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use num::diy_float::<a class='struct' href='../../../../../core/num/diy_float/struct.Fp.html' title='core::num::diy_float::Fp'>Fp</a>;</code></td></tr><tr><td><code>use num::flt2dec::{<a class='struct' href='../../../../../core/num/flt2dec/decoder/struct.Decoded.html' title='core::num::flt2dec::decoder::Decoded'>Decoded</a>, MAX_SIG_DIGITS, <a class='fn' href='../../../../../core/num/flt2dec/fn.round_up.html' title='core::num::flt2dec::round_up'>round_up</a>};</code></td></tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='constant' href='constant.ALPHA.html'
+                               title='core::num::flt2dec::strategy::grisu::ALPHA'>ALPHA</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='constant' href='constant.CACHED_POW10_FIRST_E.html'
+                               title='core::num::flt2dec::strategy::grisu::CACHED_POW10_FIRST_E'>CACHED_POW10_FIRST_E</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='constant' href='constant.CACHED_POW10_LAST_E.html'
+                               title='core::num::flt2dec::strategy::grisu::CACHED_POW10_LAST_E'>CACHED_POW10_LAST_E</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='constant' href='constant.GAMMA.html'
+                               title='core::num::flt2dec::strategy::grisu::GAMMA'>GAMMA</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                </table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='static' href='static.CACHED_POW10.html'
+                               title='core::num::flt2dec::strategy::grisu::CACHED_POW10'>CACHED_POW10</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.cached_power.html'
+                               title='core::num::flt2dec::strategy::grisu::cached_power'>cached_power</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] 
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.format_exact.html'
+                               title='core::num::flt2dec::strategy::grisu::format_exact'>format_exact</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>The exact and fixed mode implementation for Grisu with Dragon fallback.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.format_exact_opt.html'
+                               title='core::num::flt2dec::strategy::grisu::format_exact_opt'>format_exact_opt</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>The exact and fixed mode implementation for Grisu.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.format_shortest.html'
+                               title='core::num::flt2dec::strategy::grisu::format_shortest'>format_shortest</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>The shortest mode implementation for Grisu with Dragon fallback.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.format_shortest_opt.html'
+                               title='core::num::flt2dec::strategy::grisu::format_shortest_opt'>format_shortest_opt</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>The shortest mode implementation for Grisu.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.max_pow10_no_more_than.html'
+                               title='core::num::flt2dec::strategy::grisu::max_pow10_no_more_than'>max_pow10_no_more_than</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Given <code>x &gt; 0</code>, returns <code>(k, 10^k)</code> such that <code>10^k &lt;= x &lt; 10^(k+1)</code>.</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../../";
+        window.currentCrate = "core";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../../../../jquery.js"></script>
+    <script src="../../../../../main.js"></script>
+    <script src="../../../../../playpen.js"></script>
+    <script defer src="../../../../../search-index.js"></script>
+</body>
+</html>

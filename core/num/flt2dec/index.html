@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `flt2dec` mod in crate `core`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, flt2dec">
+
+    <title>core::num::flt2dec - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    <link rel="shortcut icon" href="https://doc.rust-lang.org/favicon.ico">
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <a href='../../../core/index.html'><img src='https://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png' alt='logo' width='100'></a>
+        <p class='location'><a href='../../index.html'>core</a>::<wbr><a href='../index.html'>num</a></p><script>window.sidebarCurrent = {name: 'flt2dec', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>core</a>::<wbr><a href='../index.html'>num</a>::<wbr><a class='mod' href=''>flt2dec</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1529' class='srclink' href='../../../src/core/num/flt2dec/mod.rs.html#11-660' title='goto source code'>[src]</a></span></h1>
+<div class='stability'><em class='stab unstable'>Unstable (<code>flt2dec</code>)<p>: internal routines only exposed for testing</p>
+</em></div><div class='docblock'><p>Floating-point number to decimal conversion routines.</p>
+
+<h1 id='problem-statement' class='section-header'><a href='#problem-statement'>Problem statement</a></h1>
+<p>We are given the floating-point number <code>v = f * 2^e</code> with an integer <code>f</code>,
+and its bounds <code>minus</code> and <code>plus</code> such that any number between <code>v - minus</code> and
+<code>v + plus</code> will be rounded to <code>v</code>. For the simplicity we assume that
+this range is exclusive. Then we would like to get the unique decimal
+representation <code>V = 0.d[0..n-1] * 10^k</code> such that:</p>
+
+<ul>
+<li><p><code>d[0]</code> is non-zero.</p></li>
+<li><p>It&#39;s correctly rounded when parsed back: <code>v - minus &lt; V &lt; v + plus</code>.
+Furthermore it is shortest such one, i.e. there is no representation
+with less than <code>n</code> digits that is correctly rounded.</p></li>
+<li><p>It&#39;s closest to the original value: <code>abs(V - v) &lt;= 10^(k-n) / 2</code>. Note that
+there might be two representations satisfying this uniqueness requirement,
+in which case some tie-breaking mechanism is used.</p></li>
+</ul>
+
+<p>We will call this mode of operation as to the <em>shortest</em> mode. This mode is used
+when there is no additional constraint, and can be thought as a &quot;natural&quot; mode
+as it matches the ordinary intuition (it at least prints <code>0.1f32</code> as &quot;0.1&quot;).</p>
+
+<p>We have two more modes of operation closely related to each other. In these modes
+we are given either the number of significant digits <code>n</code> or the last-digit
+limitation <code>limit</code> (which determines the actual <code>n</code>), and we would like to get
+the representation <code>V = 0.d[0..n-1] * 10^k</code> such that:</p>
+
+<ul>
+<li><p><code>d[0]</code> is non-zero, unless <code>n</code> was zero in which case only <code>k</code> is returned.</p></li>
+<li><p>It&#39;s closest to the original value: <code>abs(V - v) &lt;= 10^(k-n) / 2</code>. Again,
+there might be some tie-breaking mechanism.</p></li>
+</ul>
+
+<p>When <code>limit</code> is given but not <code>n</code>, we set <code>n</code> such that <code>k - n = limit</code>
+so that the last digit <code>d[n-1]</code> is scaled by <code>10^(k-n) = 10^limit</code>.
+If such <code>n</code> is negative, we clip it to zero so that we will only get <code>k</code>.
+We are also limited by the supplied buffer. This limitation is used to print
+the number up to given number of fractional digits without knowing
+the correct <code>k</code> beforehand.</p>
+
+<p>We will call the mode of operation requiring <code>n</code> as to the <em>exact</em> mode,
+and one requiring <code>limit</code> as to the <em>fixed</em> mode. The exact mode is a subset of
+the fixed mode: the sufficiently large last-digit limitation will eventually fill
+the supplied buffer and let the algorithm to return.</p>
+
+<h1 id='implementation-overview' class='section-header'><a href='#implementation-overview'>Implementation overview</a></h1>
+<p>It is easy to get the floating point printing correct but slow (Russ Cox has
+<a href="http://research.swtch.com/ftoa">demonstrated</a> how it&#39;s easy), or incorrect but
+fast (naïve division and modulo). But it is surprisingly hard to print
+floating point numbers correctly <em>and</em> efficiently.</p>
+
+<p>There are two classes of algorithms widely known to be correct.</p>
+
+<ul>
+<li><p>The &quot;Dragon&quot; family of algorithm is first described by Guy L. Steele Jr. and
+Jon L. White. They rely on the fixed-size big integer for their correctness.
+A slight improvement was found later, which is posthumously described by
+Robert G. Burger and R. Kent Dybvig. David Gay&#39;s <code>dtoa.c</code> routine is
+a popular implementation of this strategy.</p></li>
+<li><p>The &quot;Grisu&quot; family of algorithm is first described by Florian Loitsch.
+They use very cheap integer-only procedure to determine the close-to-correct
+representation which is at least guaranteed to be shortest. The variant,
+Grisu3, actively detects if the resulting representation is incorrect.</p></li>
+</ul>
+
+<p>We implement both algorithms with necessary tweaks to suit our requirements.
+In particular, published literatures are short of the actual implementation
+difficulties like how to avoid arithmetic overflows. Each implementation,
+available in <code>strategy::dragon</code> and <code>strategy::grisu</code> respectively,
+extensively describes all necessary justifications and many proofs for them.
+(It is still difficult to follow though. You have been warned.)</p>
+
+<p>Both implementations expose two public functions:</p>
+
+<ul>
+<li><p><code>format_shortest(decoded, buf)</code>, which always needs at least
+<code>MAX_SIG_DIGITS</code> digits of buffer. Implements the shortest mode.</p></li>
+<li><p><code>format_exact(decoded, buf, limit)</code>, which accepts as small as
+one digit of buffer. Implements exact and fixed modes.</p></li>
+</ul>
+
+<p>They try to fill the <code>u8</code> buffer with digits and returns the number of digits
+written and the exponent <code>k</code>. They are total for all finite <code>f32</code> and <code>f64</code>
+inputs (Grisu internally falls back to Dragon if necessary).</p>
+
+<p>The rendered digits are formatted into the actual string form with
+four functions:</p>
+
+<ul>
+<li><p><code>to_shortest_str</code> prints the shortest representation, which can be padded by
+zeroes to make <em>at least</em> given number of fractional digits.</p></li>
+<li><p><code>to_shortest_exp_str</code> prints the shortest representation, which can be
+padded by zeroes when its exponent is in the specified ranges,
+or can be printed in the exponential form such as <code>1.23e45</code>.</p></li>
+<li><p><code>to_exact_exp_str</code> prints the exact representation with given number of
+digits in the exponential form.</p></li>
+<li><p><code>to_exact_fixed_str</code> prints the fixed representation with <em>exactly</em>
+given number of fractional digits.</p></li>
+</ul>
+
+<p>They all return a slice of preallocated <code>Part</code> array, which corresponds to
+the individual part of strings: a fixed string, a part of rendered digits,
+a number of zeroes or a small (<code>u16</code>) number. The caller is expected to
+provide a large enough buffer and <code>Part</code> array, and to assemble the final
+string from resulting <code>Part</code>s itself.</p>
+
+<p>All algorithms and formatting functions are accompanied by extensive tests
+in <code>coretest::num::flt2dec</code> module. It also shows how to use individual
+functions.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>use prelude::<a class='mod' href='../../../core/prelude/v1/index.html' title='core::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use <a class='mod' href='../../../core/i16/index.html' title='core::i16'>i16</a>;</code></td></tr><tr><td><code>pub use self::decoder::{<a class='fn' href='../../../core/num/flt2dec/decoder/fn.decode.html' title='core::num::flt2dec::decoder::decode'>decode</a>, <a class='trait' href='../../../core/num/flt2dec/decoder/trait.DecodableFloat.html' title='core::num::flt2dec::decoder::DecodableFloat'>DecodableFloat</a>, <a class='enum' href='../../../core/num/flt2dec/decoder/enum.FullDecoded.html' title='core::num::flt2dec::decoder::FullDecoded'>FullDecoded</a>, <a class='struct' href='../../../core/num/flt2dec/decoder/struct.Decoded.html' title='core::num::flt2dec::decoder::Decoded'>Decoded</a>};</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='decoder/index.html'
+                               title='core::num::flt2dec::decoder'>decoder</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Decodes a floating-point value into individual parts and error ranges.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='estimator/index.html'
+                               title='core::num::flt2dec::estimator'>estimator</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>The exponent estimator.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='mod' href='strategy/index.html'
+                               title='core::num::flt2dec::strategy'>strategy</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Digit-generation algorithms.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='struct' href='struct.Formatted.html'
+                               title='core::num::flt2dec::Formatted'>Formatted</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Formatted result containing one or more parts.
+This can be written to the byte buffer or converted to the allocated string.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='enum' href='enum.Part.html'
+                               title='core::num::flt2dec::Part'>Part</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Formatted parts.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='enum' href='enum.Sign.html'
+                               title='core::num::flt2dec::Sign'>Sign</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Sign formatting options.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='constant' href='constant.MAX_SIG_DIGITS.html'
+                               title='core::num::flt2dec::MAX_SIG_DIGITS'>MAX_SIG_DIGITS</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>The minimum size of buffer necessary for the shortest mode.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.determine_sign.html'
+                               title='core::num::flt2dec::determine_sign'>determine_sign</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Returns the static byte string corresponding to the sign to be formatted.
+It can be either <code>b&quot;&quot;</code>, <code>b&quot;+&quot;</code> or <code>b&quot;-&quot;</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.digits_to_dec_str.html'
+                               title='core::num::flt2dec::digits_to_dec_str'>digits_to_dec_str</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Formats given decimal digits <code>0.&lt;...buf...&gt; * 10^exp</code> into the decimal form
+with at least given number of fractional digits. The result is stored to
+the supplied parts array and a slice of written parts is returned.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.digits_to_exp_str.html'
+                               title='core::num::flt2dec::digits_to_exp_str'>digits_to_exp_str</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Formats given decimal digits <code>0.&lt;...buf...&gt; * 10^exp</code> into the exponential form
+with at least given number of significant digits. When <code>upper</code> is true,
+the exponent will be prefixed by <code>E</code>; otherwise that&#39;s <code>e</code>. The result is
+stored to the supplied parts array and a slice of written parts is returned.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.estimate_max_buf_len.html'
+                               title='core::num::flt2dec::estimate_max_buf_len'>estimate_max_buf_len</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Returns rather crude approximation (upper bound) for the maximum buffer size
+calculated from the given decoded exponent.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.round_up.html'
+                               title='core::num::flt2dec::round_up'>round_up</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>When <code>d[..n]</code> contains decimal digits, increase the last digit and propagate carry.
+Returns a next digit when it causes the length change.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.to_exact_exp_str.html'
+                               title='core::num::flt2dec::to_exact_exp_str'>to_exact_exp_str</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Formats given floating point number into the exponential form with
+exactly given number of significant digits. The result is stored to
+the supplied parts array while utilizing given byte buffer as a scratch.
+<code>upper</code> is used to determine the case of the exponent prefix (<code>e</code> or <code>E</code>).
+The first part to be rendered is always a <code>Part::Sign</code> (which can be
+an empty string if no sign is rendered).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.to_exact_fixed_str.html'
+                               title='core::num::flt2dec::to_exact_fixed_str'>to_exact_fixed_str</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Formats given floating point number into the decimal form with exactly
+given number of fractional digits. The result is stored to the supplied parts
+array while utilizing given byte buffer as a scratch. <code>upper</code> is currently
+unused but left for the future decision to change the case of non-finite values,
+i.e. <code>inf</code> and <code>nan</code>. The first part to be rendered is always a <code>Part::Sign</code>
+(which can be an empty string if no sign is rendered).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.to_shortest_exp_str.html'
+                               title='core::num::flt2dec::to_shortest_exp_str'>to_shortest_exp_str</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Formats given floating point number into the decimal form or
+the exponential form, depending on the resulting exponent. The result is
+stored to the supplied parts array while utilizing given byte buffer
+as a scratch. <code>upper</code> is used to determine the case of non-finite values
+(<code>inf</code> and <code>nan</code>) or the case of the exponent prefix (<code>e</code> or <code>E</code>).
+The first part to be rendered is always a <code>Part::Sign</code> (which can be
+an empty string if no sign is rendered).</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class='unstable module-item'>
+                        <td><a class='fn' href='fn.to_shortest_str.html'
+                               title='core::num::flt2dec::to_shortest_str'>to_shortest_str</a></td>
+                        <td class='docblock short'>
+                            [<em class='stab unstable'>Unstable</em>] <p>Formats given floating point number into the decimal form with at least
+given number of fractional digits. The result is stored to the supplied parts
+array while utilizing given byte buffer as a scratch. <code>upper</code> is currently
+unused but left for the future decision to change the case of non-finite values,
+i.e. <code>inf</code> and <code>nan</code>. The first part to be rendered is always a <code>Part::Sign</code>
+(which can be an empty string if no sign is rendered).</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "core";
+        window.playgroundUrl = "https://play.rust-lang.org/";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    <script src="../../../playpen.js"></script>
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

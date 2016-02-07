@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["Alphabetic_table",""],["Case_Ignorable_table",""],["Cased_table",""],["Lowercase_table",""],["Uppercase_table",""],["XID_Continue_table",""],["XID_Start_table",""]],"fn":[["Alphabetic",""],["Case_Ignorable",""],["Cased",""],["Lowercase",""],["Uppercase",""],["XID_Continue",""],["XID_Start",""]]});
